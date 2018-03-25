@@ -73,10 +73,10 @@ function onLoad() {
     var userid = elemUsername.value;
     var elemPassword = document.getElementById("password");
     var password = elemPassword.value;
-	if (userid == "zhanrui"&&password==1988) {
+	if (userid == "zhanrui"&&password=="1988") {
 		window.location.href = "http://www.baidu.com";
 	}
-	if (userid == "zhanrui"&&password==19880505) {
+	if (userid == "zhanrui"&&password=="19880505") {
 		window.location.href = "http://map.baidu.com/";
 	}
 	if (userRight == "3") {
