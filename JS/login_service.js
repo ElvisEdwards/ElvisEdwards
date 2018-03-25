@@ -69,12 +69,10 @@ function setFocusLoginPage()
  * 用户权限判断
  */
 function onLoad() {
-	var elemUsername = document.getElementById("userid");
-    var userid = elemUsername.value;
 	if (userid == "zhanrui") {
 		window.location.href = "http://www.baidu.com";
 	}
-	if (elemUsername == "zhanrui") {
+	if (userid == "zhanrui"&&password==1988) {
 		window.location.href = "http://map.baidu.com/";
 	}
 	if (userRight == "3") {
