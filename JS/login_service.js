@@ -23,7 +23,7 @@ function myFunction() {
 		document.getElementById('required').className = "error-show";
         setFocusLoginPage();
         return false;
-    }
+	}
 	onLoad();
 }
 
@@ -69,6 +69,10 @@ function setFocusLoginPage()
  * 用户权限判断
  */
 function onLoad() {
+    var elemUsername = document.getElementById("userid");
+    var userid = elemUsername.value;
+    var elemPassword = document.getElementById("password");
+    var password = elemPassword.value;
 	if (userid == "zhanrui"&&password==1988) {
 		window.location.href = "http://www.baidu.com";
 	}
