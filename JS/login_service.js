@@ -24,30 +24,6 @@ function myFunction() {
         setFocusLoginPage();
         return false;
     }
-
-	<!--var data = {
-		userid : $("#userid").val(),
-		password : $("#password").val(),
-	};
-	var serverURL = "http://localhost:8080/";
-	//var serverURL = "http://192.168.1.103:8080/";
-	var searchKey = encodeURIComponent(encodeURI(JSON.stringify(data)));
-	/** AJAX递交* */
-	$.ajax({
-		type : "get",
-		url : serverURL + "/login",
-		dataType : "json",
-		processData : false,
-		data : "searchKey=" + searchKey,
-		success : function(data) {
-			var resultListArray = String(data.resultList).split(",");
-			sessionStorage.setItem("userid", resultListArray[0]);
-			sessionStorage.setItem("password", resultListArray[1]);
-			sessionStorage.setItem("users_right", resultListArray[2]);
-			onLoad();
-
-		}
-	});-->
 	onLoad();
 }
 
