@@ -25,7 +25,7 @@ function myFunction() {
         return false;
     }
 
-	var data = {
+	<!--var data = {
 		userid : $("#userid").val(),
 		password : $("#password").val(),
 	};
@@ -47,7 +47,8 @@ function myFunction() {
 			onLoad();
 
 		}
-	});
+	});-->
+	onLoad();
 }
 
 /**
@@ -92,11 +93,12 @@ function setFocusLoginPage()
  * 用户权限判断
  */
 function onLoad() {
-	var userRight = sessionStorage.getItem("users_right");
-	if (userRight == "1") {
+	var elemUsername = document.getElementById("userid");
+    var userid = elemUsername.value;
+	if (userid == "zhanrui") {
 		window.location.href = "http://www.baidu.com";
 	}
-	if (userRight == "2") {
+	if (elemUsername == "zhanrui") {
 		window.location.href = "http://map.baidu.com/";
 	}
 	if (userRight == "3") {
