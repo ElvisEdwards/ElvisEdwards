@@ -73,11 +73,11 @@ function onLoad() {
     var userid = elemUsername.value;
     var elemPassword = document.getElementById("password");
     var password = elemPassword.value;
-	if (userid == "zhanrui"&&password=="1988") {
-		window.location.href = "http://www.baidu.com";
-	}
 	if (userid == "zhanrui"&&password=="19880505") {
-		window.location.href = "http://map.baidu.com/";
+		window.location.href = "https://www.elvisedwards.com/AR.js/three.js/examples/css3d_periodictable.html";
+	}
+	if (userid == "jinweidong"&&password=="123456") {
+		window.location.href = "https://www.elvisedwards.com/AR.js/three.js/examples/css3d_periodictable.html";
 	}
 	if (userRight == "3") {
 		window.location.href = "../html/index.html?rank=3";
