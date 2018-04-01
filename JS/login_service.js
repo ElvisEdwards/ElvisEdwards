@@ -73,7 +73,7 @@ function onLoad() {
     var userid = elemUsername.value;
     var elemPassword = document.getElementById("password");
     var password = elemPassword.value;
-	if (userid == "zhanrui"&&password=="19880505") {
+	if (userid == "zhanrui"&&password=="19980505") {
 		window.location.href = "https://www.elvisedwards.com/AR.js/three.js/examples/css3d_periodictable.html";
 	}
 	if (userid == "jinweidong"&&password=="123456") {
