@@ -26,6 +26,7 @@
 	<br/>
 	
 </div><script>
+animate();
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Init
 	//////////////////////////////////////////////////////////////////////////////////
@@ -154,7 +155,16 @@
 
 					var action = object.mixer.clipAction( object.animations[ 0 ] );
 					action.play();
-					
+					object.traverse( function ( child ) {
+
+						if ( child.isMesh ) {
+
+							child.castShadow = true;
+							child.receiveShadow = true;
+
+						}
+
+					} );
 			//object.position.y = 0.2;
   			// 缩放
 			//object.scale.x =  object.scale.y =  object.scale.z = 2.25;
@@ -168,23 +178,17 @@
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
 	//////////////////////////////////////////////////////////////////////////////////
-	var stats = new Stats();
-	document.body.appendChild( stats.dom );
+	//var stats = new Stats();
+	//document.body.appendChild( stats.dom );
 	// render the scene
-	onRenderFcts.push(function(){
-		renderer.render( scene, camera );
-		stats.update();
-	})
-	
-	document.addEventListener('touchmove',function(event){
-	event.preventDefault();},false);
-	
-	// run the rendering loop
-	var lastTimeMsec= null
-	requestAnimationFrame(function animate(nowMsec){
-		// keep looping
-		requestAnimationFrame( animate );
-		if ( mixers.length > 0 ) {
+	//onRenderFcts.push(function(){
+		//renderer.render( scene, camera );
+		//stats.update();})
+	function animate() {
+
+				requestAnimationFrame( animate );
+
+				if ( mixers.length > 0 ) {
 
 					for ( var i = 0; i < mixers.length; i ++ ) {
 
@@ -193,13 +197,15 @@
 					}
 
 				}
-		// measure time
-		lastTimeMsec	= lastTimeMsec || nowMsec-1000/60
-		var deltaMsec	= Math.min(200, nowMsec - lastTimeMsec)
-		lastTimeMsec	= nowMsec
-		// call each update function
-		onRenderFcts.forEach(function(onRenderFct){
-			onRenderFct(deltaMsec/1000, nowMsec/1000)
-		})
-	})
+
+				renderer.render( scene, camera );
+
+				stats.update();
+
+			}
+	//document.addEventListener('touchmove',function(event){
+	//event.preventDefault();},false);
+	
+	// run the rendering loop
+
 </script></body>
