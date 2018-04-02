@@ -154,16 +154,6 @@
 
 					var action = object.mixer.clipAction( object.animations[ 0 ] );
 					action.play();
-					object.traverse( function ( child ) {
-
-						if ( child.isMesh ) {
-
-							child.castShadow = true;
-							child.receiveShadow = true;
-
-						}
-
-					} );
 			//object.position.y = 0.2;
   			// 缩放
 			//object.scale.x =  object.scale.y =  object.scale.z = 2.25;
@@ -181,6 +171,13 @@
 	//document.body.appendChild( stats.dom );
 	// render the scene
 	onRenderFcts.push(function(){
+				if ( onRenderFcts.length > 0 ) {
+
+					for ( var i = 0; i < onRenderFcts.length; i ++ ) {
+
+						onRenderFcts[ i ].update( clock.getDelta() );
+					}
+				}
 		renderer.render( scene, camera );
 		//stats.update();
 	})
@@ -193,13 +190,7 @@
 	requestAnimationFrame(function animate(nowMsec){
 		// keep looping
 		requestAnimationFrame( animate );
-		if ( onRenderFcts.length > 0 ) {
 
-					for ( var i = 0; i < onRenderFcts.length; i ++ ) {
-
-						onRenderFcts[ i ].update( clock.getDelta() );
-					}
-				}
 		// measure time
 		lastTimeMsec	= lastTimeMsec || nowMsec-1000/60
 		var deltaMsec	= Math.min(200, nowMsec - lastTimeMsec)

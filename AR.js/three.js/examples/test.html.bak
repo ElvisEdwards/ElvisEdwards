@@ -35,7 +35,7 @@
 		alpha: true
 	});
 	var clock = new THREE.Clock();
-	var mixers = [];
+	//var mixers = [];
 	renderer.setClearColor(new THREE.Color('lightgrey'), 0)
 	// renderer.setPixelRatio( 2 );
 	renderer.setSize( window.innerWidth, window.innerHeight );
@@ -150,7 +150,7 @@
 				loader.load( 'models/SambaDancing.fbx', function ( object ) {
 
 					object.mixer = new THREE.AnimationMixer( object );
-					mixers.push( object.mixer );
+					onRenderFcts.push( object.mixer );
 
 					var action = object.mixer.clipAction( object.animations[ 0 ] );
 					action.play();
@@ -193,11 +193,11 @@
 	requestAnimationFrame(function animate(nowMsec){
 		// keep looping
 		requestAnimationFrame( animate );
-		if ( mixers.length > 0 ) {
+		if ( onRenderFcts.length > 0 ) {
 
-					for ( var i = 0; i < mixers.length; i ++ ) {
+					for ( var i = 0; i < onRenderFcts.length; i ++ ) {
 
-						mixers[ i ].update( clock.getDelta() );
+						onRenderFcts[ i ].update( clock.getDelta() );
 					}
 				}
 		// measure time
