@@ -16,7 +16,7 @@
 <script>THREEx.ArToolkitContext.baseURL = '../'</script>
 
 
-
+		<script src="js/libs/inflate.min.js"></script>
 		<script src="js/loaders/DDSLoader.js"></script>
 		<script src="js/loaders/FBXLoader.js"></script>
 		<script src="js/Detector.js"></script>
@@ -146,29 +146,27 @@
 		
 	
 	// model
-				var loader = new THREE.FBXLoader();
-				loader.load( 'models/SambaDancing.fbx', function ( object ) {
-
-					object.mixer = new THREE.AnimationMixer( object );
-					onRenderFcts.push( object.mixer );
-
-					var action = object.mixer.clipAction( object.animations[ 0 ] );
-					action.play();
+	THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
+	var loader = new THREE.FBXLoader();
+	loader.load( 'models/SambaDancing.fbx', function ( object ) {
+		object.mixer = new THREE.AnimationMixer( object );
+		onRenderFcts.push( object.mixer );
+		var action = object.mixer.clipAction( object.animations[ 0 ] );
+		action.play();
 			//object.position.y = 0.2;
   			// 缩放
 			//object.scale.x =  object.scale.y =  object.scale.z = 2.25;
 			// 旋转
 			//object.rotation.set(Math.PI/2,Math.PI/2,Math.PI/2) ;
-					markerRoot.add( object );
-
-				} );
+			markerRoot.add( object );
+			} );
 
 
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
 	//////////////////////////////////////////////////////////////////////////////////
-	//var stats = new Stats();
-	//document.body.appendChild( stats.dom );
+	var stats = new Stats();
+	document.body.appendChild( stats.dom );
 	// render the scene
 	onRenderFcts.push(function(){
 				if ( onRenderFcts.length > 0 ) {
@@ -179,7 +177,7 @@
 					}
 				}
 		renderer.render( scene, camera );
-		//stats.update();
+		stats.update();
 	})
 	
 	//document.addEventListener('touchmove',function(event){
