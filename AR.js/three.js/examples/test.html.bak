@@ -34,8 +34,8 @@
 		// antialias	: true,
 		alpha: true
 	});
-	var clock = new THREE.Clock();
-	var mixers = [];
+	//var clock = new THREE.Clock();
+	//var mixers = [];
 	renderer.setClearColor(new THREE.Color('lightgrey'), 0)
 	// renderer.setPixelRatio( 2 );
 	renderer.setSize( window.innerWidth, window.innerHeight );
@@ -47,7 +47,7 @@
 	// array of functions for the rendering loop
 	var onRenderFcts= [];
 	// init scene and camera
-	var scene	= new THREE.Scene();
+	var scene = new THREE.Scene();
 	var ambient = new THREE.AmbientLight( 0x666666 );
 	scene.add( ambient );
 	var directionalLight = new THREE.DirectionalLight( 0x887766 );
@@ -147,7 +147,7 @@
 	
 	// model
 	var loader = new THREE.FBXLoader();
-	loader.load( 'models/rose.fbx', function ( object ) {
+	loader.load( 'models/LN_CB.FBX', function ( object ) {
 		object.mixer = new THREE.AnimationMixer( object );
 		mixers.push( object.mixer );
 		var action = object.mixer.clipAction( object.animations[ 0 ] );
@@ -168,13 +168,7 @@
 	document.body.appendChild( stats.dom );
 	// render the scene
 	onRenderFcts.push(function(){
-				if ( mixers.length > 0 ) {
 
-					for ( var i = 0; i < mixers.length; i ++ ) {
-
-						mixers[ i ].update( clock.getDelta() );
-					}
-				}
 		renderer.render( scene, camera );
 		stats.update();
 	})
