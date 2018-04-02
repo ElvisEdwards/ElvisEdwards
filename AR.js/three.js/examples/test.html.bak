@@ -198,9 +198,7 @@
 					for ( var i = 0; i < mixers.length; i ++ ) {
 
 						mixers[ i ].update( clock.getDelta() );
-
 					}
-
 				}
 		// measure time
 		lastTimeMsec	= lastTimeMsec || nowMsec-1000/60
