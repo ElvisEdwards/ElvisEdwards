@@ -206,6 +206,7 @@
 
 	var objectLoader = new THREE.ObjectLoader();
 	objectLoader.load("models/teapot-claraio.json", function ( obj ) {
+		obj.scale.x =  obj.scale.y =  obj.scale.z = 5.45;
 		markerRoot.add( obj );
 				} );
 	//////////////////////////////////////////////////////////////////////////////////
