@@ -16,10 +16,10 @@
 <script>THREEx.ArToolkitContext.baseURL = '../'</script>
 
 
-		<script src="js/libs/inflate.min.js"></script>
+
 		<script src="js/loaders/DDSLoader.js"></script>
-		<script src="js/loaders/ColladaLoader.js"></script>
-		<script src="js/loaders/FBXLoader.js"></script>
+		<script src="js/loaders/MTLLoader.js"></script>
+		<script src="js/loaders/OBJLoader.js"></script>
 		<script src="js/Detector.js"></script>
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'><div style='position: absolute; top: 10px; width:100%; text-align: center;z-index:1';>
@@ -35,8 +35,7 @@
 		// antialias	: true,
 		alpha: true
 	});
-	var clock = new THREE.Clock();
-	//var mixers = [];
+	
 	renderer.setClearColor(new THREE.Color('lightgrey'), 0)
 	// renderer.setPixelRatio( 2 );
 	renderer.setSize( window.innerWidth, window.innerHeight );
@@ -48,7 +47,7 @@
 	// array of functions for the rendering loop
 	var onRenderFcts= [];
 	// init scene and camera
-	var scene = new THREE.Scene();
+	var scene	= new THREE.Scene();
 	var ambient = new THREE.AmbientLight( 0x666666 );
 	scene.add( ambient );
 	var directionalLight = new THREE.DirectionalLight( 0x887766 );
@@ -147,25 +146,30 @@
 		
 	
 	// model
-	// collada
-
-				var loader = new THREE.ColladaLoader();
-				loader.load( './models/collada/stormtrooper/stormtrooper.dae', function ( collada ) {
-
-					var animations = collada.animations;
-					var avatar = collada.scene;
-
-					mixer = new THREE.AnimationMixer( avatar );
-					var action = mixer.clipAction( animations[ 0 ] ).play();
-					onRenderFcts.push(function(){
-					avatar.updateMatrix();
-					markerRoot.add( avatar );})
-
-				} );
-				var ambientLight = new THREE.AmbientLight( 0xffffff, 0.2 );
-				scene.add( ambientLight );
-
-
+	var onProgress = function ( xhr ) {
+		if ( xhr.lengthComputable ) {
+			var percentComplete = xhr.loaded / xhr.total * 100;
+			console.log( Math.round(percentComplete, 2) + '% downloaded' );
+		}
+	};
+	var onError = function ( xhr ) { };
+	THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
+	var mtlLoader = new THREE.MTLLoader();
+	mtlLoader.setPath( 'models/project/' );
+	mtlLoader.load( 'LN_CB.mtl', function( materials ) {
+		materials.preload();
+		var objLoader = new THREE.OBJLoader();
+		objLoader.setMaterials( materials );
+		objLoader.setPath( 'models/project/' );
+		objLoader.load( 'LN_CB.obj', function ( object ) {
+			//object.position.y = 0.2;
+  			// 缩放
+			object.scale.x =  object.scale.y =  object.scale.z = 20.25;
+			// 旋转
+			object.rotation.set(Math.PI/2,Math.PI/2,Math.PI/2) ;
+			markerRoot.add( object );
+		}, onProgress, onError );
+	});
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
 	//////////////////////////////////////////////////////////////////////////////////
@@ -173,27 +177,18 @@
 	document.body.appendChild( stats.dom );
 	// render the scene
 	onRenderFcts.push(function(){
-		var delta = clock.getDelta();
-
-				if ( mixer !== undefined ) {
-
-					mixer.update( delta );
-
-				}
-
 		renderer.render( scene, camera );
 		stats.update();
 	})
 	
-	//document.addEventListener('touchmove',function(event){
-	//event.preventDefault();},false);
+	document.addEventListener('touchmove',function(event){
+	event.preventDefault();},false);
 	
 	// run the rendering loop
 	var lastTimeMsec= null
 	requestAnimationFrame(function animate(nowMsec){
 		// keep looping
 		requestAnimationFrame( animate );
-
 		// measure time
 		lastTimeMsec	= lastTimeMsec || nowMsec-1000/60
 		var deltaMsec	= Math.min(200, nowMsec - lastTimeMsec)
