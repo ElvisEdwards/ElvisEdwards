@@ -175,9 +175,9 @@
 
 		var obLoader = new THREE.OBJLoader();
 		obLoader.setMaterials( materials );
-		obLoader.setPath( 'models/TAT/' );
-		obLoader.load( 'trex.obj', function ( object ) {
-			object.position.set( 0, 0, 0 );
+		obLoader.setPath( 'models/' );
+		obLoader.load( 'LN_CB.obj', function ( object ) {
+			//object.position.set( 0, 0, 0 );
 
 			//object.position.y = 0.2;
   			// 缩放
