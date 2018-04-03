@@ -203,7 +203,7 @@
 	});*/
 
 	var objectLoader = new THREE.ObjectLoader();
-	objectLoader.load("models/json/cacb.json", function ( obj ) {
+	objectLoader.load("models/cacb.json", function ( obj ) {
 		markerRoot.add( obj );
 				} );
 	//////////////////////////////////////////////////////////////////////////////////
