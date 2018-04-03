@@ -155,13 +155,13 @@
 	var onError = function ( xhr ) { };
 	THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
 	var mtlLoader = new THREE.MTLLoader();
-	mtlLoader.setPath( 'models/TAT/' );
-	mtlLoader.load( 'trex.mtl', function( materials ) {
+	mtlLoader.setPath( 'models/IronMan/' );
+	mtlLoader.load( 'IronMan.mtl', function( materials ) {
 		materials.preload();
 		var objLoader = new THREE.OBJLoader();
 		objLoader.setMaterials( materials );
-		objLoader.setPath( 'models/TAT/' );
-		objLoader.load( 'trex.obj', function ( object ) {
+		objLoader.setPath( 'models/IronMan/' );
+		objLoader.load( 'IronMan.obj', function ( object ) {
 			//object.position.y = 0.2;
   			// 缩放
 			object.scale.x =  object.scale.y =  object.scale.z = 20.25;
