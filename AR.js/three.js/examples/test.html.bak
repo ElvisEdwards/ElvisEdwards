@@ -18,6 +18,7 @@
 
 		<script src="js/libs/inflate.min.js"></script>
 		<script src="js/loaders/DDSLoader.js"></script>
+		<script src="js/loaders/ColladaLoader.js"></script>
 		<script src="js/loaders/FBXLoader.js"></script>
 		<script src="js/Detector.js"></script>
 
@@ -34,7 +35,7 @@
 		// antialias	: true,
 		alpha: true
 	});
-	//var clock = new THREE.Clock();
+	var clock = new THREE.Clock();
 	//var mixers = [];
 	renderer.setClearColor(new THREE.Color('lightgrey'), 0)
 	// renderer.setPixelRatio( 2 );
@@ -146,12 +147,22 @@
 		
 	
 	// model
-				var loader = new THREE.FBXLoader();
-				loader.load( 'models/rose.fbx', function( object ) {
+	// collada
 
-					markerRoot.add( object );
+				var loader = new THREE.ColladaLoader();
+				loader.load( './models/collada/stormtrooper/stormtrooper.dae', function ( collada ) {
+
+					var animations = collada.animations;
+					var avatar = collada.scene;
+
+					mixer = new THREE.AnimationMixer( avatar );
+					var action = mixer.clipAction( animations[ 0 ] ).play();
+
+					scene.add( avatar );
 
 				} );
+				var ambientLight = new THREE.AmbientLight( 0xffffff, 0.2 );
+				scene.add( ambientLight );
 
 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -161,7 +172,6 @@
 	document.body.appendChild( stats.dom );
 	// render the scene
 	onRenderFcts.push(function(){
-
 		renderer.render( scene, camera );
 		stats.update();
 	})
