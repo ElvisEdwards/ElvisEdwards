@@ -158,7 +158,7 @@
 					mixer = new THREE.AnimationMixer( avatar );
 					var action = mixer.clipAction( animations[ 0 ] ).play();
 
-					scene.add( avatar );
+					markerRoot.add( avatar );
 
 				} );
 				var ambientLight = new THREE.AmbientLight( 0xffffff, 0.2 );
@@ -172,6 +172,14 @@
 	document.body.appendChild( stats.dom );
 	// render the scene
 	onRenderFcts.push(function(){
+		var delta = clock.getDelta();
+
+				if ( mixer !== undefined ) {
+
+					mixer.update( delta );
+
+				}
+
 		renderer.render( scene, camera );
 		stats.update();
 	})
