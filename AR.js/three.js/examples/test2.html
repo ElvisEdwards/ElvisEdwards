@@ -145,7 +145,7 @@
 		smoothedControls.update(markerRoot)
 	})	
 		
-	
+	/**
 	// model
 	var onProgress = function ( xhr ) {
 		if ( xhr.lengthComputable ) {
@@ -200,7 +200,12 @@
 		}, onProgress, onError );
 
 
-	});
+	});*/
+
+	var objectLoader = new THREE.ObjectLoader();
+	objectLoader.load("models/cacb.json", function ( obj ) {
+		markerRoot.add( obj );
+				} );
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
 	//////////////////////////////////////////////////////////////////////////////////
