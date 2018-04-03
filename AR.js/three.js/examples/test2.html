@@ -173,18 +173,18 @@
 		//}, onProgress, onError );
 
 
-		var objLoader = new THREE.OBJLoader();
-		objLoader.setMaterials( materials );
-		objLoader.setPath( 'models/TAT/' );
-		objLoader.load( 'trex.obj', function ( object ) {
-			object.position.set( 75, 0, 0 );
+		var obLoader = new THREE.OBJLoader();
+		obLoader.setMaterials( materials );
+		obLoader.setPath( 'models/TAT/' );
+		obLoader.load( 'trex.obj', function ( object ) {
+			object.position.set( 0, 0, 0 );
 
 			//object.position.y = 0.2;
   			// 缩放
 			object.scale.x =  object.scale.y =  object.scale.z = 3.05;
 			// 旋转
 			//object.rotation.set(Math.PI/2,Math.PI/2,Math.PI/2) ;
-			markerRoot.add( object );
+			scene.add( object );
 
 		}, onProgress, onError );
 
