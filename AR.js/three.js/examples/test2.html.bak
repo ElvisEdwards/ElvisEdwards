@@ -51,7 +51,7 @@
 	var onRenderFcts= [];
 	// init scene and camera
 	var scene	= new THREE.Scene();
-	var ambient = new THREE.AmbientLight( 0x666666 );
+	var ambient = new THREE.AmbientLight( 0xbbbbbb );
 	scene.add( ambient );
 	var directionalLight = new THREE.DirectionalLight( 0x887766 );
 	directionalLight.position.set( -1, 1, 1 ).normalize();
@@ -205,8 +205,10 @@
 	});*/
 
 	var objectLoader = new THREE.ObjectLoader();
-	objectLoader.load("models/test7.json", function ( obj ) {
-		obj.scale.x =  obj.scale.y =  obj.scale.z = 0.3;
+	objectLoader.load("models/test9.json", function ( obj ) {
+		//obj.scale.x =  obj.scale.y =  obj.scale.z = 0.3;
+		obj.scale.set(3,3,3);
+		//obj.rotation.set(Math.PI,Math.PI/3.23,Math.PI) ;
 		markerRoot.add( obj );
 				} );
 	//////////////////////////////////////////////////////////////////////////////////
@@ -228,6 +230,11 @@
 	requestAnimationFrame(function animate(nowMsec){
 		// keep looping
 		requestAnimationFrame( animate );
+		//旋转
+		var timer = Date.now() * 0.0005;
+		camera.position.x = Math.cos( timer ) * 200;
+		camera.position.z = Math.sin( timer ) * 200;
+		camera.lookAt( scene.position );
 		// measure time
 		lastTimeMsec	= lastTimeMsec || nowMsec-1000/60
 		var deltaMsec	= Math.min(200, nowMsec - lastTimeMsec)
