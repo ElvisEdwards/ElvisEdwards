@@ -251,7 +251,7 @@
         },
         //滑动释放
         end:function(event){
-            /**var duration = +new Date - startPos.time;    //滑动的持续时间
+            var duration = +new Date - startPos.time;    //滑动的持续时间
             if(isScrolling === 0){    //当为水平滚动时
                 this.icon[this.index].className = '';
                 if(Number(duration) > 10){     
@@ -265,7 +265,7 @@
                 this.icon[this.index].className = 'curr';
                 this.slider.className = 'cnt f-anim';
                 this.slider.style.left = -this.index*600 + 'px';
-            }*/
+            }
             //解绑事件
             this.slider.removeEventListener('touchmove',this,false);
             this.slider.removeEventListener('touchend',this,false);
