@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<meta name='viewport' content='width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0'>
+<!-- 防止屏幕进行伸缩 <meta name='viewport' content='width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0'> -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
 <!-- three.js library -->
 <script src='vendor/three.js/build/three.js'></script>
 <script src='vendor/three.js/examples/js/libs/stats.min.js'></script>
@@ -187,20 +188,6 @@
 	
 	document.addEventListener('touchmove',function(event){
 	event.preventDefault();},false);
-	
-	
-	//touch control
-	    var target = document.querySelector("#container");
-        //给element注入transform属性
-        Transform(target);
-        new AlloyTouch({
-            touch: target,//反馈触摸的dom
-            vertical: false,//不必需，默认是true代表监听竖直方向touch
-            target: target, //运动的对象
-            property: "rotateY",  //被滚动的属性
-            factor: 1//不必需,默认值是1代表touch区域的1px的对应target.y的1
-        })
-
 
 	// run the rendering loop
 	var lastTimeMsec= null
@@ -216,4 +203,57 @@
 			onRenderFct(deltaMsec/1000, nowMsec/1000)
 		})
 	})
+
+		
+	
+	//touch control
+	
+	var startPos = {};//开始位置
+            var endPos = {};//结束位置
+            var timer = Date.now() * 0.0005;
+            //var timr;//定时器，后面控制速度会使用
+            //var touch;//记录触碰节点
+
+	    var target = document.querySelector("#container");
+        //给element注入transform属性
+        Transform(target);
+        new AlloyTouch({
+            touch: target,//反馈触摸的dom
+            vertical: false,//不必需，默认是true代表监听竖直方向touch
+            target: target, //运动的对象
+            property: "rotateY",  //被滚动的属性
+            factor: 1//不必需,默认值是1代表touch区域的1px的对应target.y的1
+			touchStart:function(event){ 
+				touch = event.targetTouches[0];//取得第一个touch的坐标值
+                startPos = {x:touch.pageX,y:touch.pageY}
+                 },
+			touchMove:function(event){ 
+                // 如果有多个地方滑动，我们就不发生这个事件
+                if(event.targetTouches.length > 1){
+                    return
+                }
+                touch = event.targetTouches[0];
+                endPos = {x:touch.pageX,y:touch.pageY}
+                // 判断出滑动方向，向右为1，向左为-1
+				camera.position.x = Math.cos( touch.pageX-startPos.x ) * 200;
+				camera.position.z = Math.sin( touch.pageX-startPos.x ) * 200;
+				//camera.lookAt( scene.position );
+                //scrollDirection = touch.pageX-startPos.x > 0 ? 1 : -1;},
+			touchEnd:function(){ if(scrollDirection == 1){
+                    if(index >= 1 && index <= aCircle.length-1){
+                        index--;
+                        slide(index);
+                    }else{
+                        return
+                    }
+                }else if(scrollDirection == -1){
+                    if(index >=0 && index <= aCircle.length-2){
+                        index++;
+                        slide(index);
+                    }else{
+                        return
+                    }
+                } },
+			animationEnd:function(value){  } //运动结束
+        })
 </script></body>
