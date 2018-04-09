@@ -2,7 +2,6 @@
 <meta name='viewport' content='width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0'>
 <!-- three.js library -->
 <script src='vendor/three.js/build/three.js'></script>
-<script src='vendor/three.js/examples/js/libs/stats.min.js'></script>
 <!-- jsartookit -->
 <script src='../vendor/jsartoolkit5/build/artoolkit.min.js'></script>
 <script src='../vendor/jsartoolkit5/js/artoolkit.api.js'></script>
@@ -16,19 +15,11 @@
 <script src='../src/loaders/JSONLoader.js'></script>
 <script src='../src/loaders/ObjectLoader.js'></script>
 <script>THREEx.ArToolkitContext.baseURL = '../'</script>
-
-
-
 		<script src="js/loaders/DDSLoader.js"></script>
-		<script src="js/loaders/MTLLoader.js"></script>
-		<script src="js/loaders/OBJLoader.js"></script>
 		<script src="js/Detector.js"></script>
 
-<body style='margin : 0px; overflow: hidden; font-family: Monospace;'><div style='position: absolute; top: 10px; width:100%; text-align: center;z-index:1';>
-	<a href='https://github.com/jeromeetienne/AR.js/' target='_blank'>AR.js</a> - developement playground
-	<br/>
-	
-</div><script>
+<body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
+<script>
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Init
 	//////////////////////////////////////////////////////////////////////////////////
@@ -37,7 +28,6 @@
 		// antialias	: true,
 		alpha: true
 	});
-	
 	
 	renderer.setClearColor(new THREE.Color('lightgrey'), 0)
 	// renderer.setPixelRatio( 2 );
@@ -147,75 +137,11 @@
 		smoothedControls.update(markerRoot)
 	})	
 		
-	/**
-	// model
-	var onProgress = function ( xhr ) {
-		if ( xhr.lengthComputable ) {
-			var percentComplete = xhr.loaded / xhr.total * 100;
-			console.log( Math.round(percentComplete, 2) + '% downloaded' );
-		}
-	};
-	var onError = function ( xhr ) { };
-	THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
-	var mtlLoader = new THREE.MTLLoader();
-	mtlLoader.setPath( 'models/IronMan/' );
-	mtlLoader.load( 'IronMan.mtl', function( materials ) {
-		materials.preload();
-
-		//var objLoader = new THREE.OBJLoader();
-		//objLoader.setMaterials( materials );
-		//objLoader.setPath( 'models/' );
-		//objLoader.load( 'LN_CB.obj', function ( object ) {
-			//object.position.y = 0.2;
-  			// 缩放
-			//object.scale.x =  object.scale.y =  object.scale.z = 1.25;
-			// 旋转
-			//object.rotation.set(Math.PI/2,Math.PI/2,Math.PI/2) ;
-			//markerRoot.add( object );
-		//}, onProgress, onError );
-
-
-		var obLoader = new THREE.OBJLoader();
-		obLoader.setMaterials( materials );
-		obLoader.setPath( 'models/' );
-		obLoader.load( 'LN_CB.obj', function ( object ) {
-			//object.position.set( 0, 0, 0 );
-
-			//object.position.y = 0.2;
-  			// 缩放
-			object.scale.x =  object.scale.y =  object.scale.z = 0.01;
-			// 旋转
-			object.rotation.set(Math.PI/2,Math.PI/2,Math.PI/2) ;
-			markerRoot.add( object );
-		}, onProgress, onError );
-
-		var objLoader = new THREE.OBJLoader();
-		objLoader.setMaterials( materials );
-		objLoader.setPath( 'models/' );
-		objLoader.load( 'tree.obj', function ( object ) {
-			//object.position.y = 0.2;
-  			// 缩放
-			object.scale.x =  object.scale.y =  object.scale.z = 0.3;
-			// 旋转
-			object.rotation.set(Math.PI/2,Math.PI/2,Math.PI/2) ;
-			markerRoot.add( object );
-		}, onProgress, onError );
-
-
-	});*/
-
-	/**var objectLoader = new THREE.ObjectLoader();
-	objectLoader.load("models/test9.json", function ( obj ) {
-		//obj.scale.x =  obj.scale.y =  obj.scale.z = 0.3;
-		obj.scale.set(3,3,3);
-		//obj.rotation.set(Math.PI,Math.PI/3.23,Math.PI) ;
-		markerRoot.add( obj );
-				} );*/
 
 	var objectLoader = new THREE.ObjectLoader();
 	objectLoader.load("models/test6/test6.json", function ( obj ) {
 	//obj.scale.x =  obj.scale.y =  obj.scale.z = 3.45;
-	obj.scale.set(3,3,3);
+	obj.scale.set(9,9,9);
 	obj.rotation.set(Math.PI/2,Math.PI/2,Math.PI/2) ;
 	obj.position.y = 30;
 	markerRoot.add( obj );
@@ -223,13 +149,10 @@
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
 	//////////////////////////////////////////////////////////////////////////////////
-	var stats = new Stats();
-	document.body.appendChild( stats.dom );
 	// render the scene
-	onRenderFcts.push(function(){
-		renderer.render( scene, camera );
-		stats.update();
-	})
+	//onRenderFcts.push(function(){
+		//renderer.render( scene, camera );
+	//})
 	
 	document.addEventListener('touchmove',function(event){
 	event.preventDefault();},false);
@@ -240,17 +163,18 @@
 		// keep looping
 		requestAnimationFrame( animate );
 		//旋转
-		var timer = Date.now() * 0.0005;
-		camera.position.x = Math.cos( timer ) * 200;
-		camera.position.z = Math.sin( timer ) * 200;
-		camera.lookAt( scene.position );
+		//var timer = Date.now() * 0.0005;
+		//camera.position.x = Math.cos( timer ) * 200;
+		//camera.position.z = Math.sin( timer ) * 200;
+		//camera.lookAt( scene.position );
 		// measure time
-		lastTimeMsec	= lastTimeMsec || nowMsec-1000/60
-		var deltaMsec	= Math.min(200, nowMsec - lastTimeMsec)
-		lastTimeMsec	= nowMsec
+		//lastTimeMsec	= lastTimeMsec || nowMsec-1000/60
+		//var deltaMsec	= Math.min(200, nowMsec - lastTimeMsec)
+		//lastTimeMsec	= nowMsec
 		// call each update function
-		onRenderFcts.forEach(function(onRenderFct){
-			onRenderFct(deltaMsec/1000, nowMsec/1000)
-		})
+		//onRenderFcts.forEach(function(onRenderFct){
+			//onRenderFct(deltaMsec/1000, nowMsec/1000)
+		//})
+		renderer.render( scene, camera );
 	})
 </script></body>
