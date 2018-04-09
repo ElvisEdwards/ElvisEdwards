@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>three.js webgl - OBJLoader + MTLLoader</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+
+</head>
+
+<body>
+		<div id="container"></div>
+ <button type="submit" value="Submit" onclick="change();">Submit</button>
+ <input type="button" id="signin_button" onclick="change();"/>
+
+<script src="../build/three.js"></script>
+<script src="js/Detector.js"></script>
+<script src="js/controls/OrbitControls.js"></script>
+<script src="js/libs/jszip.min.js"></script>
+<script src="js/loaders/DDSLoader.js"></script>
+<script src='../src/loaders/JSONLoader.js'></script>
+<script src='../src/loaders/ObjectLoader.js'></script>
+<script>
+
+    var container, stats;
+
+    var camera, scene, renderer;
+
+    var mouseX = 0, mouseY = 0;
+
+
+    init();
+    animate();
+
+
+    function init() {
+		container = document.getElementById( 'container' );
+        //container = document.createElement('div');
+        //document.body.appendChild(container);
+
+		renderer = new THREE.WebGLRenderer( { antialias: true } );
+        renderer.setPixelRatio(window.devicePixelRatio);
+        //renderer.setSize(window.innerWidth/2, window.innerHeight/2);
+		renderer.setSize(window.innerWidth, window.innerHeight);
+        container.appendChild(renderer.domElement);
+		renderer.setClearColor(0xBBBBBB);
+
+		// scene
+		scene = new THREE.Scene();
+				var ambientLight = new THREE.AmbientLight( 0xffffff, 1.2 );
+				scene.add( ambientLight );
+
+				//var pointLight = new THREE.PointLight( 0xffffff, 0.8 );
+				//scene.add( pointLight );
+				//var directLight = new THREE.DirectionalLight( 0xffffff, 1.8 );
+				//directLight.position.set(0,0,20);
+				//scene.add( directLight );
+
+
+        camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.01, 20000);
+        camera.position.z = 300;
+		//camera.up.set( 0, 0, 0 );
+		//camera.position.set( 0, 50, 100 );
+		scene.add( camera );
+
+
+        //<script src="js/controls/OrbitControls.js">
+		var controls = new THREE.OrbitControls( camera, renderer.domElement );
+				controls.addEventListener( 'change', render );
+				controls.minDistance = 50;
+				controls.maxDistance = 300;
+				controls.enablePan = false;
+				controls.target.set( 0, 0, 0 );
+				controls.update();
+
+/**
+		var onProgress = function ( xhr ) {
+		if ( xhr.lengthComputable ) {
+			var percentComplete = xhr.loaded / xhr.total * 100;
+			console.log( Math.round(percentComplete, 2) + '% downloaded' );
+		}
+	};
+
+	var onError = function ( xhr ) { };
+
+	THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
+
+	var mtlLoader = new THREE.MTLLoader();
+	mtlLoader.setPath( 'models/obj/IronMan/' );
+	mtlLoader.load( 'IronMan.mtl', function( materials ) {
+
+		materials.preload();
+
+		var objLoader = new THREE.OBJLoader();
+		objLoader.setMaterials( materials );
+		objLoader.setPath( 'models/obj/IronMan/' );
+		objLoader.load( 'IronMan.obj', function ( object ) {
+			object.position.set( 75, 0, 0 );
+
+			//object.position.y = 0.2;
+  			// 缩放
+			object.scale.x =  object.scale.y =  object.scale.z = 12.05;
+			// 旋转
+			//object.rotation.set(Math.PI/2,Math.PI/2,Math.PI/2) ;
+			scene.add( object );
+
+		}, onProgress, onError );
+
+	});*/
+
+
+
+
+	//THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
+
+				var objectLoader = new THREE.ObjectLoader();
+				objectLoader.load("models/json/test6/test6.json", function ( obj ) {
+					//obj.setMaterials( materials );
+					obj.scale.x =  obj.scale.y =  obj.scale.z = 3.45;
+					obj.rotation.set(Math.PI/2,Math.PI/2,Math.PI/2) ;
+					obj.position.y = 30;
+
+				 	scene.add( obj );
+				} );
+
+		// Grid,网格四个参数分别表示网格宽度、等分数、中心线颜色，网格线颜色。默认分别是10,10,0x444444,0x888888
+		var grid = new THREE.GridHelper( 10000, 500,0x000000,0xffffff );
+		grid.position.y = -10;
+		scene.add( grid );
+
+        window.addEventListener('resize', onWindowResize, false);
+
+    }
+
+    function onWindowResize() {
+
+
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+
+        renderer.setSize(window.innerWidth, window.innerHeight);
+
+
+    }
+
+
+			function animate() {
+
+				requestAnimationFrame( animate );
+
+				//var timer = Date.now() * 0.0001;
+				//镜头旋转
+				//camera.position.x = Math.cos( timer ) * 300;
+				//camera.position.z = Math.sin( timer ) * 300;
+				//camera.lookAt( scene.position );
+
+				render();
+
+			}
+
+			function render() {
+
+				camera.lookAt( scene.position );
+
+				renderer.render( scene, camera );
+
+			}
+
+</script>
+
+</body>
+</html>
