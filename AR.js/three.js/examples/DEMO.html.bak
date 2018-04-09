@@ -215,21 +215,18 @@ var modelSize=0.05;
 	alert("默认modelSize="+modelSize);
 		  var x2=ev.targetTouches[1].pageX;
 		  var y2=ev.targetTouches[1].pageY;
-	 
 		  var a=x1-x2;
 		  var b=y1-y2;
 		  return Math.sqrt((a*a)+(b*b));
 		 }
-		 if(ev.targetTouches.length==2){
+		 if(ev.targetTouches.length===2){
 			var downC=getC(ev);
 		 }
 		document.addEventListener('touchmove',function (ev) { 
-		  if(ev.targetTouches.length==2){
+		  if(ev.targetTouches.length===2){
 			  //fov = downC/getC(ev) + fov;
 		   modelSize = downC/getC(ev) + oldC;
-		   
-			  //alert("开始settingModel");
-			  //settingModel();
+		   alert("变更后的modelSize="+ modelSize );	
 			 // onRenderFcts.push(function(){
 				//renderer.render( scene, camera );
 				  //requestAnimationFrame(animation);
@@ -238,9 +235,7 @@ var modelSize=0.05;
 		//camera.lookAt( scene.position );
 		camera.position.z = modelSize/10;
 		// measure time
-			  })
-			  
-	alert("变更后的modelSize="+ modelSize );			
+			  }  
 		},false) 
 	alert("输出来的alert(modelSize);"+modelSize);
 		},false)

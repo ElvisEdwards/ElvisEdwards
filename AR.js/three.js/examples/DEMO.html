@@ -203,43 +203,34 @@
 		
 	
 	//touch control
-
-var modelSize=0.05;
 	
+	var modelSize=0.05;
 		document.addEventListener('touchstart',function (ev) {
-			var oldC = modelSize;
-		 //var oldC = modelSize;
+			alert("默认modelSize="+modelSize);
 		 function getC(ev) {
 		  var x1=ev.targetTouches[0].pageX;
 		  var y1=ev.targetTouches[0].pageY;
-	alert("默认modelSize="+modelSize);
 		  var x2=ev.targetTouches[1].pageX;
 		  var y2=ev.targetTouches[1].pageY;
-	 
 		  var a=x1-x2;
 		  var b=y1-y2;
 		  return Math.sqrt((a*a)+(b*b));
 		 }
-		 if(ev.targetTouches.length==2){
+		 if(ev.targetTouches.length===2){
 			var downC=getC(ev);
 		 }
 		document.addEventListener('touchmove',function (ev) { 
-		  if(ev.targetTouches.length==2){
+		  if(ev.targetTouches.length===2){
 			  //fov = downC/getC(ev) + fov;
-		   modelSize = downC/getC(ev) + oldC;
-		   
-			  //alert("开始settingModel");
-			  //settingModel();
-			 // onRenderFcts.push(function(){
-				//renderer.render( scene, camera );
-				  //requestAnimationFrame(animation);
+		   modelSize = downC/getC(ev) + modelSize;
+		   alert("变更后的modelSize="+ modelSize );			  
 		//camera.position.x = Math.cos( modelSize ) * 200;
 		//camera.position.z = Math.sin( modelSize ) * 200;
 		//camera.lookAt( scene.position );
-		camera.position.z = modelSize/10;
+		//camera.position.z = modelSize/10;
+		//requestAnimationFrame(animation);
 		// measure time
 			  }  
-	alert("变更后的modelSize="+ modelSize );			
 		},false) 
 	alert("输出来的alert(modelSize);"+modelSize);
 		},false)
