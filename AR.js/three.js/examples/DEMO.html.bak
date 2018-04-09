@@ -25,11 +25,9 @@
 		<script src="js/loaders/OBJLoader.js"></script>
 		<script src="js/Detector.js"></script>
 
-<body style='margin : 0px; overflow: hidden; font-family: Monospace;'><div style='position: absolute; top: 10px; width:100%; text-align: center;z-index:1';>
-	<a href='https://github.com/jeromeetienne/AR.js/' target='_blank'>AR.js</a> - developement playground
-	<br/>
-	
-</div><script>
+<body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
+<div id="container"></div>
+<script>
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Init
 	//////////////////////////////////////////////////////////////////////////////////
@@ -39,13 +37,16 @@
 		alpha: true
 	});
 	
+
+    var container = document.getElementById( 'container' );
 	renderer.setClearColor(new THREE.Color('lightgrey'), 0)
 	// renderer.setPixelRatio( 2 );
 	renderer.setSize( window.innerWidth, window.innerHeight );
-	renderer.domElement.style.position = 'absolute'
-	renderer.domElement.style.top = '0px'
-	renderer.domElement.style.left = '0px'
-	document.body.appendChild( renderer.domElement );
+	//renderer.domElement.style.position = 'absolute'
+	//renderer.domElement.style.top = '0px'
+	//renderer.domElement.style.left = '0px'
+	container.appendChild(renderer.domElement);
+	//document.body.appendChild( renderer.domElement );
 
 	// array of functions for the rendering loop
 	var onRenderFcts= [];
@@ -149,7 +150,7 @@
 
 
 //touch control
-	        var target = document.querySelector("#testImg");
+	    var target = document.querySelector("#testImg");
         //给element注入transform属性
         Transform(target);
         new AlloyTouch({
