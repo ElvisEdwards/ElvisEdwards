@@ -225,7 +225,7 @@
 		  if(ev.targetTouches.length===2){
 			  //fov = downC/getC(ev) + fov;
 		   modelSize = downC/getC(ev) + modelSize;
-		   modelSize = modelSize*3;
+		   modelSize = modelSize*2;
 		   alert("变更后的modelSize="+ modelSize );			  
 		//camera.position.x = Math.cos( modelSize ) * 200;
 		//camera.position.z = Math.sin( modelSize ) * 200;
