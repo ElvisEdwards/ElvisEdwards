@@ -240,9 +240,7 @@ var modelSize=0.05;
 		// measure time
 			  })
 			  
-	alert("变更后的modelSize="+ modelSize );
-		  }
-			
+	alert("变更后的modelSize="+ modelSize );			
 		},false) 
 	alert("输出来的alert(modelSize);"+modelSize);
 		},false)
