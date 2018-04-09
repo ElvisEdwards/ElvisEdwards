@@ -203,7 +203,7 @@
 		
 	
 	//touch control
-
+	/**
 var modelSize=0.05;
 	
 		document.addEventListener('touchstart',function (ev) {
@@ -245,7 +245,7 @@ var modelSize=0.05;
 
 
 	//start
-	/**
+
 	document.addEventListener('touchstart',function (event) {
 		var touch = event.targetTouches[0];     //touches数组对象获得屏幕上所有的touch，取第一个touch
             startPos = {x:touch.pageX,y:touch.pageY,time:+new Date};    //取第一个touch的坐标值
