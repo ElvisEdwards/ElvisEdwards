@@ -197,7 +197,7 @@
 		})
 	})
 
-	/**	
+		
 	
 	//touch control
 	var slider = {
@@ -282,7 +282,7 @@
 slider.init();
 
 
-
+/**
 
 
 var modelSize=0.05;
@@ -325,7 +325,7 @@ var modelSize=0.05;
 
 
 
-/**
+
 	var startPos = {};//开始位置
             var endPos = {};//结束位置
             var timer = Date.now() * 0.0005;
