@@ -146,6 +146,7 @@
 
 	
 	// model
+	var modelSize=2;
 	var onProgress = function ( xhr ) {
 		if ( xhr.lengthComputable ) {
 			var percentComplete = xhr.loaded / xhr.total * 100;
@@ -161,10 +162,10 @@
 		var objLoader = new THREE.OBJLoader();
 		objLoader.setMaterials( materials );
 		objLoader.setPath( 'models/' );
-		objLoader.load( 'tree.obj', function ( object ) {
+		objLoader.load( 'tree.obj', function tree( object ) {
 			//object.position.y = 0.2;
   			// 缩放
-			object.scale.x =  object.scale.y =  object.scale.z = 2.25;
+			object.scale.x =  object.scale.y =  object.scale.z = modelSize;
 			// 旋转
 			object.rotation.set(Math.PI/2,Math.PI/2,Math.PI/2) ;
 			markerRoot.add( object );
@@ -204,7 +205,7 @@
 	
 	//touch control
 	
-	var modelSize=0.05;
+
 		document.addEventListener('touchstart',function (ev) {
 		 function getC(ev) {
 		  var x1=ev.targetTouches[0].pageX;
@@ -222,14 +223,15 @@
 		  if(ev.targetTouches.length===2){
 			  //fov = downC/getC(ev) + fov;
 		   modelSize = downC/getC(ev) + modelSize;
+		   modelSize = modelSize*3;
 		   alert("变更后的modelSize="+ modelSize );			  
 		//camera.position.x = Math.cos( modelSize ) * 200;
 		//camera.position.z = Math.sin( modelSize ) * 200;
 		//camera.lookAt( scene.position );
-		camera.position.z = modelSize/0.01;
+		//camera.position.z = modelSize/0.01;
 		//requestAnimationFrame(animation);
-		renderer.render( scene, camera );
-		// measure time
+		//renderer.render( scene, camera );
+		tree( object )
 			  }  
 		},false)
 		},false)
