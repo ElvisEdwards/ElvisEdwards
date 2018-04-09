@@ -209,7 +209,6 @@ var modelSize=0.05;
 	
 		document.addEventListener('touchstart',function (ev) {
 			var oldC = modelSize;
-		 //var oldC = modelSize;
 		 function getC(ev) {
 		  var x1=ev.targetTouches[0].pageX;
 		  var y1=ev.targetTouches[0].pageY;
@@ -226,16 +225,14 @@ var modelSize=0.05;
 		 }
 		document.addEventListener('touchmove',function (ev) { 
 		  if(ev.targetTouches.length==2){
-			  //fov = downC/getC(ev) + fov;
 		   modelSize = downC/getC(ev) + oldC;
 		   
 			  //alert("开始settingModel");
 			  //settingModel();
 			 // onRenderFcts.push(function(){
 				//renderer.render( scene, camera );
-				  //requestAnimationFrame(animation);
+			//requestAnimationFrame(animation);
 			  })
-			  
 	alert("变更后的modelSize="+ modelSize );
 		  }
 			
