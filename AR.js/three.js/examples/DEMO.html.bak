@@ -206,7 +206,6 @@
 	
 	var modelSize=0.05;
 		document.addEventListener('touchstart',function (ev) {
-			alert("默认modelSize="+modelSize);
 		 function getC(ev) {
 		  var x1=ev.targetTouches[0].pageX;
 		  var y1=ev.targetTouches[0].pageY;
@@ -232,8 +231,7 @@
 		renderer.render( scene, camera );
 		// measure time
 			  }  
-		},false) 
-	alert("输出来的alert(modelSize);"+modelSize);
+		},false)
 		},false)
 
 
