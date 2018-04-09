@@ -180,6 +180,9 @@
 		renderer.render( scene, camera );
 		stats.update();
 	})
+
+	document.addEventListener('touchmove',function(event){
+	event.preventDefault();},false);
 	
 
 	// run the rendering loop
@@ -200,6 +203,99 @@
 		
 	
 	//touch control
+
+
+var modelSize=0.05;
+	
+		document.addEventListener('touchstart',function (ev) {
+			var oldC = modelSize;
+		 //var oldC = modelSize;
+		 function getC(ev) {
+		  var x1=ev.targetTouches[0].pageX;
+		  var y1=ev.targetTouches[0].pageY;
+	alert("默认modelSize="+modelSize);
+		  var x2=ev.targetTouches[1].pageX;
+		  var y2=ev.targetTouches[1].pageY;
+	 
+		  var a=x1-x2;
+		  var b=y1-y2;
+		  return Math.sqrt((a*a)+(b*b));
+		 }
+		 if(ev.targetTouches.length==2){
+			var downC=getC(ev);
+		 }
+		document.addEventListener('touchmove',function (ev) { 
+		  if(ev.targetTouches.length==2){
+			  //fov = downC/getC(ev) + fov;
+		   modelSize = downC/getC(ev) + oldC;
+		   
+			  //alert("开始settingModel");
+			  //settingModel();
+			 // onRenderFcts.push(function(){
+				//renderer.render( scene, camera );
+				  //requestAnimationFrame(animation);
+			  })
+			  
+	alert("变更后的modelSize="+ modelSize );
+		  }
+			
+		},false) 
+	alert("输出来的alert(modelSize);"+modelSize);
+		},false)
+
+	//start
+	/**
+	document.addEventListener('touchstart',function (event) {
+		var touch = event.targetTouches[0];     //touches数组对象获得屏幕上所有的touch，取第一个touch
+            startPos = {x:touch.pageX,y:touch.pageY,time:+new Date};    //取第一个touch的坐标值
+            isScrolling = 0;   //这个参数判断是垂直滚动还是水平滚动
+            this.slider.addEventListener('touchmove',this,false);
+            this.slider.addEventListener('touchend',this,false);
+	
+	    //移动
+        document.addEventListener('touchmove',function(event){
+            //当屏幕有多个touch或者页面被缩放过，就不执行move操作
+            //if(event.targetTouches.length > 1 || event.scale && event.scale !== 1) return;
+			if(event.targetTouches.length > 1 ) return;
+            var touch = event.targetTouches[0];
+            endPos = {x:touch.pageX - startPos.x,y:touch.pageY - startPos.y};
+            isScrolling = Math.abs(endPos.x) < Math.abs(endPos.y) ? 1:0;    //isScrolling为1时，表示纵向滑动，0为横向滑动
+			if(isScrolling === 1){
+				camera.position.x = Math.cos( endPos.x ) * 200;
+				camera.position.z = Math.sin( endPos.x ) * 200;
+				camera.lookAt( scene.position );
+				requestAnimationFrame( animate );
+			}
+
+		//滑动释放
+        end:function(event){
+            var duration = +new Date - startPos.time;    //滑动的持续时间
+            if(isScrolling === 0){    //当为水平滚动时
+                this.icon[this.index].className = '';
+                if(Number(duration) > 10){     
+                    //判断是左移还是右移，当偏移量大于10时执行
+                    if(endPos.x > 10){
+                        if(this.index !== 0) this.index -= 1;
+                    }else if(endPos.x < -10){
+                        if(this.index !== this.icon.length-1) this.index += 1;
+                    }
+                }
+                this.icon[this.index].className = 'curr';
+                this.slider.className = 'cnt f-anim';
+                this.slider.style.left = -this.index*600 + 'px';
+            }
+            //解绑事件
+            this.slider.removeEventListener('touchmove',this,false);
+            this.slider.removeEventListener('touchend',this,false);
+        }
+    }
+}
+}
+
+
+
+
+
 	var slider = {
     //判断设备是否支持touch事件
     touch:('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch,
@@ -281,47 +377,6 @@
 
 slider.init();
 
-
-/**
-
-
-var modelSize=0.05;
-	
-		document.addEventListener('touchstart',function (ev) {
-			var oldC = modelSize;
-		 //var oldC = modelSize;
-		 function getC(ev) {
-		  var x1=ev.targetTouches[0].pageX;
-		  var y1=ev.targetTouches[0].pageY;
-	alert("默认modelSize="+modelSize);
-		  var x2=ev.targetTouches[1].pageX;
-		  var y2=ev.targetTouches[1].pageY;
-	 
-		  var a=x1-x2;
-		  var b=y1-y2;
-		  return Math.sqrt((a*a)+(b*b));
-		 }
-		 if(ev.targetTouches.length==2){
-			var downC=getC(ev);
-		 }
-		document.addEventListener('touchmove',function (ev) { 
-		  if(ev.targetTouches.length==2){
-			  //fov = downC/getC(ev) + fov;
-		   modelSize = downC/getC(ev) + oldC;
-		   
-			  //alert("开始settingModel");
-			  //settingModel();
-			 // onRenderFcts.push(function(){
-				//renderer.render( scene, camera );
-				  //requestAnimationFrame(animation);
-			  })
-			  
-	alert("变更后的modelSize="+ modelSize );
-		  }
-			
-		},false) 
-	alert("输出来的alert(modelSize);"+modelSize);
-		},false)*/
 
 
 
