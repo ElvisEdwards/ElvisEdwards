@@ -233,11 +233,14 @@ var modelSize=0.05;
 			 // onRenderFcts.push(function(){
 				//renderer.render( scene, camera );
 				  //requestAnimationFrame(animation);
+		//camera.position.x = Math.cos( modelSize ) * 200;
+		//camera.position.z = Math.sin( modelSize ) * 200;
+		//camera.lookAt( scene.position );
+		camera.position.z = modelSize/10;
+		// measure time
 			  })
 			  
-	alert("变更后的modelSize="+ modelSize );
-		  }
-			
+	alert("变更后的modelSize="+ modelSize );			
 		},false) 
 	alert("输出来的alert(modelSize);"+modelSize);
 		},false)

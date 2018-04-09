@@ -203,7 +203,7 @@
 		
 	
 	//touch control
-	/**
+
 var modelSize=0.05;
 	
 		document.addEventListener('touchstart',function (ev) {
@@ -233,6 +233,11 @@ var modelSize=0.05;
 			 // onRenderFcts.push(function(){
 				//renderer.render( scene, camera );
 				  //requestAnimationFrame(animation);
+		//camera.position.x = Math.cos( modelSize ) * 200;
+		//camera.position.z = Math.sin( modelSize ) * 200;
+		//camera.lookAt( scene.position );
+		camera.position.z = modelSize/10;
+		// measure time
 			  })
 			  
 	alert("变更后的modelSize="+ modelSize );
@@ -243,7 +248,7 @@ var modelSize=0.05;
 		},false)
 
 
-
+	/**
 	//start
 
 	document.addEventListener('touchstart',function (event) {
