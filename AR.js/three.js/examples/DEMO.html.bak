@@ -146,7 +146,7 @@
 
 
 	var modelSize=5;
-	
+	/**
 
 //禁用手机默认的触屏滚动行为
 	document.addEventListener('touchmove',function(event){
@@ -190,7 +190,7 @@
 			},false)
 			//},false)
 
-
+*/
 
 	// model
 	var onProgress = function ( xhr ) {
@@ -210,7 +210,7 @@
 		objLoader.setPath( 'models/' );
 		//objLoader.load( 'tree.obj', function ( object ) {
 			objLoader.load( 'tree.obj', function tree( object ) {
-			//object.position.y = 0.2;
+			object.position.z = 1000;
   			// 缩放
 			alert("modelSize=" + modelSize);
 			object.scale.x =  object.scale.y =  object.scale.z = modelSize;
