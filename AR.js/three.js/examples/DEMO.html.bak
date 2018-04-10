@@ -166,7 +166,7 @@
 			var juli1 = Math.sqrt((x*x)+(y*y));
 			var juli2 = Math.sqrt((x1*x1)+(y1*y1));
 			var distance = juli2/juli1;
-			alert('distance=' + distance);
+			alert("distance=" + distance);
 			modelSize=distance*modelSize; 
 
             	//camera.position.x = Math.cos( endPos.x ) * 20;
@@ -179,8 +179,11 @@
 				 //解绑事件
             //this.slider.removeEventListener('touchmove',this,false);
             //this.slider.removeEventListener('touchend',this,false);
+			
+			},false)
 			return modelSize;
-			},false)},false)//},false)
+			},false)
+			//},false)
 
 
 
