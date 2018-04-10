@@ -146,7 +146,6 @@
 
 
 	var modelSize=3;
-
 	    document.addEventListener('touchstart',function (event) {
 		if(event.targetTouches.length == 1){
 		   var touch = event.targetTouches[0];
@@ -178,11 +177,7 @@
 	     document.addEventListener('touchmove',function (event) { 
 	      if(event.targetTouches.length==2){
 	       modelSize = (getC(event)/downC)  * oldC;
-		      //alert("移动后的值="+modelSize);
-	       		//settingModel();
-		     // animate(nowMsec);
-	      renderer.render(scene, camera);
-		      requestAnimationFrame( animate );
+		     animate(nowMsec);
 	      }
 	     },false)
 
