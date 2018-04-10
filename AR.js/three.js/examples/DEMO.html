@@ -218,8 +218,8 @@
             	camera.position.x = Math.cos( endPos.x ) * 2000;
 				camera.position.z = Math.sin( endPos.y ) * 2000;
 				camera.lookAt( scene.position );
-				renderer.render( scene, camera );
-				//requestAnimationFrame( animate );
+				//renderer.render( scene, camera );
+				animate(nowMsec)
 			document.addEventListener('touchend',function(event){
 				 //解绑事件
             this.slider.removeEventListener('touchmove',this,false);
