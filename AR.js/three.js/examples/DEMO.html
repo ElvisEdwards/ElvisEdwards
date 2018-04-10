@@ -188,6 +188,23 @@
 	event.preventDefault();},false);
 
 
+		//var modelSize=0.05;
+		document.addEventListener('touchstart',function (event) {
+			var touch = event.targetTouches[0];     //touches数组对象获得屏幕上所有的touch，取第一个touch
+            var startPos = {x:touch.screenX,y:touch.screenY};    //取第一个touch的坐标值
+			document.addEventListener('touchmove',function(event){
+			var touch = event.targetTouches[0];
+			var endPos = {x:touch.screenX - startPos.x,y:touch.screenY - startPos.y};
+            	camera.position.x = Math.cos( endPos.x ) * 2000;
+				camera.position.z = Math.sin( endPos.y ) * 2000;
+				camera.lookAt( scene.position );
+				//renderer.render( scene, camera );
+				animate(nowMsec)
+			//document.addEventListener('touchend',function(event){
+				 //解绑事件
+            //this.slider.removeEventListener('touchmove',this,false);
+            //this.slider.removeEventListener('touchend',this,false);
+			},false)},false)//},false)
 
 	// run the rendering loop
 	var lastTimeMsec= null
@@ -195,10 +212,12 @@
 		// keep looping
 		requestAnimationFrame( animate );
 
-		var timer = Date.now() * 0.0005;
-		camera.position.x = Math.cos( timer ) * 200;
-		camera.position.z = Math.sin( timer ) * 200;
-		camera.lookAt( scene.position );
+
+
+		//var timer = Date.now() * 0.0005;
+		//camera.position.x = Math.cos( timer ) * 200;
+		//camera.position.z = Math.sin( timer ) * 200;
+		//camera.lookAt( scene.position );
 		// measure time
 		lastTimeMsec	= lastTimeMsec || nowMsec-1000/60
 		var deltaMsec	= Math.min(200, nowMsec - lastTimeMsec)
