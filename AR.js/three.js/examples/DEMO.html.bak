@@ -145,9 +145,32 @@
 	})	
 
 
-	var modelSize=5;
+	var modelSize=3;
+
+		document.addEventListener('touchstart',function (ev) {
+		 function getC(ev) {
+		  var x1=ev.targetTouches[0].pageX;
+		  var y1=ev.targetTouches[0].pageY;
+		  var x2=ev.targetTouches[1].pageX;
+		  var y2=ev.targetTouches[1].pageY;
+		  var a=x1-x2;
+		  var b=y1-y2;
+		  return Math.sqrt((a*a)+(b*b));
+		 }
+		 if(ev.targetTouches.length===2){
+			var downC=getC(ev);
+		 }
+		document.addEventListener('touchmove',function (ev) { 
+		  if(ev.targetTouches.length===2){
+		   modelSize = downC/getC(ev) + modelSize;
+		   alert("变更后的modelSize="+ modelSize );
+		   animate(nowMsec)
+			  }  
+		},false)
+		},false)
 
 
+/**
 //禁用手机默认的触屏滚动行为
 	document.addEventListener('touchmove',function(event){
 	event.preventDefault();},false);
@@ -189,6 +212,7 @@
 			},false)
 			},false)
 			//},false)
+			*/
 
 	// model
 	var onProgress = function ( xhr ) {
