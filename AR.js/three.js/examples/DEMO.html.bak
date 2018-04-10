@@ -155,7 +155,9 @@
 				var endPos = {x:touch.screenX - startPos.x,y:touch.screenY - startPos.y};
 				camera.position.x = Math.cos( endPos.x )*5;
 				camera.position.y = Math.sin( endPos.y )*5;
-				//camera.lookAt( scene.position );
+				//camera.position.x = Math.cos( endPos.x ) * 200;
+				//camera.position.z = Math.sin( endPos.x ) * 200;
+				camera.lookAt( scene.position );
 				animate(nowMsec);
 			},false);
 		}
@@ -234,7 +236,7 @@
 			var percentComplete = xhr.loaded / xhr.total * 100;
 			console.log( Math.round(percentComplete, 2) + '% downloaded' );
 		}
-	};
+};
 	var onError = function ( xhr ) { };
 	THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
 	var mtlLoader = new THREE.MTLLoader();
