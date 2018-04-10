@@ -179,14 +179,14 @@
 				//camera.position.z = 500-distance;////
 				camera.lookAt( scene.position );
 				//renderer.render( scene, camera );
+				return modelSize;
+				tree( object )
 				animate(nowMsec)
 			//document.addEventListener('touchend',function(event){
 				 //解绑事件
             //this.slider.removeEventListener('touchmove',this,false);
             //this.slider.removeEventListener('touchend',this,false);
-			//return modelSize;
 			},false)
-			return modelSize;
 			},false)
 			//},false)
 
