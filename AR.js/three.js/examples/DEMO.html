@@ -147,7 +147,7 @@
 
 	var modelSize=5;
 
-/**
+
 //禁用手机默认的触屏滚动行为
 	document.addEventListener('touchmove',function(event){
 	event.preventDefault();},false);
@@ -165,9 +165,9 @@
 			var endPos1 = {x1:touch1.screenX - startPos1.x1,y1:touch1.screenY - startPos1.y1};/////
 
 			var a = endPos.x;
-			var a1 = endPos1.x;
+			var a1 = endPos1.x1;
 			var b = endPos.y;
-			var b1 = endPos1.y;
+			var b1 = endPos1.y1;
 			var juli1 = Math.sqrt((a*a)+(b*b));
 			var juli2 = Math.sqrt((a1*a1)+(b1*b1));
 			var distance = juli2/juli1;
@@ -185,13 +185,11 @@
 				 //解绑事件
             //this.slider.removeEventListener('touchmove',this,false);
             //this.slider.removeEventListener('touchend',this,false);
-			//return modelSize;
+			return modelSize;
 			},false)
 			
 			},false)
 			//},false)
-*/
-camera.fov=20;
 
 	// model
 	var onProgress = function ( xhr ) {
