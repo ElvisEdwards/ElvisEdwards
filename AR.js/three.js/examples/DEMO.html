@@ -186,7 +186,7 @@
             //this.slider.removeEventListener('touchend',this,false);
 			return modelSize;
 			},false)
-			
+			return modelSize;
 			},false)
 			//},false)
 
@@ -209,6 +209,7 @@
 		//objLoader.load( 'tree.obj', function ( object ) {
 			objLoader.load( 'tree.obj', function tree( object ) {
 			//object.position.z = -10;
+			alert("modelSize=" + modelSize);
   			// 缩放
 			object.scale.x =  object.scale.y =  object.scale.z = modelSize;
 			// 旋转
