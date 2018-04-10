@@ -203,9 +203,9 @@
 			var juli2 = Math.sqrt((x1*x1)+(y1*y1));
 			var distance = juli1-juli2
 
-            	camera.position.x = Math.cos( endPos.x ) * 20;
-				camera.position.y = Math.sin( endPos.y ) * 20;
-				camera.position.z = Math.tan( endPos.y ) * 20;////
+            	//camera.position.x = Math.cos( endPos.x ) * 20;
+				//camera.position.y = Math.sin( endPos.y ) * 20;
+				camera.position.z = Math.tan( distance ) * 20;////
 				camera.lookAt( scene.position );
 				//renderer.render( scene, camera );
 				animate(nowMsec)
