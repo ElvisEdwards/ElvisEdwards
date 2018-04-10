@@ -195,8 +195,8 @@
 			document.addEventListener('touchmove',function(event){
 			var touch = event.targetTouches[0];
 			var endPos = {x:touch.screenX - startPos.x,y:touch.screenY - startPos.y};
-            	camera.position.x = Math.cos( endPos.x ) * 2000;
-				camera.position.z = Math.sin( endPos.y ) * 2000;
+            	camera.position.x = Math.cos( endPos.x ) * 200;
+				//camera.position.z = Math.sin( endPos.y ) * 200;
 				camera.lookAt( scene.position );
 				//renderer.render( scene, camera );
 				animate(nowMsec)
