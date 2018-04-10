@@ -163,8 +163,13 @@
 			var touch1 = event.targetTouches[1];//////
 			var endPos = {x:touch.screenX - startPos.x,y:touch.screenY - startPos.y};
 			var endPos1 = {x1:touch1.screenX - startPos1.x1,y1:touch1.screenY - startPos1.y1};/////
-			var juli1 = Math.sqrt((x*x)+(y*y));
-			var juli2 = Math.sqrt((x1*x1)+(y1*y1));
+
+			var a = endPos.x;
+			var a1 = endPos1.x;
+			var b = endPos.y;
+			var b1 = endPos1.y;
+			var juli1 = Math.sqrt((a*a)+(b*b));
+			var juli2 = Math.sqrt((a1*a1)+(b1*b1));
 			var distance = juli2/juli1;
 			alert("distance=" + distance);
 			modelSize=distance*modelSize; 
@@ -179,9 +184,9 @@
 				 //解绑事件
             //this.slider.removeEventListener('touchmove',this,false);
             //this.slider.removeEventListener('touchend',this,false);
-			
-			},false)
 			return modelSize;
+			},false)
+			
 			},false)
 			//},false)
 
