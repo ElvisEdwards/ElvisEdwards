@@ -144,7 +144,7 @@
 		smoothedControls.update(markerRoot)
 	})	
 
-
+/**
 	var modelSize=3;
 	    document.addEventListener('touchstart',function (event) {
 		if(event.targetTouches.length == 1){
@@ -184,15 +184,15 @@
 	     },false)
 
 	    },false)
+			*/
 
 
-/**
 //禁用手机默认的触屏滚动行为
 	document.addEventListener('touchmove',function(event){
 	event.preventDefault();},false);
-
-
-		document.addEventListener('touchstart',function (event) {
+	
+	var modelSize=3;
+	document.addEventListener('touchstart',function (event) {
 			var touch = event.targetTouches[0];     //touches数组对象获得屏幕上所有的touch，取第一个touch
 			var touch1 = event.targetTouches[1];///////
             var startPos = {x:touch.screenX,y:touch.screenY};    //取第一个touch的坐标值
@@ -217,10 +217,6 @@
 				//camera.position.y = Math.sin( endPos.y ) * 20;
 				//camera.position.z = 500-distance;////
 				camera.lookAt( scene.position );
-				//renderer.render( scene, camera );
-				//return modelSize;
-				tree( object )
-				animate(nowMsec)
 			//document.addEventListener('touchend',function(event){
 				 //解绑事件
             //this.slider.removeEventListener('touchmove',this,false);
@@ -228,7 +224,7 @@
 			},false)
 			},false)
 			//},false)
-			*/
+
 
 	// model
 	var onProgress = function ( xhr ) {
