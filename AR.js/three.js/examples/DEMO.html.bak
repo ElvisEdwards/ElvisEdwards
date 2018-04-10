@@ -179,7 +179,7 @@
 				//camera.position.z = 500-distance;////
 				camera.lookAt( scene.position );
 				//renderer.render( scene, camera );
-				return modelSize;
+				//return modelSize;
 				tree( object )
 				animate(nowMsec)
 			//document.addEventListener('touchend',function(event){
