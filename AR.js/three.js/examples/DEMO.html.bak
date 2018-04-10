@@ -186,7 +186,7 @@
             //this.slider.removeEventListener('touchend',this,false);
 			return modelSize;
 			},false)
-			
+			return modelSize;
 			},false)
 			//},false)
 
