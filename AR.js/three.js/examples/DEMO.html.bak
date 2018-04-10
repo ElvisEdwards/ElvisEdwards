@@ -146,7 +146,7 @@
 
 	
 	// model
-	var modelSize=20;
+	var modelSize=5;
 	var onProgress = function ( xhr ) {
 		if ( xhr.lengthComputable ) {
 			var percentComplete = xhr.loaded / xhr.total * 100;
@@ -166,7 +166,6 @@
 			objLoader.load( 'tree.obj', function tree( object ) {
 			//object.position.y = 0.2;
   			// 缩放
-			//object.scale.x =  object.scale.y =  object.scale.z = 5.25;
 			object.scale.x =  object.scale.y =  object.scale.z = modelSize;
 			// 旋转
 			object.rotation.set(Math.PI/2,Math.PI/2,Math.PI/2) ;
@@ -201,11 +200,11 @@
 			var endPos1 = {x1:touch1.screenX - startPos1.x1,y1:touch1.screenY - startPos1.y1};/////
 			var juli1 = Math.sqrt((x*x)+(y*y));
 			var juli2 = Math.sqrt((x1*x1)+(y1*y1));
-			var distance = juli1-juli2;
+			var distance = juli2-juli1;
 
             	//camera.position.x = Math.cos( endPos.x ) * 20;
 				//camera.position.y = Math.sin( endPos.y ) * 20;
-				camera.position.z = Math.tan( distance ) * 200;////
+				//camera.position.z = 500-distance;////
 				camera.lookAt( scene.position );
 				//renderer.render( scene, camera );
 				animate(nowMsec)
