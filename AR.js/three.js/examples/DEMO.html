@@ -194,6 +194,11 @@
 	requestAnimationFrame(function animate(nowMsec){
 		// keep looping
 		requestAnimationFrame( animate );
+
+		var timer = Date.now() * 0.0005;
+		camera.position.x = Math.cos( timer ) * 200;
+		camera.position.z = Math.sin( timer ) * 200;
+		camera.lookAt( scene.position );
 		// measure time
 		lastTimeMsec	= lastTimeMsec || nowMsec-1000/60
 		var deltaMsec	= Math.min(200, nowMsec - lastTimeMsec)
@@ -266,6 +271,9 @@ function bindEvent() {
     document.addEventListener('touchend', touchEndFunc, false);
 }*/
  ///////////////////////////////
+
+
+/**
 var startx,starty,movex,movey,endx,endy,nx,ny,angle,starLine,endLined;
     
     //开始触摸函数，event为触摸对象
@@ -273,10 +281,6 @@ var startx,starty,movex,movey,endx,endy,nx,ny,angle,starLine,endLined;
     var scalePro = 1;
             //阻止浏览器默认滚动事件
         event.preventDefault();
-        /*
-        //获取DOM标签
-        var box = document.getElementById('box');
-        */
         //通过if语句判断event.type执行了哪个触摸事件
         if(event.type=="touchstart"){
         
@@ -364,7 +368,7 @@ var startx,starty,movex,movey,endx,endy,nx,ny,angle,starLine,endLined;
     }
 	/////////////////
 
-
+*/
 	//touch control
 
 /**
