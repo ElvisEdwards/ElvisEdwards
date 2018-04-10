@@ -32,7 +32,7 @@
 		// antialias	: true,
 		alpha: true
 	});
-	
+
 
     var container = document.getElementById( 'container' );
 	renderer.setClearColor(new THREE.Color('lightgrey'), 0)
@@ -144,9 +144,47 @@
 		smoothedControls.update(markerRoot)
 	})	
 
+
+	var modelSize=5;
 	
+
+//禁用手机默认的触屏滚动行为
+	document.addEventListener('touchmove',function(event){
+	event.preventDefault();},false);
+
+
+		document.addEventListener('touchstart',function (event) {
+			var touch = event.targetTouches[0];     //touches数组对象获得屏幕上所有的touch，取第一个touch
+			var touch1 = event.targetTouches[1];///////
+            var startPos = {x:touch.screenX,y:touch.screenY};    //取第一个touch的坐标值
+			var startPos1 = {x1:touch.screenX,y1:touch.screenY};/////
+			document.addEventListener('touchmove',function(event){
+			var touch = event.targetTouches[0];
+			var touch1 = event.targetTouches[1];//////
+			var endPos = {x:touch.screenX - startPos.x,y:touch.screenY - startPos.y};
+			var endPos1 = {x1:touch1.screenX - startPos1.x1,y1:touch1.screenY - startPos1.y1};/////
+			var juli1 = Math.sqrt((x*x)+(y*y));
+			var juli2 = Math.sqrt((x1*x1)+(y1*y1));
+			var distance = juli2/juli1;
+			alert('distance=' + distance);
+			modelSize=distance*modelSize; 
+
+            	//camera.position.x = Math.cos( endPos.x ) * 20;
+				//camera.position.y = Math.sin( endPos.y ) * 20;
+				//camera.position.z = 500-distance;////
+				camera.lookAt( scene.position );
+				//renderer.render( scene, camera );
+				animate(nowMsec)
+			//document.addEventListener('touchend',function(event){
+				 //解绑事件
+            //this.slider.removeEventListener('touchmove',this,false);
+            //this.slider.removeEventListener('touchend',this,false);
+			return modelSize;
+			},false)},false)//},false)
+
+
+
 	// model
-	//var modelSize=5;
 	var onProgress = function ( xhr ) {
 		if ( xhr.lengthComputable ) {
 			var percentComplete = xhr.loaded / xhr.total * 100;
@@ -182,40 +220,7 @@
 		renderer.render( scene, camera );
 		stats.update();
 	})
-	//禁用手机默认的触屏滚动行为
-	document.addEventListener('touchmove',function(event){
-	event.preventDefault();},false);
-
-
-		//var modelSize=0.05;
-		document.addEventListener('touchstart',function (event) {
-			var touch = event.targetTouches[0];     //touches数组对象获得屏幕上所有的touch，取第一个touch
-			var touch1 = event.targetTouches[1];///////
-            var startPos = {x:touch.screenX,y:touch.screenY};    //取第一个touch的坐标值
-			var startPos1 = {x1:touch.screenX,y1:touch.screenY};/////
-			document.addEventListener('touchmove',function(event){
-			var touch = event.targetTouches[0];
-			var touch1 = event.targetTouches[1];//////
-			var endPos = {x:touch.screenX - startPos.x,y:touch.screenY - startPos.y};
-			var endPos1 = {x1:touch1.screenX - startPos1.x1,y1:touch1.screenY - startPos1.y1};/////
-			var juli1 = Math.sqrt((x*x)+(y*y));
-			var juli2 = Math.sqrt((x1*x1)+(y1*y1));
-			var distance = juli2-juli1;
-			alert('distance=' + distance);
-			modelSize===distance/3; 
-
-            	//camera.position.x = Math.cos( endPos.x ) * 20;
-				//camera.position.y = Math.sin( endPos.y ) * 20;
-				//camera.position.z = 500-distance;////
-				camera.lookAt( scene.position );
-				//renderer.render( scene, camera );
-				animate(nowMsec)
-			//document.addEventListener('touchend',function(event){
-				 //解绑事件
-            //this.slider.removeEventListener('touchmove',this,false);
-            //this.slider.removeEventListener('touchend',this,false);
-			},false)},false)//},false)
-
+	
 
 
 	// run the rendering loop
