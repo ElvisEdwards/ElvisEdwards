@@ -146,7 +146,7 @@
 
 	
 	// model
-	var modelSize=5;
+	//var modelSize=5;
 	var onProgress = function ( xhr ) {
 		if ( xhr.lengthComputable ) {
 			var percentComplete = xhr.loaded / xhr.total * 100;
@@ -201,6 +201,8 @@
 			var juli1 = Math.sqrt((x*x)+(y*y));
 			var juli2 = Math.sqrt((x1*x1)+(y1*y1));
 			var distance = juli2-juli1;
+			alert('distance=' + distance);
+			modelSize===distance/3; 
 
             	//camera.position.x = Math.cos( endPos.x ) * 20;
 				//camera.position.y = Math.sin( endPos.y ) * 20;
