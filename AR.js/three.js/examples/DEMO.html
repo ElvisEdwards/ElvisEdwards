@@ -211,12 +211,12 @@
 		//var modelSize=0.05;
 		document.addEventListener('touchstart',function (event) {
 			var touch = event.targetTouches[0];     //touches数组对象获得屏幕上所有的touch，取第一个touch
-            startPos = {x:touch.pageX,y:touch.pageY};    //取第一个touch的坐标值
+            startPos = {x:touch.screenX,y:touch.screenY};    //取第一个touch的坐标值
 			document.addEventListener('touchmove',function(event){
 			var touch = event.targetTouches[0];
-			endPos = {x:touch.pageX - startPos.x,y:touch.pageY - startPos.y};
-            	camera.position.x = Math.cos( endPos.x ) * 200;
-				camera.position.z = Math.sin( endPos.y ) * 200;
+			endPos = {x:touch.screenX - startPos.x,y:touch.screenY - startPos.y};
+            	camera.position.x = Math.cos( endPos.x ) * 2000;
+				camera.position.z = Math.sin( endPos.y ) * 2000;
 				camera.lookAt( scene.position );
 				renderer.render( scene, camera );
 				//requestAnimationFrame( animate );

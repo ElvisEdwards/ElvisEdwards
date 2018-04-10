@@ -206,7 +206,28 @@
 		
 	
 	//touch control
-	
+
+
+		//var modelSize=0.05;
+		document.addEventListener('touchstart',function (event) {
+			var touch = event.targetTouches[0];     //touches数组对象获得屏幕上所有的touch，取第一个touch
+            startPos = {x:touch.screenX,y:touch.screenY};    //取第一个touch的坐标值
+			document.addEventListener('touchmove',function(event){
+			var touch = event.targetTouches[0];
+			endPos = {x:touch.screenX - startPos.x,y:touch.screenY - startPos.y};
+            	camera.position.x = Math.cos( endPos.x ) * 200;
+				camera.position.z = Math.sin( endPos.y ) * 200;
+				camera.lookAt( scene.position );
+				renderer.render( scene, camera );
+				//requestAnimationFrame( animate );
+			document.addEventListener('touchend',function(event){
+				 //解绑事件
+            this.slider.removeEventListener('touchmove',this,false);
+            this.slider.removeEventListener('touchend',this,false);
+			},false)},false)},false)
+        
+
+	/**
 	//var modelSize=0.05;
 		document.addEventListener('touchstart',function (ev) {
 		 function getC(ev) {
@@ -237,7 +258,7 @@
 			  }  
 		},false)
 		},false)
-
+*/
 
 	/**
 	//start
