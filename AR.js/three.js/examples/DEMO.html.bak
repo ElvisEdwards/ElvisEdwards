@@ -185,13 +185,11 @@
 				 //解绑事件
             //this.slider.removeEventListener('touchmove',this,false);
             //this.slider.removeEventListener('touchend',this,false);
-			//return modelSize;
+			return modelSize;
 			},false)
 			
 			},false)
 			//},false)
-
-camera.fov=10;
 
 	// model
 	var onProgress = function ( xhr ) {
