@@ -146,21 +146,16 @@
 
 
 	var modelSize=3;
-
 	    document.addEventListener('touchstart',function (event) {
-	     
-	//alert("默认的值是="+modelSize);
 		if(event.targetTouches.length == 1){
 		   var touch = event.targetTouches[0];
 		   var startPos = {x:touch.screenX,y:touch.screenY};
-			
 			document.addEventListener('touchmove',function(event){
 				var touch = event.targetTouches[0];
 				var endPos = {x:touch.screenX - startPos.x,y:touch.screenY - startPos.y};
-
-				camera.position.x = Math.cos( endPos.x )*10;
-				camera.position.y = Math.sin( endPos.y )*10;
-				camera.lookAt( scene.position );
+				camera.position.x = Math.cos( endPos.x )*5;
+				camera.position.y = Math.sin( endPos.y )*5;
+				//camera.lookAt( scene.position );
 				animate(nowMsec);
 			},false);
 		}
@@ -182,13 +177,8 @@
 	     document.addEventListener('touchmove',function (event) { 
 	      if(event.targetTouches.length==2){
 	       modelSize = (getC(event)/downC)  * oldC;
-		      //alert("移动后的值="+modelSize);
-	       		//settingModel();
-		     // animate(nowMsec);
-	      renderer.render(scene, camera);
-		      requestAnimationFrame( animate );
+		     animate(nowMsec);
 	      }
-
 	     },false)
 
 	    },false)

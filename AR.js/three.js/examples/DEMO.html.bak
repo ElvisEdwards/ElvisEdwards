@@ -147,27 +147,46 @@
 
 	var modelSize=3;
 
-		document.addEventListener('touchstart',function (ev) {
-		 function getC(ev) {
-		  var x1=ev.targetTouches[0].pageX;
-		  var y1=ev.targetTouches[0].pageY;
-		  var x2=ev.targetTouches[1].pageX;
-		  var y2=ev.targetTouches[1].pageY;
-		  var a=x1-x2;
-		  var b=y1-y2;
-		  return Math.sqrt((a*a)+(b*b));
-		 }
-		 if(ev.targetTouches.length===2){
-			var downC=getC(ev);
-		 }
-		document.addEventListener('touchmove',function (ev) { 
-		  if(ev.targetTouches.length===2){
-		   modelSize = downC/getC(ev) + modelSize;
-		   alert("变更后的modelSize="+ modelSize );
-		   animate(nowMsec)
-			  }  
-		},false)
-		},false)
+	    document.addEventListener('touchstart',function (event) {
+		if(event.targetTouches.length == 1){
+		   var touch = event.targetTouches[0];
+		   var startPos = {x:touch.screenX,y:touch.screenY};
+			document.addEventListener('touchmove',function(event){
+				var touch = event.targetTouches[0];
+				var endPos = {x:touch.screenX - startPos.x,y:touch.screenY - startPos.y};
+				camera.position.x = Math.cos( endPos.x )*5;
+				camera.position.y = Math.sin( endPos.y )*5;
+				//camera.lookAt( scene.position );
+				animate(nowMsec);
+			},false);
+		}
+		var oldC = modelSize;
+	     function getC(event) {
+	      var x1=event.targetTouches[0].pageX;
+	      var y1=event.targetTouches[0].pageY;
+
+	      var x2=event.targetTouches[1].pageX;
+	      var y2=event.targetTouches[1].pageY;
+
+	      var a=x1-x2;
+	      var b=y1-y2;
+	      return Math.sqrt((a*a)+(b*b))
+	     }
+	     if(event.targetTouches.length==2){
+	      var downC = getC(event);
+	     }
+	     document.addEventListener('touchmove',function (event) { 
+	      if(event.targetTouches.length==2){
+	       modelSize = (getC(event)/downC)  * oldC;
+		      //alert("移动后的值="+modelSize);
+	       		//settingModel();
+		     // animate(nowMsec);
+	      renderer.render(scene, camera);
+		      requestAnimationFrame( animate );
+	      }
+	     },false)
+
+	    },false)
 
 
 /**
