@@ -191,12 +191,21 @@
 		//var modelSize=0.05;
 		document.addEventListener('touchstart',function (event) {
 			var touch = event.targetTouches[0];     //touches数组对象获得屏幕上所有的touch，取第一个touch
+			var touch1 = event.targetTouches[1];///////
             var startPos = {x:touch.screenX,y:touch.screenY};    //取第一个touch的坐标值
+			var startPos1 = {x1:touch.screenX,y1:touch.screenY};/////
 			document.addEventListener('touchmove',function(event){
 			var touch = event.targetTouches[0];
+			var touch1 = event.targetTouches[1];//////
 			var endPos = {x:touch.screenX - startPos.x,y:touch.screenY - startPos.y};
-            	camera.position.x = Math.cos( endPos.x ) * 200;
-				//camera.position.z = Math.sin( endPos.y ) * 200;
+			var endPos1 = {x1:touch1.screenX - startPos1.x1,y1:touch1.screenY - startPos1.y1};/////
+			var juli1 = Math.sqrt((x*x)+(y*y));
+			var juli2 = Math.sqrt((x1*x1)+(y1*y1));
+			var distance = juli1-juli2
+
+            	camera.position.x = Math.cos( endPos.x ) * 20;
+				camera.position.y = Math.sin( endPos.y ) * 20;
+				camera.position.z = Math.tan( endPos.y ) * 20;////
 				camera.lookAt( scene.position );
 				//renderer.render( scene, camera );
 				animate(nowMsec)
@@ -205,6 +214,8 @@
             //this.slider.removeEventListener('touchmove',this,false);
             //this.slider.removeEventListener('touchend',this,false);
 			},false)},false)//},false)
+
+
 
 	// run the rendering loop
 	var lastTimeMsec= null
