@@ -146,8 +146,8 @@
 
 
 	var modelSize=5;
-	/**
 
+/**
 //禁用手机默认的触屏滚动行为
 	document.addEventListener('touchmove',function(event){
 	event.preventDefault();},false);
@@ -171,6 +171,7 @@
 			var juli1 = Math.sqrt((a*a)+(b*b));
 			var juli2 = Math.sqrt((a1*a1)+(b1*b1));
 			var distance = juli2/juli1;
+			var distance = 0;
 			alert("distance=" + distance);
 			modelSize=distance*modelSize; 
 
@@ -189,8 +190,8 @@
 			
 			},false)
 			//},false)
-
 */
+
 
 	// model
 	var onProgress = function ( xhr ) {
@@ -210,9 +211,8 @@
 		objLoader.setPath( 'models/' );
 		//objLoader.load( 'tree.obj', function ( object ) {
 			objLoader.load( 'tree.obj', function tree( object ) {
-			object.position.z = -100;
+			//object.position.z = -10;
   			// 缩放
-			alert("modelSize=" + modelSize);
 			object.scale.x =  object.scale.y =  object.scale.z = modelSize;
 			// 旋转
 			object.rotation.set(Math.PI/2,Math.PI/2,Math.PI/2) ;
