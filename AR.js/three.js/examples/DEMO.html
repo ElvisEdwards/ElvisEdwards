@@ -233,7 +233,7 @@
 			//},false)
 			*/
 
-	var modelSize=3.1;
+	var modelSize=3.3;
 
 	//全局变量，触摸开始位置
 	var a=0,b=0;
@@ -271,7 +271,7 @@
 			a=x-x1;
 			b=y-y1;
 			distanceend=Math.sqrt((a*a)+(b*b));
-			modelSize = distanceend/distancestart * 3;
+			modelSize = distanceend/distancestart * 2;
             var text = 'TouchMove事件触发：（' + x + ', ' + y + ', '+ x1 + ', '+ y1 + ', ' + distanceend + ', ' + modelSize + '）';
 			document.getElementById("result").innerHTML = text;
 			camera.fov = modelSize*15;
