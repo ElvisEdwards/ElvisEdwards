@@ -24,7 +24,7 @@
 <div id="result" style="border:2px solid red; color:red;">未触发事件！</div>
 <div id="container"></div>
 <script>
-    window.onload = bindEvent;
+    //window.onload = bindEvent;
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Init
 	//////////////////////////////////////////////////////////////////////////////////
@@ -236,7 +236,7 @@
             this.slider.removeEventListener('touchmove',this,false);
             this.slider.removeEventListener('touchend',this,false);
 			},false)},false)},false)
-			*/
+			
 
 
 	 function touchSatrtFunc(event) {
@@ -270,7 +270,23 @@
         document.addEventListener('touchstart', touchSatrtFunc, false);
         document.addEventListener('touchmove', touchMoveFunc, false);
         document.addEventListener('touchend', touchEndFunc, false);
-    }
+    }*/
+			document.addEventListener('touchstart',function (event) {
+			var touch = event.targetTouches[0];     //touches数组对象获得屏幕上所有的touch，取第一个touch
+            startPos = {x:touch.screenX,y:touch.screenY};    //取第一个touch的坐标值
+			document.addEventListener('touchmove',function(event){
+			var touch = event.targetTouches[0];
+			endPos = {x:touch.screenX - startPos.x,y:touch.screenY - startPos.y};
+            	camera.position.x = Math.cos( endPos.x ) * 2000;
+				camera.position.z = Math.sin( endPos.y ) * 2000;
+				camera.lookAt( scene.position );
+				//renderer.render( scene, camera );
+				animate(nowMsec)
+			document.addEventListener('touchend',function(event){
+				 //解绑事件
+            this.slider.removeEventListener('touchmove',this,false);
+            this.slider.removeEventListener('touchend',this,false);
+			},false)},false)},false)
 
 
 
