@@ -165,7 +165,7 @@
 			var x = Number(touch.screenX); //页面触点X坐标
             var y = Number(touch.screenY); //页面触点Y坐标
 
-			if(event.targetTouches.length == 1 ){touchMoveFunc}
+			//if(event.targetTouches.length == 1 ){touchMoveFunc}
 
 			if(event.targetTouches.length == 2){
 			var touch1 = event.targetTouches[1];//获取第二个触点
@@ -208,7 +208,6 @@
 			var modelSize = distancestart/distanceend * 12;
             var text = 'TouchMove事件触发：（' + x2 + ', ' + y2 + ', '+ x3 + ', '+ y3 + ', ' + distanceend + ', ' + modelSize + '）';
 			document.getElementById("result").innerHTML = text;
-			//camera.position.z = Math.cos( endPos.x );
 			camera.position.z = -modelSize;
 			camera.lookAt( scene.position );
 			}
@@ -253,7 +252,7 @@
 		//objLoader.load( 'tree.obj', function ( object ) {
 			objLoader.load( 'tree.obj', function tree( object ) {
 			//object.position.z = -10;
-			alert("test1");
+			alert("test2");
   			// 缩放
 			object.scale.x =  object.scale.y =  object.scale.z = 2.5;
 			// 旋转
