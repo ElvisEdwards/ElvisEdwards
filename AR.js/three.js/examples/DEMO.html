@@ -165,6 +165,8 @@
 			var x = Number(touch.screenX); //页面触点X坐标
             var y = Number(touch.screenY); //页面触点Y坐标
 
+			if(event.targetTouches.length == 1 ){touchMoveFunc(event)}
+
 			if(event.targetTouches.length == 2){
 			var touch1 = event.targetTouches[1];//获取第二个触点
 			var x1 = Number(touch1.screenX); //页面触点X1坐标
@@ -178,7 +180,6 @@
             document.getElementById("result").innerHTML = text;
 			touchMoveFunc(distancestart)
 			}
-			if(event.targetTouches.length == 1 ){touchMoveFunc(event)}
     }
 
     //touchmove事件，这个事件无法获取坐标
@@ -255,10 +256,9 @@
 		var objLoader = new THREE.OBJLoader();
 		objLoader.setMaterials( materials );
 		objLoader.setPath( 'models/' );
-		//objLoader.load( 'tree.obj', function ( object ) {
-			objLoader.load( 'tree.obj', function tree( object ) {
+		objLoader.load( 'tree.obj', function ( object ) {
 			//object.position.z = -10;
-			alert("test9");
+			alert("test10");
   			// 缩放
 			object.scale.x =  object.scale.y =  object.scale.z = 2.5;
 			// 旋转
@@ -274,16 +274,11 @@
 		renderer.render( scene, camera );
 	})
 	
-
-
 	// run the rendering loop
 	var lastTimeMsec= null
 	requestAnimationFrame(function animate(nowMsec){
 		// keep looping
 		requestAnimationFrame( animate );
-
-
-
 		//var timer = Date.now() * 0.0005;
 		//camera.position.x = Math.cos( timer ) * 200;
 		//camera.position.z = Math.sin( timer ) * 200;
