@@ -3,7 +3,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
 <!-- three.js library -->
 <script src='vendor/three.js/build/three.js'></script>
-<script src='vendor/three.js/examples/js/libs/stats.min.js'></script>
 <!-- jsartookit -->
 <script src='../vendor/jsartoolkit5/build/artoolkit.min.js'></script>
 <script src='../vendor/jsartoolkit5/js/artoolkit.api.js'></script>
@@ -25,6 +24,7 @@
 <div id="result" style="border:2px solid red; color:red;">未触发事件！</div>
 <div id="container"></div>
 <script>
+    window.onload = bindEvent;
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Init
 	//////////////////////////////////////////////////////////////////////////////////
@@ -236,10 +236,10 @@
 
 
 	//全局变量，触摸开始位置
-    var startX = 0, startY = 0;
-	var startX1 = 0, startY1 = 0;
+	var a=0,b=0;
     //touchstart事件
     function touchSatrtFunc(event) {
+		function distance(){
             //event.preventDefault(); //阻止触摸时浏览器的缩放、滚动条滚动等
             var touch = event.touches[0]; //获取第一个触点
 			var touch1 = event.targetTouches[1];//获取第二个触点
@@ -248,17 +248,18 @@
 			var x1 = Number(touch1.screenX); //页面触点X1坐标
             var y1 = Number(touch1.screenY); //页面触点Y1坐标
             //记录触点初始位置
-            startX = x;
-            startY = y;
-			startX1 = x1;
-            startY1 = y1;
-
+			a=x-x1;
+			b=y-y1;
+			var distancestart=Math.sqrt((a*a)+(b*b));
+					}
             var text = 'TouchMove事件触发：（' + x + ', ' + y + ', '+ x1 + ', '+ y1+'）';
             document.getElementById("result").innerHTML = text;
     }
 
     //touchmove事件，这个事件无法获取坐标
     function touchMoveFunc(event) {
+		distance()
+		/**
             //event.preventDefault(); //阻止触摸时浏览器的缩放、滚动条滚动等
             var touch = event.touches[0]; //获取第一个触点
 			var touch1 = event.targetTouches[1];//获取第二个触点
@@ -266,8 +267,8 @@
             var y = Number(touch.screenY); //页面触点Y坐标
 			var x1 = Number(touch1.screenX); //页面触点X1坐标
             var y1 = Number(touch1.screenY); //页面触点Y1坐标
-
-            var text = 'TouchMove事件触发：（' + x + ', ' + y + ', '+ x1 + ', '+ y1+'）';
+*/
+            var text = 'TouchMove事件触发：（' + x + ', ' + y + ', '+ x1 + ', '+ y1+ distancestart +'）';
 			document.getElementById("result").innerHTML = text;
     }
 
@@ -286,7 +287,7 @@
         document.addEventListener('touchend', touchEndFunc, false);
     }
 
-    window.onload = bindEvent;
+
 
 
 	// model
@@ -319,12 +320,9 @@
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
 	//////////////////////////////////////////////////////////////////////////////////
-	var stats = new Stats();
-	document.body.appendChild( stats.dom );
 	// render the scene
 	onRenderFcts.push(function(){
 		renderer.render( scene, camera );
-		stats.update();
 	})
 	
 
