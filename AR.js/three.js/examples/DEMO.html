@@ -271,14 +271,15 @@
         document.addEventListener('touchmove', touchMoveFunc, false);
         document.addEventListener('touchend', touchEndFunc, false);
     }*/
+			var startPos，endPos；
 			document.addEventListener('touchstart',function (event) {
 			var touch = event.targetTouches[0];     //touches数组对象获得屏幕上所有的touch，取第一个touch
             startPos = {x:touch.screenX,y:touch.screenY};    //取第一个touch的坐标值
 			document.addEventListener('touchmove',function(event){
 			var touch = event.targetTouches[0];
 			endPos = {x:touch.screenX - startPos.x,y:touch.screenY - startPos.y};
-            	camera.position.x = Math.cos( endPos.x ) * 2000;
-				camera.position.z = Math.sin( endPos.y ) * 2000;
+            	camera.position.x = Math.cos( endPos.x ) * 200;
+				camera.position.z = Math.sin( endPos.y ) * 200;
 				camera.lookAt( scene.position );
 				//renderer.render( scene, camera );
 				animate(nowMsec)
