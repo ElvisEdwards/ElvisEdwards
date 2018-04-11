@@ -233,7 +233,7 @@
 			//},false)
 			*/
 
-
+var modelSize=3;
 
 	//全局变量，触摸开始位置
 	var a=0,b=0;
@@ -272,6 +272,7 @@
 			b=y-y1;
 			distanceend=Math.sqrt((a*a)+(b*b));
 			modelSize = distanceend/distancestart * 3;
+			tree(modelSize)
             var text = 'TouchMove事件触发：（' + x + ', ' + y + ', '+ x1 + ', '+ y1 + ', ' + distanceend + ', ' + modelSize + '）';
 			document.getElementById("result").innerHTML = text;
 			//animate(nowMsec)
@@ -295,7 +296,7 @@
 
 
 	// model
-	var modelSize=3;
+	
 	var onProgress = function ( xhr ) {
 		if ( xhr.lengthComputable ) {
 			var percentComplete = xhr.loaded / xhr.total * 100;
