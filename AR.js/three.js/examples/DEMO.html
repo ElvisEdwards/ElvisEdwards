@@ -210,7 +210,8 @@
 			a=x2-x3;
 			b=y2-y3;
 			distanceend=Math.sqrt((a*a)+(b*b));
-			var modelSize = distancestart/distanceend * 12;
+			var proportion=distancestart/distanceend；
+			var modelSize = proportion * proportion * 12;
             var text = 'TouchMove事件触发：（' + x2 + ', ' + y2 + ', '+ x3 + ', '+ y3 + ', ' + distanceend + ', ' + modelSize + '）';
 			document.getElementById("result").innerHTML = text;
 			//camera.position.z = Math.cos( endPos.x );
@@ -258,7 +259,7 @@
 		//objLoader.load( 'tree.obj', function ( object ) {
 			objLoader.load( 'tree.obj', function tree( object ) {
 			//object.position.z = -10;
-			alert("test1");
+			alert("test2");
   			// 缩放
 			object.scale.x =  object.scale.y =  object.scale.z = 2.5;
 			// 旋转
