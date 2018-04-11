@@ -25,7 +25,6 @@
 <div id="container"></div>
 <script>
     window.onload = bindEvent;
-	window.onload = modeltest;
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Init
 	//////////////////////////////////////////////////////////////////////////////////
@@ -295,7 +294,6 @@
 
 
 	// model
-	function modeltest(){
 	var onProgress = function ( xhr ) {
 		if ( xhr.lengthComputable ) {
 			var percentComplete = xhr.loaded / xhr.total * 100;
@@ -322,7 +320,6 @@
 			markerRoot.add( object );
 		}, onProgress, onError );
 	});
-	}
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
 	//////////////////////////////////////////////////////////////////////////////////
@@ -338,7 +335,6 @@
 	requestAnimationFrame(function animate(nowMsec){
 		
 		touchMoveFunc(event)
-		modeltest()
 
 		// keep looping
 		requestAnimationFrame( animate );
