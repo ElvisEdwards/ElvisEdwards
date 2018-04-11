@@ -237,6 +237,7 @@
 	//全局变量，触摸开始位置
 	var a=0,b=0;
 	var distancestart=0,distanceend=0;
+	var modelSize=12;
     //touchstart事件
     function touchSatrtFunc(event) {
             //event.preventDefault(); //阻止触摸时浏览器的缩放、滚动条滚动等
@@ -271,7 +272,7 @@
 			a=x2-x3;
 			b=y2-y3;
 			distanceend=Math.sqrt((a*a)+(b*b));
-			var modelSize = distancestart/distanceend * 15;
+			modelSize = distancestart/distanceend * modelSize;
             var text = 'TouchMove事件触发：（' + x2 + ', ' + y2 + ', '+ x3 + ', '+ y3 + ', ' + distanceend + ', ' + modelSize + '）';
 			document.getElementById("result").innerHTML = text;
 			//camera.position.z = Math.cos( endPos.x );
