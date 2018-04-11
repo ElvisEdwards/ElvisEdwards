@@ -233,7 +233,7 @@
 			//},false)
 			*/
 
-	var modelSize=3.1;
+	var modelSize=2.5;
 
 	//全局变量，触摸开始位置
 	var a=0,b=0;
@@ -275,12 +275,11 @@
             var text = 'TouchMove事件触发：（' + x + ', ' + y + ', '+ x1 + ', '+ y1 + ', ' + distanceend + ', ' + modelSize + '）';
 			document.getElementById("result").innerHTML = text;
 			//camera.position.z = Math.cos( endPos.x );
-			camera.position.z = -modelSize;
+			camera.position.z = -(100-modelSize);
 			camera.lookAt( scene.position );
 			//camera.fov = modelSize*15;
 			animate(nowMsec);
-			renderer.render(scene, camera);
-			requestAnimationFrame( animate ); 
+			//renderer.render(scene, camera);
     }
 
     //touchend事件
