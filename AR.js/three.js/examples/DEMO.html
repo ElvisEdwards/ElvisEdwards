@@ -189,15 +189,10 @@
             var x2 = Number(touch2.screenX); //页面触点X2坐标
             var y2 = Number(touch2.screenY); //页面触点Y2坐标
 
-			var touch3 = event.targetTouches[1];//获取第二个触点
-			var x3 = Number(touch3.screenX); //页面触点X3坐标
-            var y3 = Number(touch3.screenY); //页面触点Y3坐标
-
 			//单指触摸时
 			if(event.targetTouches.length == 1){
 				a=x2-x;
 				b=y2-y;
-				//distance=Math.sqrt((a*a)+(b*b));
 				var text = 'TouchMove事件触发：（' + a + ', ' + b + '）';
 				document.getElementById("result").innerHTML = text;
 				camera.position.x = Math.cos( a ) * 80;
@@ -207,6 +202,9 @@
 
 			//双指触摸时
 			if(event.targetTouches.length == 2){
+			var touch3 = event.targetTouches[1];//获取第二个触点
+			var x3 = Number(touch3.screenX); //页面触点X3坐标
+            var y3 = Number(touch3.screenY); //页面触点Y3坐标
 			a=x2-x3;
 			b=y2-y3;
 			distanceend=Math.sqrt((a*a)+(b*b));
@@ -258,7 +256,7 @@
 		//objLoader.load( 'tree.obj', function ( object ) {
 			objLoader.load( 'tree.obj', function tree( object ) {
 			//object.position.z = -10;
-			alert("test3");
+			alert("test4");
   			// 缩放
 			object.scale.x =  object.scale.y =  object.scale.z = 2.5;
 			// 旋转
