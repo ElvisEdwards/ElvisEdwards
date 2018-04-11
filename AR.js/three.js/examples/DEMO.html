@@ -193,7 +193,7 @@
 			if(event.targetTouches.length == 1){
 				a=x2-x;
 				b=y2-y;
-				var text = 'TouchMove事件触发：（' + a + ', ' + b + '）';
+				var text = 'TouchMove事件触发：（' + x2 + ', ' + y2 + ', ' + a + ', ' + b + '）';
 				document.getElementById("result").innerHTML = text;
 				camera.position.x = Math.cos( a ) * 80;
 				camera.position.y = Math.sin( b ) * 80;
@@ -256,7 +256,7 @@
 		//objLoader.load( 'tree.obj', function ( object ) {
 			objLoader.load( 'tree.obj', function tree( object ) {
 			//object.position.z = -10;
-			alert("test4");
+			alert("test5");
   			// 缩放
 			object.scale.x =  object.scale.y =  object.scale.z = 2.5;
 			// 旋转
