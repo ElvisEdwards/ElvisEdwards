@@ -24,7 +24,6 @@
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
 <div id="container"></div>
 <script>
-window.onload = createmod;
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Init
 	//////////////////////////////////////////////////////////////////////////////////
@@ -223,12 +222,13 @@ window.onload = createmod;
 				 //解绑事件
             //this.slider.removeEventListener('touchmove',this,false);
             //this.slider.removeEventListener('touchend',this,false);
-			createmod()
+			renderer.render( scene, camera );
+			animate(nowMsec)
 			},false)
 			},false)
 			//},false)
 
-function createmod(){
+
 	// model
 	var onProgress = function ( xhr ) {
 		if ( xhr.lengthComputable ) {
@@ -291,8 +291,6 @@ function createmod(){
 		})
 	})
 
-
-	}
 /**
 ///////////////////////////////////		
 	
