@@ -186,6 +186,8 @@
 				a=x2-x;
 				b=y2-y;
 				//distance=Math.sqrt((a*a)+(b*b));
+				var text = 'TouchMove事件触发：（' + a + ', ' + b + '）';
+				document.getElementById("result").innerHTML = text;
 				camera.position.x = Math.cos( a ) * 80;
 				camera.position.y = Math.sin( b ) * 80;
 				camera.lookAt( scene.position );
@@ -201,14 +203,6 @@
 			//camera.position.z = Math.cos( endPos.x );
 			camera.position.z = -modelSize;
 			camera.lookAt( scene.position );
-			}
-			if(event.targetTouches.length == 1){
-				a=x2-x;
-				b=y2-y;
-				//distance=Math.sqrt((a*a)+(b*b));
-				camera.position.x = Math.cos( a ) * 80;
-				camera.position.y = Math.sin( b ) * 80;
-				camera.lookAt( scene.position );
 			}
 			animate(nowMsec);
 			renderer.render(scene, camera);
@@ -251,7 +245,7 @@
 		//objLoader.load( 'tree.obj', function ( object ) {
 			objLoader.load( 'tree.obj', function tree( object ) {
 			//object.position.z = -10;
-			alert("test3");
+			alert("test4");
   			// 缩放
 			object.scale.x =  object.scale.y =  object.scale.z = 2.5;
 			// 旋转

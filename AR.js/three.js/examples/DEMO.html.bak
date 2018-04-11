@@ -174,7 +174,7 @@
     //touchmove事件，这个事件无法获取坐标
     function touchMoveFunc(event) {
 		 // 如果有多个地方滑动，我们就不发生这个事件
-                //if(event.targetTouches.length > 2){return}
+            if(event.targetTouches.length > 2){return}
             //event.preventDefault(); //阻止触摸时浏览器的缩放、滚动条滚动等
             var touch2 = event.touches[0]; //获取第一个触点
 			var touch3 = event.targetTouches[1];//获取第二个触点
@@ -182,6 +182,16 @@
             var y2 = Number(touch2.screenY); //页面触点Y坐标
 			var x3 = Number(touch3.screenX); //页面触点X1坐标
             var y3 = Number(touch3.screenY); //页面触点Y1坐标
+			if(event.targetTouches.length == 1){
+				a=x2-x;
+				b=y2-y;
+				//distance=Math.sqrt((a*a)+(b*b));
+				var text = 'TouchMove事件触发：（' + a + ', ' + b + '）';
+				document.getElementById("result").innerHTML = text;
+				camera.position.x = Math.cos( a ) * 80;
+				camera.position.y = Math.sin( b ) * 80;
+				camera.lookAt( scene.position );
+			}
 			if(event.targetTouches.length == 2){
 			//记录触点初始位置
 			a=x2-x3;
@@ -193,14 +203,6 @@
 			//camera.position.z = Math.cos( endPos.x );
 			camera.position.z = -modelSize;
 			camera.lookAt( scene.position );
-			}
-			if(event.targetTouches.length == 1){
-				a=x2-x;
-				b=y2-y;
-				//distance=Math.sqrt((a*a)+(b*b));
-				camera.position.x = Math.cos( a ) * 80;
-				camera.position.y = Math.sin( b ) * 80;
-				camera.lookAt( scene.position );
 			}
 			animate(nowMsec);
 			renderer.render(scene, camera);
@@ -243,7 +245,7 @@
 		//objLoader.load( 'tree.obj', function ( object ) {
 			objLoader.load( 'tree.obj', function tree( object ) {
 			//object.position.z = -10;
-			alert("test2");
+			alert("test3");
   			// 缩放
 			object.scale.x =  object.scale.y =  object.scale.z = 2.5;
 			// 旋转
