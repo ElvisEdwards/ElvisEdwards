@@ -279,8 +279,8 @@
 			document.addEventListener('touchmove',function(event){
 			var touch = event.targetTouches[0];
 			endPos = {x:touch.screenX - startPos.x,y:touch.screenY - startPos.y};
-            	camera.position.x = Math.cos( endPos.x ) * 5;
-				camera.position.y = Math.sin( endPos.y ) * 5;
+            	camera.position.x = Math.cos( endPos.x );
+				camera.position.y = Math.sin( endPos.y );
 				//camera.lookAt( scene.position );
 				camera.lookAt(new THREE.Vector3(0,0,0));
 				animate(nowMsec)
@@ -308,7 +308,7 @@
 		//objLoader.load( 'tree.obj', function ( object ) {
 			objLoader.load( 'tree.obj', function tree( object ) {
 			//object.position.z = -10;
-			alert("test4");
+			alert("test5");
   			// 缩放
 			object.scale.x =  object.scale.y =  object.scale.z = 3.5;
 			// 旋转
