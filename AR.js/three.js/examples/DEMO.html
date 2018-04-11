@@ -233,7 +233,7 @@
 			//},false)
 			*/
 
-	var modelSize=2.8;
+	var modelSize=2.9;
 
 	//全局变量，触摸开始位置
 	var a=0,b=0;
@@ -271,7 +271,7 @@
 			a=x-x1;
 			b=y-y1;
 			distanceend=Math.sqrt((a*a)+(b*b));
-			modelSize = distanceend/distancestart * 100;
+			modelSize = distanceend/distancestart * modelSize * 3;
             var text = 'TouchMove事件触发：（' + x + ', ' + y + ', '+ x1 + ', '+ y1 + ', ' + distanceend + ', ' + modelSize + '）';
 			document.getElementById("result").innerHTML = text;
 			//camera.position.z = Math.cos( endPos.x );
