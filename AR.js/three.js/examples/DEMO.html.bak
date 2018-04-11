@@ -336,11 +336,14 @@
 	// run the rendering loop
 	var lastTimeMsec= null
 	requestAnimationFrame(function animate(nowMsec){
+		
+		touchMoveFunc(event)
+		modeltest()
 
 		// keep looping
 		requestAnimationFrame( animate );
 
-		touchMoveFunc(event)
+
 
 		//var timer = Date.now() * 0.0005;
 		//camera.position.x = Math.cos( timer ) * 200;
