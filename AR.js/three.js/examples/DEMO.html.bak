@@ -237,6 +237,7 @@
 
 	//全局变量，触摸开始位置
 	var a=0,b=0;
+	var distancestart=0,distanceend=0;
     //touchstart事件
     function touchSatrtFunc(event) {
             //event.preventDefault(); //阻止触摸时浏览器的缩放、滚动条滚动等
@@ -252,6 +253,7 @@
 			distancestart=Math.sqrt((a*a)+(b*b));
             var text = 'TouchMove事件触发：（' + x + ', ' + y + ', '+ x1 + ', '+ y1+'）';
             document.getElementById("result").innerHTML = text;
+			touchMoveFunc(distancestart)
     }
 
     //touchmove事件，这个事件无法获取坐标
@@ -270,7 +272,6 @@
 			modelSize = distanceend/distancestart * 3;
             var text = 'TouchMove事件触发：（' + x + ', ' + y + ', '+ x1 + ', '+ y1 + ', ' + distanceend + ', ' + modelSize + '）';
 			document.getElementById("result").innerHTML = text;
-			
 			animate(nowMsec)
     }
 

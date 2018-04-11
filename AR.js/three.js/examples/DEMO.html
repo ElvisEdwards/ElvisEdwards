@@ -272,8 +272,7 @@
 			modelSize = distanceend/distancestart * 3;
             var text = 'TouchMove事件触发：（' + x + ', ' + y + ', '+ x1 + ', '+ y1 + ', ' + distanceend + ', ' + modelSize + '）';
 			document.getElementById("result").innerHTML = text;
-			
-			animate(nowMsec)
+			animate(modelSize)
     }
 
     //touchend事件
@@ -336,10 +335,11 @@
 	// run the rendering loop
 	var lastTimeMsec= null
 	requestAnimationFrame(function animate(nowMsec){
+
 		// keep looping
 		requestAnimationFrame( animate );
 
-
+		touchMoveFunc(event)
 
 		//var timer = Date.now() * 0.0005;
 		//camera.position.x = Math.cos( timer ) * 200;
