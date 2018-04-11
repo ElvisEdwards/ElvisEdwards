@@ -24,6 +24,7 @@
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
 <div id="container"></div>
 <script>
+window.onload = createmod;
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Init
 	//////////////////////////////////////////////////////////////////////////////////
@@ -222,11 +223,12 @@
 				 //解绑事件
             //this.slider.removeEventListener('touchmove',this,false);
             //this.slider.removeEventListener('touchend',this,false);
+			createmod()
 			},false)
 			},false)
 			//},false)
 
-
+function createmod(){
 	// model
 	var onProgress = function ( xhr ) {
 		if ( xhr.lengthComputable ) {
@@ -288,6 +290,9 @@
 			onRenderFct(deltaMsec/1000, nowMsec/1000)
 		})
 	})
+
+
+	}
 /**
 ///////////////////////////////////		
 	
@@ -349,6 +354,23 @@ function bindEvent() {
     document.addEventListener('touchstart', touchSatrtFunc, false);
     document.addEventListener('touchmove', touchMoveFunc, false);
     document.addEventListener('touchend', touchEndFunc, false);
+
+	//判断是否支持触摸事件
+    function isTouchDevice() {
+        document.getElementById("version").innerHTML = navigator.appVersion;
+
+        try {
+            document.createEvent("TouchEvent");
+            alert("支持TouchEvent事件！");
+
+            bindEvent(); //绑定事件
+        }
+        catch (e) {
+            alert("不支持TouchEvent事件！" + e.message);
+        }
+    }
+
+    window.onload = isTouchDevice;
 }*/
  ///////////////////////////////
 
