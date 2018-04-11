@@ -60,6 +60,7 @@
 	//////////////////////////////////////////////////////////////////////////////////
 	// Create a camera
 	var camera = new THREE.Camera();
+	camera.position.z = -15;
 	scene.add(camera);
 	////////////////////////////////////////////////////////////////////////////////
 	//          handle arToolkitSource
@@ -233,7 +234,7 @@
 			//},false)
 			*/
 
-	var modelSize=2.7;
+	var modelSize=2.3;
 
 	//全局变量，触摸开始位置
 	var a=0,b=0;
@@ -271,7 +272,7 @@
 			a=x-x1;
 			b=y-y1;
 			distanceend=Math.sqrt((a*a)+(b*b));
-			modelSize = distancestart/distanceend * modelSize * 3;
+			modelSize = distancestart/distanceend * 15;
             var text = 'TouchMove事件触发：（' + x + ', ' + y + ', '+ x1 + ', '+ y1 + ', ' + distanceend + ', ' + modelSize + '）';
 			document.getElementById("result").innerHTML = text;
 			//camera.position.z = Math.cos( endPos.x );

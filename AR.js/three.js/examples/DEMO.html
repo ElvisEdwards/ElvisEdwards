@@ -60,6 +60,7 @@
 	//////////////////////////////////////////////////////////////////////////////////
 	// Create a camera
 	var camera = new THREE.Camera();
+	camera.position.z = -15;
 	scene.add(camera);
 	////////////////////////////////////////////////////////////////////////////////
 	//          handle arToolkitSource
@@ -233,11 +234,12 @@
 			//},false)
 			*/
 
-	var modelSize=2.7;
+	var modelSize=2.3;
 
 	//全局变量，触摸开始位置
 	var a=0,b=0;
 	var distancestart=0,distanceend=0;
+	var positionz;
     //touchstart事件
     function touchSatrtFunc(event) {
             //event.preventDefault(); //阻止触摸时浏览器的缩放、滚动条滚动等
@@ -271,13 +273,12 @@
 			a=x-x1;
 			b=y-y1;
 			distanceend=Math.sqrt((a*a)+(b*b));
-			modelSize = distancestart/distanceend * 9;
-            var text = 'TouchMove事件触发：（' + x + ', ' + y + ', '+ x1 + ', '+ y1 + ', ' + distanceend + ', ' + modelSize + '）';
+			positionz = distancestart/distanceend * 15;
+            var text = 'TouchMove事件触发：（' + x + ', ' + y + ', '+ x1 + ', '+ y1 + ', ' + distanceend + ', ' + positionz + '）';
 			document.getElementById("result").innerHTML = text;
 			//camera.position.z = Math.cos( endPos.x );
-			camera.position.z = -modelSize;
+			camera.position.z = -positionz;
 			camera.lookAt( scene.position );
-			//camera.fov = modelSize*15;
 			animate(nowMsec);
 			renderer.render(scene, camera);
 			requestAnimationFrame( animate ); 
