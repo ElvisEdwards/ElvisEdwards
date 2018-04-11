@@ -274,7 +274,8 @@
 			modelSize = distanceend/distancestart * 3;
             var text = 'TouchMove事件触发：（' + x + ', ' + y + ', '+ x1 + ', '+ y1 + ', ' + distanceend + ', ' + modelSize + '）';
 			document.getElementById("result").innerHTML = text;
-			tree(modelSize)
+			camera.fov = modelSize*15;
+			//tree(modelSize)
 			animate(nowMsec)
     }
 
