@@ -279,10 +279,10 @@
 			document.addEventListener('touchmove',function(event){
 			var touch = event.targetTouches[0];
 			endPos = {x:touch.screenX - startPos.x,y:touch.screenY - startPos.y};
-            	camera.position.x = Math.cos( endPos.x ) * 200;
-				camera.position.y = Math.sin( endPos.y ) * 200;
-				camera.lookAt( scene.position );
-				//renderer.render( scene, camera );
+            	camera.position.x = Math.cos( endPos.x ) * 5;
+				camera.position.y = Math.sin( endPos.y ) * 5;
+				//camera.lookAt( scene.position );
+				camera.lookAt(new THREE.Vector3(0,0,0));
 				animate(nowMsec)
 			},false)},false)
 
@@ -310,7 +310,7 @@
 			//object.position.z = -10;
 			alert("test3");
   			// 缩放
-			object.scale.x =  object.scale.y =  object.scale.z = 2.5;
+			object.scale.x =  object.scale.y =  object.scale.z = 3.5;
 			// 旋转
 			object.rotation.set(Math.PI/2,Math.PI/2,Math.PI/2) ;
 			markerRoot.add( object );
