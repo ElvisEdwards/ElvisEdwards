@@ -263,10 +263,14 @@
             var y = Number(touch.screenY); //页面触点Y坐标
 			var x1 = Number(touch1.screenX); //页面触点X1坐标
             var y1 = Number(touch1.screenY); //页面触点Y1坐标
+			//记录触点初始位置
+			a=x-x1;
+			b=y-y1;
 			distanceend=Math.sqrt((a*a)+(b*b));
 
-            var text = 'TouchMove事件触发：（' + x + ', ' + y + ', '+ x1 + ', '+ y1+'）';
+            var text = 'TouchMove事件触发：（' + x + ', ' + y + ', '+ x1 + ', '+ y1 + ', ' + distanceend+'）';
 			document.getElementById("result").innerHTML = text;
+			animate(nowMsec)
     }
 
     //touchend事件
