@@ -267,9 +267,10 @@
 			a=x-x1;
 			b=y-y1;
 			distanceend=Math.sqrt((a*a)+(b*b));
-
-            var text = 'TouchMove事件触发：（' + x + ', ' + y + ', '+ x1 + ', '+ y1 + ', ' + distanceend+'）';
+			modelSize = distanceend/distancestart * 3;
+            var text = 'TouchMove事件触发：（' + x + ', ' + y + ', '+ x1 + ', '+ y1 + ', ' + distanceend + ', ' + modelSize + '）';
 			document.getElementById("result").innerHTML = text;
+			
 			animate(nowMsec)
     }
 
