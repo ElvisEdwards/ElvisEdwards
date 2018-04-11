@@ -275,7 +275,7 @@
             var text = 'TouchMove事件触发：（' + x + ', ' + y + ', '+ x1 + ', '+ y1 + ', ' + distanceend + ', ' + modelSize + '）';
 			document.getElementById("result").innerHTML = text;
 			//camera.position.z = Math.cos( endPos.x );
-			camera.position.z = -(100-modelSize);
+			camera.position.z = -(60-modelSize);
 			camera.lookAt( scene.position );
 			//camera.fov = modelSize*15;
 			animate(nowMsec);
