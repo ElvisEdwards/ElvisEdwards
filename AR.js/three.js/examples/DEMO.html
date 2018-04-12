@@ -13,15 +13,15 @@
 <script src='../src/threex/threex-arbasecontrols.js'></script>
 <script src='../src/threex/threex-armarkercontrols.js'></script>
 <script src='../src/threex/threex-arsmoothedcontrols.js'></script>
-<script src='../src/loaders/JSONLoader.js'></script>
-<script src='../src/loaders/ObjectLoader.js'></script>
 <script>THREEx.ArToolkitContext.baseURL = '../'</script>
 
 		<script src="js/loaders/DDSLoader.js"></script>
+		<script src="js/loaders/MTLLoader.js"></script>
+		<script src="js/loaders/OBJLoader.js"></script>
 		<script src="js/Detector.js"></script>
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-<div id="result" style="border:2px solid red; color:red;">22未触发事件！</div>
+<div id="result" style="border:2px solid red; color:red;">11未触发事件！</div>
 <div id="container"></div>
 <script>
 	//////////////////////////////////////////////////////////////////////////////////
@@ -162,7 +162,7 @@
 			var touch1 = event.targetTouches[1];//获取第二个触点
 			var x1 = Number(touch1.screenX); //页面触点X1坐标
             var y1 = Number(touch1.screenY); //页面触点Y1坐标
-            //记录触点距离
+            //记录触点初始位置
 			a=x-x1;
 			b=y-y1;
 			distancestart=Math.sqrt((a*a)+(b*b));
@@ -182,8 +182,8 @@
 				b=y2-y;
 				var text = 'TouchMove旋转事件触发：（' + x2 + ', ' + y2 + ', ' + a + ', ' + b + '）';
 				document.getElementById("result").innerHTML = text;
-				camera.position.x = Math.sin( a ) * 9;
-				camera.position.y = Math.sin( b ) * 9;
+				camera.position.x = Math.sin( a ) * 2;
+				camera.position.y = Math.sin( b ) * 2;
 				camera.lookAt( scene.position );
 			}
 
@@ -211,22 +211,35 @@
             event.preventDefault(); //阻止触摸时浏览器的缩放、滚动条滚动等
             var text = 'TouchEnd事件触发';
             document.getElementById("result").innerHTML = text;
-			//解绑事件
-            this.slider.removeEventListener('touchmove',this,false);
-            this.slider.removeEventListener('touchend',this,false);
     },false)},false)},false)
 
 
 	// model
-	var objectLoader = new THREE.ObjectLoader();
-	objectLoader.load("models/test7/test7.json", function ( obj ) {
-	obj.scale.x =  obj.scale.y =  obj.scale.z = 0.75;
-	//obj.scale.set(1,1,1);
-	obj.position.y = -15;
-	obj.position.z = -15;
-	obj.rotation.set(Math.PI/2,Math.PI/2,Math.PI/1.8) ;
-	markerRoot.add( obj );
-	} );
+	var onProgress = function ( xhr ) {
+		if ( xhr.lengthComputable ) {
+			var percentComplete = xhr.loaded / xhr.total * 100;
+			console.log( Math.round(percentComplete, 2) + '% downloaded' );
+		}
+};
+	var onError = function ( xhr ) { };
+	THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
+	var mtlLoader = new THREE.MTLLoader();
+	mtlLoader.setPath( 'models/1/' );
+	mtlLoader.load( 'bear.mtl', function( materials ) {
+		materials.preload();
+		var objLoader = new THREE.OBJLoader();
+		objLoader.setMaterials( materials );
+		objLoader.setPath( 'models/' );
+		//objLoader.load( 'tree.obj', function ( object ) {
+			objLoader.load( 'tree.obj', function tree( object ) {
+			//object.position.y = -3;
+  			// 缩放
+			object.scale.x =  object.scale.y =  object.scale.z = 3.5;
+			// 旋转
+			object.rotation.set(Math.PI/2,Math.PI/2,Math.PI/2) ;
+			markerRoot.add( object );
+		}, onProgress, onError );
+	});
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
 	//////////////////////////////////////////////////////////////////////////////////
