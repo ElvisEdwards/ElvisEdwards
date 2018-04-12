@@ -147,7 +147,7 @@
 
 
 
-/**
+
 	//全局变量，触摸开始位置
 	var a=0,b=0;
 	var distancestart=0,distanceend=0;
@@ -160,7 +160,9 @@
 			var x = Number(touch.screenX); //页面触点X坐标
             var y = Number(touch.screenY); //页面触点Y坐标
 
-			if(event.targetTouches.length == 1 ){touchMoveFunc}
+			if(event.targetTouches.length == 1 ){
+				alert("danzhichufa");
+				touchMoveFunc}
 
 			if(event.targetTouches.length == 2){
 			var touch1 = event.targetTouches[1];//获取第二个触点
@@ -183,6 +185,7 @@
 
 			//单指触摸时
 			if(event.targetTouches.length == 1){
+				alert("move fangfa");
 				a=x2-x;
 				b=y2-y;
 				var text = 'TouchMove旋转事件触发：（' + x2 + ', ' + y2 + ', ' + a + ', ' + b + '）';
@@ -224,7 +227,7 @@
         document.addEventListener('touchmove', touchMoveFunc, false);
         document.addEventListener('touchend', touchEndFunc, false);
     }
-	
+	/**
 	
 			var startPos;
 			var endPos;
@@ -263,7 +266,7 @@
 		//objLoader.load( 'tree.obj', function ( object ) {
 			objLoader.load( 'tree.obj', function tree( object ) {
 			//object.position.y = -3;
-			alert("test5");
+			alert("test6");
   			// 缩放
 			object.scale.x =  object.scale.y =  object.scale.z = 3.5;
 			// 旋转
@@ -286,10 +289,7 @@
 	requestAnimationFrame(function animate(nowMsec){
 		// keep looping
 		requestAnimationFrame( animate );
-		camera.position.x = -2;
-
-
-
+		//camera.position.x = -2;
 		//var timer = Date.now() * 0.0005;
 		//camera.position.x = Math.cos( timer ) * 200;
 		//camera.position.z = Math.sin( timer ) * 200;
