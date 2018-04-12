@@ -160,9 +160,7 @@
 			var x = Number(touch.screenX); //页面触点X坐标
             var y = Number(touch.screenY); //页面触点Y坐标
 
-			if(event.targetTouches.length == 1 ){
-				alert("danzhichufa");
-				touchMoveFunc}
+			if(event.targetTouches.length == 1 ){touchMoveFunc}
 
 			if(event.targetTouches.length == 2){
 			var touch1 = event.targetTouches[1];//获取第二个触点
@@ -185,11 +183,11 @@
 
 			//单指触摸时
 			if(event.targetTouches.length == 1){
-				alert("move fangfa");
 				a=x2-x;
 				b=y2-y;
 				var text = 'TouchMove旋转事件触发：（' + x2 + ', ' + y2 + ', ' + a + ', ' + b + '）';
 				document.getElementById("result").innerHTML = text;
+				alert("move fangfa");
 				camera.position.x = Math.cos( a ) * 2;
 				camera.position.y = Math.cos( b ) * 2;
 				camera.lookAt( scene.position );
@@ -266,7 +264,7 @@
 		//objLoader.load( 'tree.obj', function ( object ) {
 			objLoader.load( 'tree.obj', function tree( object ) {
 			//object.position.y = -3;
-			alert("test6");
+			alert("test1");
   			// 缩放
 			object.scale.x =  object.scale.y =  object.scale.z = 3.5;
 			// 旋转
