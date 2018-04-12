@@ -172,8 +172,8 @@
 				b=y2-y;
 				var text = 'TouchMove旋转事件触发：（' + x2 + ', ' + y2 + ', ' + a + ', ' + b + '）';
 				document.getElementById("result").innerHTML = text;
-				camera.position.x = Math.sin( a ) * 9;
-				camera.position.y = Math.sin( b ) * 9;
+				camera.position.x = Math.sin( a ) * 5;
+				camera.position.y = Math.sin( b ) * 5;
 				camera.lookAt( scene.position );
 			}
 			//双指触摸时
@@ -194,13 +194,15 @@
 			renderer.render(scene, camera);
 			requestAnimationFrame( animate ); 
    
-	
+	/**
     //touchend事件
     document.addEventListener('touchend',function(event){
             event.preventDefault(); //阻止触摸时浏览器的缩放、滚动条滚动等
             var text = 'TouchEnd事件触发';
             document.getElementById("result").innerHTML = text;
-    },false)},false)},false)
+    },false)*/
+	},false)
+	},false)
 	// model
 	var objectLoader = new THREE.ObjectLoader();
 	objectLoader.load("models/test7/test7.json", function ( obj ) {
