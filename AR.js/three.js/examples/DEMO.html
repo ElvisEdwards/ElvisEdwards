@@ -189,7 +189,6 @@
 				b=y2-touchSatrtFunc.y;
 				var text = 'TouchMove旋转事件触发：（' + x2 + ', ' + y2 + ', ' + a + ', ' + b + '）';
 				document.getElementById("result").innerHTML = text;
-				alert("222");
 				camera.position.x = Math.sin( a ) * 2;
 				camera.position.y = Math.sin( b ) * 2;
 				camera.lookAt( scene.position );
@@ -266,7 +265,7 @@
 		//objLoader.load( 'tree.obj', function ( object ) {
 			objLoader.load( 'tree.obj', function tree( object ) {
 			//object.position.y = -3;
-			alert("test4");
+			alert("test1");
   			// 缩放
 			object.scale.x =  object.scale.y =  object.scale.z = 3.5;
 			// 旋转

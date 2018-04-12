@@ -189,9 +189,8 @@
 				b=y2-touchSatrtFunc.y;
 				var text = 'TouchMove旋转事件触发：（' + x2 + ', ' + y2 + ', ' + a + ', ' + b + '）';
 				document.getElementById("result").innerHTML = text;
-				alert("222");
-				camera.position.x = Math.cos( a ) * 2;
-				camera.position.y = Math.cos( b ) * 2;
+				camera.position.x = Math.sin( a ) * 2;
+				camera.position.y = Math.sin( b ) * 2;
 				camera.lookAt( scene.position );
 			}
 
