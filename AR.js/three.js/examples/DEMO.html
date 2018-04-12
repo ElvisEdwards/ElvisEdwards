@@ -183,11 +183,12 @@
 
 			//单指触摸时
 			if(event.targetTouches.length == 1){
+				alert("111");
 				a=x2-x;
 				b=y2-y;
-				var text = 'TouchMove旋转事件触发：（' + x2 + ', ' + y2 + ', ' + a + ', ' + b + '）';
-				document.getElementById("result").innerHTML = text;
-				alert("move fangfa");
+				//var text = 'TouchMove旋转事件触发：（' + x2 + ', ' + y2 + ', ' + a + ', ' + b + '）';
+				//document.getElementById("result").innerHTML = text;
+				alert("222");
 				camera.position.x = Math.cos( a ) * 2;
 				camera.position.y = Math.cos( b ) * 2;
 				camera.lookAt( scene.position );
@@ -264,7 +265,7 @@
 		//objLoader.load( 'tree.obj', function ( object ) {
 			objLoader.load( 'tree.obj', function tree( object ) {
 			//object.position.y = -3;
-			alert("test2");
+			alert("test3");
   			// 缩放
 			object.scale.x =  object.scale.y =  object.scale.z = 3.5;
 			// 旋转
