@@ -160,7 +160,7 @@
 			var x = Number(touch.screenX); //页面触点X坐标
             var y = Number(touch.screenY); //页面触点Y坐标
 
-			if(event.targetTouches.length == 1 ){touchMoveFunc}
+			if(event.targetTouches.length == 1 ){touchMoveFunc()}
 
 			if(event.targetTouches.length == 2){
 			var touch1 = event.targetTouches[1];//获取第二个触点
@@ -184,8 +184,8 @@
 			//单指触摸时
 			if(event.targetTouches.length == 1){
 				alert("111");
-				a=x2-x;
-				b=y2-y;
+				a=x2-touchSatrtFunc().x;
+				b=y2-touchSatrtFunc().y;
 				//var text = 'TouchMove旋转事件触发：（' + x2 + ', ' + y2 + ', ' + a + ', ' + b + '）';
 				//document.getElementById("result").innerHTML = text;
 				alert("222");
