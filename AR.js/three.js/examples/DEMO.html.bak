@@ -13,11 +13,11 @@
 <script src='../src/threex/threex-arbasecontrols.js'></script>
 <script src='../src/threex/threex-armarkercontrols.js'></script>
 <script src='../src/threex/threex-arsmoothedcontrols.js'></script>
+<script src='../src/loaders/JSONLoader.js'></script>
+<script src='../src/loaders/ObjectLoader.js'></script>
 <script>THREEx.ArToolkitContext.baseURL = '../'</script>
 
 		<script src="js/loaders/DDSLoader.js"></script>
-		<script src="js/loaders/MTLLoader.js"></script>
-		<script src="js/loaders/OBJLoader.js"></script>
 		<script src="js/Detector.js"></script>
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
@@ -217,6 +217,7 @@
 	// model
 	var objectLoader = new THREE.ObjectLoader();
 	objectLoader.load("models/test6/test6.json", function ( obj ) {
+		alert('test1')
 	//obj.scale.x =  obj.scale.y =  obj.scale.z = 3.45;
 	//obj.scale.set(1,1,1);
 	//obj.rotation.set(Math.PI/2,Math.PI/2,Math.PI/1.8) ;
