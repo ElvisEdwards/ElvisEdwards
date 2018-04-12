@@ -216,8 +216,8 @@
 
 	// model
 	var objectLoader = new THREE.ObjectLoader();
-	objectLoader.load("models/test6/test6.json", function ( obj ) {
-	obj.scale.x =  obj.scale.y =  obj.scale.z = 0.45;
+	objectLoader.load("models/test7/test7.json", function ( obj ) {
+	obj.scale.x =  obj.scale.y =  obj.scale.z = 0.35;
 	//obj.scale.set(1,1,1);
 	obj.rotation.set(Math.PI/2,Math.PI/2,Math.PI/1.8) ;
 	obj.position.z = -15;
