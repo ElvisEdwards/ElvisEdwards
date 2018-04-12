@@ -24,7 +24,7 @@
 <div id="result" style="border:2px solid red; color:red;">未触发事件！</div>
 <div id="container"></div>
 <script>
-    //window.onload = bindEvent;
+    window.onload = bindEvent;
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Init
 	//////////////////////////////////////////////////////////////////////////////////
@@ -266,7 +266,7 @@
 		//objLoader.load( 'tree.obj', function ( object ) {
 			objLoader.load( 'tree.obj', function tree( object ) {
 			//object.position.y = -3;
-			alert("test6");
+			alert("test1");
   			// 缩放
 			object.scale.x =  object.scale.y =  object.scale.z = 3.5;
 			// 旋转
