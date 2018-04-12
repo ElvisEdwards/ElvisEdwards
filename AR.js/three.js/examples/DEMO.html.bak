@@ -147,11 +147,7 @@
 
 
 
-	//禁用手机默认的触屏滚动行为
-	//document.addEventListener('touchmove',function(event){
-	//event.preventDefault();},false);
-
-
+/**
 	//全局变量，触摸开始位置
 	var a=0,b=0;
 	var distancestart=0,distanceend=0;
@@ -228,8 +224,8 @@
         document.addEventListener('touchmove', touchMoveFunc, false);
         document.addEventListener('touchend', touchEndFunc, false);
     }
+	*/
 	
-	/**
 			var startPos;
 			var endPos;
 			document.addEventListener('touchstart',function (event) {
@@ -238,12 +234,12 @@
 			document.addEventListener('touchmove',function(event){
 			var touch = event.targetTouches[0];
 			endPos = {x:touch.screenX - startPos.x,y:touch.screenY - startPos.y};
-            	camera.position.x = Math.sin( endPos.x ) * 2;
-				camera.position.y = Math.sin( endPos.y ) * 2;
+            	camera.position.x = Math.cos( endPos.x ) * 2;
+				camera.position.y = Math.cos( endPos.y ) * 2;
 				//camera.lookAt( scene.position );
 				camera.lookAt(new THREE.Vector3(0,0,0));
 				animate(nowMsec)
-			},false)},false)*/
+			},false)},false)
 
 
 
@@ -267,7 +263,7 @@
 		//objLoader.load( 'tree.obj', function ( object ) {
 			objLoader.load( 'tree.obj', function tree( object ) {
 			//object.position.z = -10;
-			alert("test2");
+			alert("test3");
   			// 缩放
 			object.scale.x =  object.scale.y =  object.scale.z = 3.5;
 			// 旋转
