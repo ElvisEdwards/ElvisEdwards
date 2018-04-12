@@ -182,8 +182,8 @@
 				b=y2-y;
 				var text = 'TouchMove旋转事件触发：（' + x2 + ', ' + y2 + ', ' + a + ', ' + b + '）';
 				document.getElementById("result").innerHTML = text;
-				camera.position.x = Math.sin( a ) * 2;
-				camera.position.y = Math.sin( b ) * 2;
+				camera.position.x = Math.sin( a ) * 9;
+				camera.position.y = Math.sin( b ) * 9;
 				camera.lookAt( scene.position );
 			}
 
@@ -218,10 +218,10 @@
 	var objectLoader = new THREE.ObjectLoader();
 	objectLoader.load("models/test6/test6.json", function ( obj ) {
 		alert('test1')
-	//obj.scale.x =  obj.scale.y =  obj.scale.z = 3.45;
+	obj.scale.x =  obj.scale.y =  obj.scale.z = 0.45;
 	//obj.scale.set(1,1,1);
-	//obj.rotation.set(Math.PI/2,Math.PI/2,Math.PI/1.8) ;
-	//obj.position.y = 30;
+	obj.rotation.set(Math.PI/2,Math.PI/2,Math.PI/1.8) ;
+	obj.position.z = -15;
 	markerRoot.add( obj );
 	} );
 	//////////////////////////////////////////////////////////////////////////////////
