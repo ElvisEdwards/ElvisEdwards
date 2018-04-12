@@ -21,7 +21,7 @@
 		<script src="js/Detector.js"></script>
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-<div id="result" style="border:2px solid red; color:red;">未触发事件！</div>
+<div id="result" style="border:2px solid red; color:red;">111未触发事件！</div>
 <div id="container"></div>
 <script>
 	//////////////////////////////////////////////////////////////////////////////////
@@ -127,7 +127,7 @@
 		// barcodeValue: 5,
 		
 		type : 'pattern',
-		patternUrl : '../../data/multimarkers/multi-abcdef/patt.cb2', 
+		patternUrl : '../../data/multimarkers/multi-abcdef/patt.treefb', 
 		//patternUrl : '../../data/multimarkers/multi-abcdef/patt.td',
 	})
 	// build a smoothedControls
@@ -217,7 +217,6 @@
 	// model
 	var objectLoader = new THREE.ObjectLoader();
 	objectLoader.load("models/test6/test6.json", function ( obj ) {
-		alert('test1')
 	obj.scale.x =  obj.scale.y =  obj.scale.z = 0.45;
 	//obj.scale.set(1,1,1);
 	obj.rotation.set(Math.PI/2,Math.PI/2,Math.PI/1.8) ;
