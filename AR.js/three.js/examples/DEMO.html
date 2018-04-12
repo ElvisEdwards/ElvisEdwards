@@ -21,7 +21,7 @@
 		<script src="js/Detector.js"></script>
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-<div id="result" style="border:2px solid red; color:red;">22未触发事件！</div>
+<div id="result" style="border:2px solid red; color:red;">1未触发事件！</div>
 <div id="container"></div>
 <script>
 	//////////////////////////////////////////////////////////////////////////////////
@@ -162,7 +162,7 @@
 			var touch1 = event.targetTouches[1];//获取第二个触点
 			var x1 = Number(touch1.screenX); //页面触点X1坐标
             var y1 = Number(touch1.screenY); //页面触点Y1坐标
-            //记录触点初始位置
+            //记录触点距离
 			a=x-x1;
 			b=y-y1;
 			distancestart=Math.sqrt((a*a)+(b*b));
@@ -211,12 +211,15 @@
             event.preventDefault(); //阻止触摸时浏览器的缩放、滚动条滚动等
             var text = 'TouchEnd事件触发';
             document.getElementById("result").innerHTML = text;
+			//解绑事件
+            this.slider.removeEventListener('touchmove',this,false);
+            this.slider.removeEventListener('touchend',this,false);
     },false)},false)},false)
 
 
 	// model
 	var objectLoader = new THREE.ObjectLoader();
-	objectLoader.load("models/test7/test7.json", function ( obj ) {
+	objectLoader.load("models/test8.json", function ( obj ) {
 	obj.scale.x =  obj.scale.y =  obj.scale.z = 0.75;
 	//obj.scale.set(1,1,1);
 	obj.position.y = -15;
