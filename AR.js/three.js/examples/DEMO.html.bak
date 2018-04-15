@@ -13,18 +13,17 @@
 <script src='../src/threex/threex-arbasecontrols.js'></script>
 <script src='../src/threex/threex-armarkercontrols.js'></script>
 <script src='../src/threex/threex-arsmoothedcontrols.js'></script>
+<script src='../src/loaders/JSONLoader.js'></script>
+<script src='../src/loaders/ObjectLoader.js'></script>
 <script>THREEx.ArToolkitContext.baseURL = '../'</script>
 
 		<script src="js/loaders/DDSLoader.js"></script>
-		<script src="js/loaders/MTLLoader.js"></script>
-		<script src="js/loaders/OBJLoader.js"></script>
 		<script src="js/Detector.js"></script>
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-<div id="result" style="border:2px solid red; color:red;">未触发事件！</div>
+<div id="result" style="border:2px solid red; color:red;">0未触发事件！</div>
 <div id="container"></div>
 <script>
-    //window.onload = bindEvent;
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Init
 	//////////////////////////////////////////////////////////////////////////////////
@@ -33,8 +32,6 @@
 		// antialias	: true,
 		alpha: true
 	});
-
-
     var container = document.getElementById( 'container' );
 	renderer.setClearColor(new THREE.Color('lightgrey'), 0)
 	// renderer.setPixelRatio( 2 );
@@ -44,7 +41,6 @@
 	renderer.domElement.style.left = '0px'
 	container.appendChild(renderer.domElement);
 	//document.body.appendChild( renderer.domElement );
-
 	// array of functions for the rendering loop
 	var onRenderFcts= [];
 	// init scene and camera
@@ -144,29 +140,17 @@
 	onRenderFcts.push(function(delta){
 		smoothedControls.update(markerRoot)
 	})	
-
-
-
-	//禁用手机默认的触屏滚动行为
-	//document.addEventListener('touchmove',function(event){
-	//event.preventDefault();},false);
-
-/**
 	//全局变量，触摸开始位置
 	var a=0,b=0;
 	var distancestart=0,distanceend=0;
-	//var modelSize=12;
     //touchstart事件
-    function touchSatrtFunc(event) {
+	document.addEventListener('touchstart',function (event) {
 			// 如果有多个地方滑动，我们就不发生这个事件
-            if(event.targetTouches.length > 2){return}
-            //event.preventDefault(); //阻止触摸时浏览器的缩放、滚动条滚动等
+            //if(event.targetTouches.length > 2){return}
+            event.preventDefault(); //阻止触摸时浏览器的缩放、滚动条滚动等
             var touch = event.touches[0]; //获取第一个触点
 			var x = Number(touch.screenX); //页面触点X坐标
             var y = Number(touch.screenY); //页面触点Y坐标
-
-			//if(event.targetTouches.length == 1 ){touchMoveFunc}
-
 			if(event.targetTouches.length == 2){
 			var touch1 = event.targetTouches[1];//获取第二个触点
 			var x1 = Number(touch1.screenX); //页面触点X1坐标
@@ -175,28 +159,23 @@
 			a=x-x1;
 			b=y-y1;
 			distancestart=Math.sqrt((a*a)+(b*b));
-			touchMoveFunc(distancestart)
 			}
-    }
-
     //touchmove事件，这个事件无法获取坐标
-    function touchMoveFunc(event) {
-            //event.preventDefault(); //阻止触摸时浏览器的缩放、滚动条滚动等
-            var touch2 = event.touches[0]; //获取第一个触点
+    document.addEventListener('touchmove',function(event){
+            event.preventDefault(); //阻止触摸时浏览器的缩放、滚动条滚动等
+            var touch2 = event.targetTouches[0]; //获取第一个触点
             var x2 = Number(touch2.screenX); //页面触点X2坐标
             var y2 = Number(touch2.screenY); //页面触点Y2坐标
-
 			//单指触摸时
 			if(event.targetTouches.length == 1){
 				a=x2-x;
 				b=y2-y;
-				var text = 'TouchMove事件触发：（' + x2 + ', ' + y2 + ', ' + a + ', ' + b + '）';
+				var text = 'TouchMove旋转事件触发：（' + x2 + ', ' + y2 + ', ' + a + ', ' + b + '）';
 				document.getElementById("result").innerHTML = text;
-				camera.position.x = Math.cos( a ) * 80;
-				camera.position.y = Math.sin( b ) * 80;
+				camera.position.x = Math.sin( a ) * 9;
+				camera.position.y = Math.sin( b ) * 9;
 				camera.lookAt( scene.position );
 			}
-
 			//双指触摸时
 			if(event.targetTouches.length == 2){
 			var touch3 = event.targetTouches[1];//获取第二个触点
@@ -214,110 +193,24 @@
 			animate(nowMsec);
 			renderer.render(scene, camera);
 			requestAnimationFrame( animate ); 
-    }
+   
 	
-
-
-
-
-				document.addEventListener('touchstart',function (event) {
-			var touch = event.targetTouches[0];     //touches数组对象获得屏幕上所有的touch，取第一个touch
-            startPos = {x:touch.screenX,y:touch.screenY};    //取第一个touch的坐标值
-			document.addEventListener('touchmove',function(event){
-			var touch = event.targetTouches[0];
-			endPos = {x:touch.screenX - startPos.x,y:touch.screenY - startPos.y};
-            	camera.position.x = Math.cos( endPos.x ) * 2000;
-				camera.position.z = Math.sin( endPos.y ) * 2000;
-				camera.lookAt( scene.position );
-				//renderer.render( scene, camera );
-				animate(nowMsec)
-			document.addEventListener('touchend',function(event){
-				 //解绑事件
-            this.slider.removeEventListener('touchmove',this,false);
-            this.slider.removeEventListener('touchend',this,false);
-			},false)},false)},false)
-			
-
-
-	 function touchSatrtFunc(event) {
-            //event.preventDefault(); //阻止触摸时浏览器的缩放、滚动条滚动等
-            var x = event.targetTouches[0].screenX; 
-			var y = event.targetTouches[0].screenY; 
-	 }
-	 function touchMoveFunc(event) {
-            //event.preventDefault(); //阻止触摸时浏览器的缩放、滚动条滚动等
-			var x1 = event.targetTouches[0].screenX; 
-			var y1 = event.targetTouches[0].screenY; 
-			a=x1-x;
-			b=y1-y;
-			var text = 'TouchMove事件触发：（' + x1 + ', ' + y1 + ', ' + a + ', ' + b + '）';
-			document.getElementById("result").innerHTML = text;
-			camera.position.x = Math.cos( a ) * 200;
-			camera.position.y = Math.sin( b ) * 200;
-			camera.lookAt( scene.position );
-			animate(nowMsec)
-	 }
-
     //touchend事件
-    function touchEndFunc(event) {
-            //event.preventDefault(); //阻止触摸时浏览器的缩放、滚动条滚动等
+    document.addEventListener('touchend',function(event){
+            event.preventDefault(); //阻止触摸时浏览器的缩放、滚动条滚动等
             var text = 'TouchEnd事件触发';
             document.getElementById("result").innerHTML = text;
-    }
-
-    //绑定事件
-    function bindEvent() {
-        document.addEventListener('touchstart', touchSatrtFunc, false);
-        document.addEventListener('touchmove', touchMoveFunc, false);
-        document.addEventListener('touchend', touchEndFunc, false);
-    }*/
-			document.addEventListener('touchstart',function (event) {
-			var touch = event.targetTouches[0];     //touches数组对象获得屏幕上所有的touch，取第一个touch
-            startPos = {x:touch.screenX,y:touch.screenY};    //取第一个touch的坐标值
-			document.addEventListener('touchmove',function(event){
-			var touch = event.targetTouches[0];
-			endPos = {x:touch.screenX - startPos.x,y:touch.screenY - startPos.y};
-            	camera.position.x = Math.cos( endPos.x ) * 2000;
-				camera.position.z = Math.sin( endPos.y ) * 2000;
-				camera.lookAt( scene.position );
-				//renderer.render( scene, camera );
-				animate(nowMsec)
-			document.addEventListener('touchend',function(event){
-				 //解绑事件
-            this.slider.removeEventListener('touchmove',this,false);
-            this.slider.removeEventListener('touchend',this,false);
-			},false)},false)},false)
-
-
-
-
+    },false)},false)},false)
 	// model
-	var onProgress = function ( xhr ) {
-		if ( xhr.lengthComputable ) {
-			var percentComplete = xhr.loaded / xhr.total * 100;
-			console.log( Math.round(percentComplete, 2) + '% downloaded' );
-		}
-};
-	var onError = function ( xhr ) { };
-	THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
-	var mtlLoader = new THREE.MTLLoader();
-	mtlLoader.setPath( 'models/1/' );
-	mtlLoader.load( 'bear.mtl', function( materials ) {
-		materials.preload();
-		var objLoader = new THREE.OBJLoader();
-		objLoader.setMaterials( materials );
-		objLoader.setPath( 'models/' );
-		//objLoader.load( 'tree.obj', function ( object ) {
-			objLoader.load( 'tree.obj', function tree( object ) {
-			//object.position.z = -10;
-			alert("test9");
-  			// 缩放
-			object.scale.x =  object.scale.y =  object.scale.z = 2.5;
-			// 旋转
-			object.rotation.set(Math.PI/2,Math.PI/2,Math.PI/2) ;
-			markerRoot.add( object );
-		}, onProgress, onError );
-	});
+	var objectLoader = new THREE.ObjectLoader();
+	objectLoader.load("models/test7/test7.json", function ( obj ) {
+	obj.scale.x =  obj.scale.y =  obj.scale.z = 0.50;
+	//obj.scale.set(1,1,1);
+	obj.position.y = -15;
+	obj.position.z = -15;
+	obj.rotation.set(Math.PI/2,Math.PI/2,Math.PI/1.8) ;
+	markerRoot.add( obj );
+	} );
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
 	//////////////////////////////////////////////////////////////////////////////////
@@ -326,20 +219,12 @@
 		renderer.render( scene, camera );
 	})
 	
-
-
 	// run the rendering loop
 	var lastTimeMsec= null
 	requestAnimationFrame(function animate(nowMsec){
 		// keep looping
 		requestAnimationFrame( animate );
-
-
-
-		//var timer = Date.now() * 0.0005;
-		//camera.position.x = Math.cos( timer ) * 200;
-		//camera.position.z = Math.sin( timer ) * 200;
-		//camera.lookAt( scene.position );
+		//camera.position.x = -2;
 		// measure time
 		lastTimeMsec	= lastTimeMsec || nowMsec-1000/60
 		var deltaMsec	= Math.min(200, nowMsec - lastTimeMsec)
