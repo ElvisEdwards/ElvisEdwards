@@ -21,7 +21,7 @@
 		<script src="js/Detector.js"></script>
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-<div id="result" style="border:2px solid red; color:red;">005未触发事件！</div>
+<div id="result" style="border:2px solid red; color:red;">006未触发事件！</div>
 <div id="container"></div>
 <script>
 	//////////////////////////////////////////////////////////////////////////////////
@@ -172,8 +172,8 @@
 				b=y2-y;
 				var text = 'TouchMove旋转事件触发：（' + x2 + ', ' + y2 + ', ' + a + ', ' + b + '）';
 				document.getElementById("result").innerHTML = text;
-				camera.position.x = Math.sin( a ) * 150;
-				camera.position.y = Math.sin( b ) * 150;
+				camera.position.x = Math.sin( a ) * 1.5;
+				camera.position.y = Math.sin( b ) * 1.5;
 				camera.lookAt( scene.position );
 			}
 			//双指触摸时
@@ -187,7 +187,7 @@
 			var changex = distancestart/distanceend;
 			var changey = changex*changex*changex;
 			//var modelSize = distancestart/distanceend * 12;
-			var modelSize = changey * 5;
+			var modelSize = changey * 3.5;
             var text = 'TouchMove事件触发：（' + x2 + ', ' + y2 + ', '+ x3 + ', '+ y3 + ', ' + distanceend + ', ' + modelSize + ', ' + changey + '）';
 			document.getElementById("result").innerHTML = text;
 			camera.position.z = -modelSize;
@@ -211,7 +211,7 @@
 	// model
 	var objectLoader = new THREE.ObjectLoader();
 	objectLoader.load("models/test7/test7.json", function ( obj ) {
-	obj.scale.x =  obj.scale.y =  obj.scale.z = 0.25;
+	obj.scale.x =  obj.scale.y =  obj.scale.z = 0.2;
 	//obj.scale.set(1,1,1);
 	obj.position.x = obj.position.y = obj.position.z = 0;
 	obj.rotation.set(Math.PI/2,Math.PI/2,Math.PI/1.8) ;
