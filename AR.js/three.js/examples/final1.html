@@ -21,7 +21,7 @@
 		<script src="js/Detector.js"></script>
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-<div id="result" style="border:2px solid red; color:red;">008未触发事件！</div>
+<div id="result" style="border:2px solid red; color:red;">009未触发事件！</div>
 <div id="container"></div>
 <script>
 	//////////////////////////////////////////////////////////////////////////////////
@@ -124,8 +124,7 @@
 		// barcodeValue: 5,
 		
 		type : 'pattern',
-		patternUrl : '../../data/multimarkers/multi-abcdef/patt.treefb', 
-		//patternUrl : '../../data/multimarkers/multi-abcdef/patt.td',
+		patternUrl : '../../data/multimarkers/multi-abcdef/patt.logo', 
 	})
 	// build a smoothedControls
 	var smoothedRoot = new THREE.Group()
@@ -172,10 +171,10 @@
 				b=y2-y;
 				var text = 'TouchMove旋转事件触发：（' + x2 + ', ' + y2 + ', ' + a + ', ' + b + '）';
 				document.getElementById("result").innerHTML = text;
-				camera.position.x = Math.sin( a ) * 5;
-				camera.position.z = Math.cos( a ) * 5;
-				camera.position.x = Math.sin( b ) * 5;
-				camera.position.z = Math.cos( b ) * 5;
+				camera.position.x = Math.sin( a ) * 2;
+				camera.position.z = Math.cos( a ) * 2;
+				camera.position.x = Math.sin( b ) * 2;
+				camera.position.z = Math.cos( b ) * 2;
 				camera.lookAt( scene.position );
 			}
 			//双指触摸时
@@ -213,7 +212,7 @@
 	// model
 	var objectLoader = new THREE.ObjectLoader();
 	objectLoader.load("models/test7/test7.json", function ( obj ) {
-	//////////////
+	/**
 	 obj.children[0].geometry.computeBoundingBox();  
                obj.rotation.x = THREE.Math.degToRad( 90 );  
                console.log(- ( obj.children[0].geometry.boundingBox.max.x + obj.children[0].geometry.boundingBox.min.x ) / 2);  
@@ -222,12 +221,12 @@
                console.log( obj.children[0].geometry.center() );
 			   helper = new THREE.BoundingBoxHelper(obj, 0xff0000);  
         helper.update();  
- ////////////
+*/
 	obj.scale.x =  obj.scale.y =  obj.scale.z = 0.2;
 	//obj.scale.set(1,1,1);
 	obj.position.x = obj.position.y = obj.position.z = 0;
 	obj.rotation.set(Math.PI/2,Math.PI/2,Math.PI/1.8) ;
-	markerRoot.add(helper); 
+	//markerRoot.add(helper); 
 	markerRoot.add( obj );
 	} );
 	//////////////////////////////////////////////////////////////////////////////////

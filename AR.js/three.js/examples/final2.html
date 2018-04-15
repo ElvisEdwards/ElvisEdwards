@@ -21,7 +21,7 @@
 		<script src="js/Detector.js"></script>
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-<div id="result" style="border:2px solid red; color:red;">0未触发事件！</div>
+<div id="result" style="border:2px solid red; color:red;">008未触发事件！</div>
 <div id="container"></div>
 <script>
 	//////////////////////////////////////////////////////////////////////////////////
@@ -173,7 +173,9 @@
 				var text = 'TouchMove旋转事件触发：（' + x2 + ', ' + y2 + ', ' + a + ', ' + b + '）';
 				document.getElementById("result").innerHTML = text;
 				camera.position.x = Math.sin( a ) * 5;
-				camera.position.y = Math.sin( b ) * 5;
+				camera.position.z = Math.cos( a ) * 5;
+				camera.position.x = Math.sin( b ) * 5;
+				camera.position.z = Math.cos( b ) * 5;
 				camera.lookAt( scene.position );
 			}
 			//双指触摸时
@@ -184,8 +186,11 @@
 			a=x2-x3;
 			b=y2-y3;
 			distanceend=Math.sqrt((a*a)+(b*b));
-			var modelSize = distancestart/distanceend * 12;
-            var text = 'TouchMove事件触发：（' + x2 + ', ' + y2 + ', '+ x3 + ', '+ y3 + ', ' + distanceend + ', ' + modelSize + '）';
+			var changex = distancestart/distanceend;
+			var changey = changex*changex*changex;
+			//var modelSize = distancestart/distanceend * 12;
+			var modelSize = changey * 3.5;
+            var text = 'TouchMove事件触发：（' + x2 + ', ' + y2 + ', '+ x3 + ', '+ y3 + ', ' + distanceend + ', ' + modelSize + ', ' + changey + '）';
 			document.getElementById("result").innerHTML = text;
 			camera.position.z = -modelSize;
 			camera.lookAt( scene.position );
@@ -208,11 +213,21 @@
 	// model
 	var objectLoader = new THREE.ObjectLoader();
 	objectLoader.load("models/test7/test7.json", function ( obj ) {
-	obj.scale.x =  obj.scale.y =  obj.scale.z = 0.50;
+	//////////////
+	 obj.children[0].geometry.computeBoundingBox();  
+               obj.rotation.x = THREE.Math.degToRad( 90 );  
+               console.log(- ( obj.children[0].geometry.boundingBox.max.x + obj.children[0].geometry.boundingBox.min.x ) / 2);  
+               console.log(- ( obj.children[0].geometry.boundingBox.max.y + obj.children[0].geometry.boundingBox.min.y ) / 2);  
+               console.log(- ( obj.children[0].geometry.boundingBox.max.z + obj.children[0].geometry.boundingBox.min.z ) / 2);  
+               console.log( obj.children[0].geometry.center() );
+			   helper = new THREE.BoundingBoxHelper(obj, 0xff0000);  
+        helper.update();  
+ ////////////
+	obj.scale.x =  obj.scale.y =  obj.scale.z = 0.2;
 	//obj.scale.set(1,1,1);
-	obj.position.y = -15;
-	obj.position.z = -15;
+	obj.position.x = obj.position.y = obj.position.z = 0;
 	obj.rotation.set(Math.PI/2,Math.PI/2,Math.PI/1.8) ;
+	markerRoot.add(helper); 
 	markerRoot.add( obj );
 	} );
 	//////////////////////////////////////////////////////////////////////////////////
