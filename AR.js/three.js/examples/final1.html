@@ -15,13 +15,14 @@
 <script src='../src/threex/threex-arsmoothedcontrols.js'></script>
 <script src='../src/loaders/JSONLoader.js'></script>
 <script src='../src/loaders/ObjectLoader.js'></script>
+<script src="js/controls/OrbitControls.js"></script>
 <script>THREEx.ArToolkitContext.baseURL = '../'</script>
 
 		<script src="js/loaders/DDSLoader.js"></script>
 		<script src="js/Detector.js"></script>
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-<div id="result" style="border:2px solid red; color:red;">009未触发事件！</div>
+<div id="result" style="border:2px solid red; color:red;">001未触发事件！</div>
 <div id="container"></div>
 <script>
 	//////////////////////////////////////////////////////////////////////////////////
@@ -50,13 +51,23 @@
 	var directionalLight = new THREE.DirectionalLight( 0x887766 );
 	directionalLight.position.set( -1, 1, 1 ).normalize();
 	scene.add( directionalLight );
-	
+
+
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Initialize a basic camera
 	//////////////////////////////////////////////////////////////////////////////////
 	// Create a camera
 	var camera = new THREE.Camera();
 	scene.add(camera);
+
+	var controls = new THREE.OrbitControls( camera, renderer.domElement );
+				controls.addEventListener( 'change', render );
+				controls.minDistance = 5;
+				controls.maxDistance = 300;
+				controls.target.set( 0, 0, 0 );
+				controls.update();
+
+	
 	////////////////////////////////////////////////////////////////////////////////
 	//          handle arToolkitSource
 	////////////////////////////////////////////////////////////////////////////////
@@ -139,6 +150,9 @@
 	onRenderFcts.push(function(delta){
 		smoothedControls.update(markerRoot)
 	})	
+
+
+	/**
 	//全局变量，触摸开始位置
 	var a=0,b=0;
 	var distancestart=0,distanceend=0;
@@ -207,26 +221,15 @@
     },false)*/
 	},false)
 	},false)
-	
+	*/
 	
 	// model
 	var objectLoader = new THREE.ObjectLoader();
 	objectLoader.load("models/test7/test7.json", function ( obj ) {
-	/**
-	 obj.children[0].geometry.computeBoundingBox();  
-               obj.rotation.x = THREE.Math.degToRad( 90 );  
-               console.log(- ( obj.children[0].geometry.boundingBox.max.x + obj.children[0].geometry.boundingBox.min.x ) / 2);  
-               console.log(- ( obj.children[0].geometry.boundingBox.max.y + obj.children[0].geometry.boundingBox.min.y ) / 2);  
-               console.log(- ( obj.children[0].geometry.boundingBox.max.z + obj.children[0].geometry.boundingBox.min.z ) / 2);  
-               console.log( obj.children[0].geometry.center() );
-			   helper = new THREE.BoundingBoxHelper(obj, 0xff0000);  
-        helper.update();  
-*/
 	obj.scale.x =  obj.scale.y =  obj.scale.z = 0.2;
 	//obj.scale.set(1,1,1);
 	obj.position.x = obj.position.y = obj.position.z = 0;
 	obj.rotation.set(Math.PI/2,Math.PI/2,Math.PI/1.8) ;
-	//markerRoot.add(helper); 
 	markerRoot.add( obj );
 	} );
 	//////////////////////////////////////////////////////////////////////////////////
@@ -242,7 +245,6 @@
 	requestAnimationFrame(function animate(nowMsec){
 		// keep looping
 		requestAnimationFrame( animate );
-		//camera.position.x = -2;
 		// measure time
 		lastTimeMsec	= lastTimeMsec || nowMsec-1000/60
 		var deltaMsec	= Math.min(200, nowMsec - lastTimeMsec)
