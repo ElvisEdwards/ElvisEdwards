@@ -21,7 +21,7 @@
 		<script src="js/Detector.js"></script>
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-<div id="result" style="border:2px solid red; color:red;">008未触发事件！</div>
+<div id="result" style="border:2px solid red; color:red;">001未触发事件！</div>
 <div id="container"></div>
 <script>
 	//////////////////////////////////////////////////////////////////////////////////
@@ -144,6 +144,7 @@
 	//全局变量，触摸开始位置
 	var a=0,b=0;
 	var distancestart=0,distanceend=0;
+	var modelSize=10;
     //touchstart事件
 	document.addEventListener('touchstart',function (event) {
             event.preventDefault(); //阻止触摸时浏览器的缩放、滚动条滚动等
@@ -186,11 +187,12 @@
 			var changex = distancestart/distanceend;
 			var changey = changex*changex*changex;
 			//var modelSize = distancestart/distanceend * 12;
-			var modelSize = changey * 3;
-			camera.position.z = -modelSize+3;
+			modelSize = changey * 3;
+			camera.position.z = -modelSize;
 			camera.lookAt( scene.position );
+			animate(modelSize);
 			}
-			animate(nowMsec);
+			//animate(nowMsec);
 			renderer.render(scene, camera);
 			requestAnimationFrame( animate ); 
 	/**
@@ -228,8 +230,8 @@
 		requestAnimationFrame( animate );
 		//旋转
 		var timer = Date.now() * 0.0005;
-		camera.position.x = Math.cos( timer ) * 15;
-		camera.position.z = Math.sin( timer ) * 15;
+		camera.position.x = Math.cos( timer ) * modelSize;
+		camera.position.z = Math.sin( timer ) * modelSize;
 		camera.lookAt( scene.position );
 		//measure time
 		lastTimeMsec	= lastTimeMsec || nowMsec-1000/60
