@@ -21,7 +21,7 @@
 		<script src="js/Detector.js"></script>
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-<div id="result" style="border:2px solid red; color:red;">002未触发事件！</div>
+<div id="result" style="border:2px solid red; color:red;">003未触发事件！</div>
 <div id="container"></div>
 <script>
 	//////////////////////////////////////////////////////////////////////////////////
@@ -246,6 +246,11 @@
 		// keep looping
 		requestAnimationFrame( animate );
 		//camera.position.x = -2;
+		//旋转
+		//var timer = Date.now() * 0.0005;
+		//camera.position.x = Math.cos( timer ) * 200;
+		//camera.position.z = Math.sin( timer ) * 50;
+		//camera.lookAt( scene.position );
 		// measure time
 		lastTimeMsec	= lastTimeMsec || nowMsec-1000/60
 		var deltaMsec	= Math.min(200, nowMsec - lastTimeMsec)

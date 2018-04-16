@@ -171,8 +171,8 @@
 				b=y2-y;
 				var text = 'TouchMove旋转事件触发：（' + x2 + ', ' + y2 + ', ' + a + ', ' + b + '）';
 				document.getElementById("result").innerHTML = text;
-				camera.rotation.x=Math.PI/a;
-				camera.rotation.y=Math.PI/b;
+				camera.rotation.x = a;
+				camera.rotation.y = b;
 				//camera.position.x = Math.sin( a ) * 2;
 				//camera.position.z = Math.cos( a ) * 2;
 				//camera.position.x = Math.sin( b ) * 2;
@@ -246,6 +246,11 @@
 		// keep looping
 		requestAnimationFrame( animate );
 		//camera.position.x = -2;
+		//旋转
+		//var timer = Date.now() * 0.0005;
+		//camera.position.x = Math.cos( timer ) * 200;
+		//camera.position.z = Math.sin( timer ) * 50;
+		//camera.lookAt( scene.position );
 		// measure time
 		lastTimeMsec	= lastTimeMsec || nowMsec-1000/60
 		var deltaMsec	= Math.min(200, nowMsec - lastTimeMsec)
