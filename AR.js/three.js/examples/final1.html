@@ -21,7 +21,7 @@
 		<script src="js/Detector.js"></script>
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-<div id="result" style="border:2px solid red; color:red;">008未触发事件！</div>
+<div id="result" style="border:2px solid red; color:red;">009未触发事件！</div>
 <div id="container"></div>
 <script>
 	//////////////////////////////////////////////////////////////////////////////////
@@ -144,7 +144,7 @@
 	//全局变量，触摸开始位置
 	var a=0,b=0;
 	var distancestart=0,distanceend=0;
-	var modelSize=10;
+	var modelSize=5;
     //touchstart事件
 	document.addEventListener('touchstart',function (event) {
             event.preventDefault(); //阻止触摸时浏览器的缩放、滚动条滚动等
@@ -209,7 +209,7 @@
 	// model
 	var objectLoader = new THREE.ObjectLoader();
 	objectLoader.load("models/test11/test11.json", function ( obj ) {
-	obj.scale.x =  obj.scale.y =  obj.scale.z = 0.45;
+	obj.scale.x =  obj.scale.y =  obj.scale.z = 0.66;
 	//obj.scale.set(1,1,1);
 	//obj.position.x = obj.position.y = obj.position.z = 0;
 	obj.rotation.set(Math.PI/0.83,Math.PI,Math.PI) ;
