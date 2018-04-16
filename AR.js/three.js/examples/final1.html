@@ -13,14 +13,15 @@
 <script src='../src/threex/threex-arbasecontrols.js'></script>
 <script src='../src/threex/threex-armarkercontrols.js'></script>
 <script src='../src/threex/threex-arsmoothedcontrols.js'></script>
+<script src='../src/loaders/ObjectLoader.js'></script>
 <script>THREEx.ArToolkitContext.baseURL = '../'</script>
 
 		<script src="js/loaders/DDSLoader.js"></script>
-		<script src='../src/loaders/ObjectLoader.js'></script>
+
 		<script src="js/Detector.js"></script>
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-<div id="result" style="border:2px solid red; color:red;">005未触发事件！</div>
+<div id="result" style="border:2px solid red; color:red;">006未触发事件！</div>
 <div id="container"></div>
 <script>
 	//////////////////////////////////////////////////////////////////////////////////
@@ -51,16 +52,12 @@
 	directionalLight.position.set( -1, 1, 1 ).normalize();
 	scene.add( directionalLight );
 
-
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Initialize a basic camera
 	//////////////////////////////////////////////////////////////////////////////////
 	// Create a camera
 	var camera = new THREE.Camera();
 	scene.add(camera);
-
-
-	
 	////////////////////////////////////////////////////////////////////////////////
 	//          handle arToolkitSource
 	////////////////////////////////////////////////////////////////////////////////
