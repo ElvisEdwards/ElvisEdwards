@@ -13,16 +13,15 @@
 <script src='../src/threex/threex-arbasecontrols.js'></script>
 <script src='../src/threex/threex-armarkercontrols.js'></script>
 <script src='../src/threex/threex-arsmoothedcontrols.js'></script>
-<script src='../src/loaders/JSONLoader.js'></script>
-<script src='../src/loaders/ObjectLoader.js'></script>
-<script src="js/controls/OrbitControls.js"></script>
+<script src="js/controls/TrackballControls.js"></script>
 <script>THREEx.ArToolkitContext.baseURL = '../'</script>
 
 		<script src="js/loaders/DDSLoader.js"></script>
+		<script src='../src/loaders/ObjectLoader.js'></script>
 		<script src="js/Detector.js"></script>
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-<div id="result" style="border:2px solid red; color:red;">002未触发事件！</div>
+<div id="result" style="border:2px solid red; color:red;">003未触发事件！</div>
 <div id="container"></div>
 <script>
 	//////////////////////////////////////////////////////////////////////////////////
@@ -41,6 +40,12 @@
 	renderer.domElement.style.top = '0px'
 	renderer.domElement.style.left = '0px'
 	container.appendChild(renderer.domElement);
+
+	controls = new THREE.TrackballControls( camera, renderer.domElement );
+				controls.rotateSpeed = 0.5;
+				controls.minDistance = 500;
+				controls.maxDistance = 6000;
+				controls.addEventListener( 'change', render );
 	//document.body.appendChild( renderer.domElement );
 	// array of functions for the rendering loop
 	var onRenderFcts= [];
@@ -231,6 +236,8 @@
 	requestAnimationFrame(function animate(nowMsec){
 		// keep looping
 		requestAnimationFrame( animate );
+
+		controls.update();
 		// measure time
 		lastTimeMsec	= lastTimeMsec || nowMsec-1000/60
 		var deltaMsec	= Math.min(200, nowMsec - lastTimeMsec)
