@@ -22,7 +22,7 @@
 		<script src="js/Detector.js"></script>
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-<div id="result" style="border:2px solid red; color:red;">001未触发事件！</div>
+<div id="result" style="border:2px solid red; color:red;">002未触发事件！</div>
 <div id="container"></div>
 <script>
 	//////////////////////////////////////////////////////////////////////////////////
@@ -60,12 +60,6 @@
 	var camera = new THREE.Camera();
 	scene.add(camera);
 
-	var controls = new THREE.OrbitControls( camera, renderer.domElement );
-				controls.addEventListener( 'change', render );
-				controls.minDistance = 5;
-				controls.maxDistance = 300;
-				controls.target.set( 0, 0, 0 );
-				controls.update();
 
 	
 	////////////////////////////////////////////////////////////////////////////////
@@ -218,11 +212,11 @@
 	// model
 	var objectLoader = new THREE.ObjectLoader();
 	objectLoader.load("models/test7/test7.json", function ( obj ) {
-	obj.scale.x =  obj.scale.y =  obj.scale.z = 0.2;
-	//obj.scale.set(1,1,1);
-	obj.position.x = obj.position.y = obj.position.z = 0;
-	obj.rotation.set(Math.PI/2,Math.PI/2,Math.PI/1.8) ;
-	markerRoot.add( obj );
+	obj.scale.x =  obj.scale.y =  obj.scale.z = 0.2;//控制模型大小
+	//obj.scale.set(1,1,1);//同上
+	obj.position.x = obj.position.y = obj.position.z = 0;//控制模型初始位置
+	obj.rotation.set(Math.PI/2,Math.PI/2,Math.PI/1.8) ;//控制模型初始旋转角度
+	markerRoot.add( obj );//建模型加入到场景
 	} );
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
