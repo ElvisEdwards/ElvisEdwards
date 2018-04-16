@@ -210,7 +210,7 @@
 	obj.scale.x =  obj.scale.y =  obj.scale.z = 0.18;
 	//obj.scale.set(1,1,1);
 	//obj.position.x = obj.position.y = obj.position.z = 0;
-	obj.rotation.set(Math.PI/2,Math.PI/2,Math.PI/1.5) ;
+	obj.rotation.set(Math.PI/2,Math.PI/2,Math.PI/1.6) ;
 	markerRoot.add( obj );
 	} );
 	//////////////////////////////////////////////////////////////////////////////////
