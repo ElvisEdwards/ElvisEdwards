@@ -22,7 +22,7 @@
 		<script src="js/Detector.js"></script>
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-<div id="result" style="border:2px solid red; color:red;">001未触发事件！</div>
+<div id="result" style="border:2px solid red; color:red;">002未触发事件！</div>
 <div id="container"></div>
 <script>
 	//////////////////////////////////////////////////////////////////////////////////
@@ -211,14 +211,6 @@
 			animate(nowMsec);
 			renderer.render(scene, camera);
 			requestAnimationFrame( animate ); 
-   
-	/**
-    //touchend事件
-    document.addEventListener('touchend',function(event){
-            event.preventDefault(); //阻止触摸时浏览器的缩放、滚动条滚动等
-            var text = 'TouchEnd事件触发';
-            document.getElementById("result").innerHTML = text;
-    },false)*/
 	},false)
 	},false)
 	*/
