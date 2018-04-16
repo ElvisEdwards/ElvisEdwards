@@ -21,7 +21,7 @@
 		<script src="js/Detector.js"></script>
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-<div id="result" style="border:2px solid red; color:red;">002未触发事件！</div>
+<div id="result" style="border:2px solid red; color:red;">003未触发事件！</div>
 <div id="container"></div>
 <script>
 	//////////////////////////////////////////////////////////////////////////////////
@@ -206,7 +206,7 @@
 	
 	// model
 	var objectLoader = new THREE.ObjectLoader();
-	objectLoader.load("models/test10/test10.json", function ( obj ) {
+	objectLoader.load("models/test7/test7.json", function ( obj ) {
 	obj.scale.x =  obj.scale.y =  obj.scale.z = 0.18;
 	//obj.scale.set(1,1,1);
 	//obj.position.x = obj.position.y = obj.position.z = 0;
