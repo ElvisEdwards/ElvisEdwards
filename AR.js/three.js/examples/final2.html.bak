@@ -21,7 +21,7 @@
 		<script src="js/Detector.js"></script>
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-<div id="result" style="border:2px solid red; color:red;">002未触发事件！</div>
+<div id="result" style="border:2px solid red; color:red;">003未触发事件！</div>
 <div id="container"></div>
 <script>
 	//////////////////////////////////////////////////////////////////////////////////
@@ -166,19 +166,18 @@
             var x2 = Number(touch2.screenX); //页面触点X2坐标
             var y2 = Number(touch2.screenY); //页面触点Y2坐标
 			//单指触摸时
+			/**
 			if(event.targetTouches.length == 1){
 				a=x2-x;
 				b=y2-y;
 				var text = 'TouchMove旋转事件触发：（' + x2 + ', ' + y2 + ', ' + a + ', ' + b + '）';
 				document.getElementById("result").innerHTML = text;
-				camera.rotation.x = a;
-				camera.rotation.y = b;
-				//camera.position.x = Math.sin( a ) * 2;
+				camera.position.x = Math.sin( a ) * 2;
 				//camera.position.z = Math.cos( a ) * 2;
 				//camera.position.x = Math.sin( b ) * 2;
-				//camera.position.z = Math.cos( b ) * 2;
+				camera.position.y = Math.cos( b ) * 2;
 				camera.lookAt( scene.position );
-			}
+			}*/
 			//双指触摸时
 			if(event.targetTouches.length == 2){
 			var touch3 = event.targetTouches[1];//获取第二个触点
@@ -193,7 +192,6 @@
 			var modelSize = changey * 3.5;
             var text = 'TouchMove事件触发：（' + x2 + ', ' + y2 + ', '+ x3 + ', '+ y3 + ', ' + distanceend + ', ' + modelSize + ', ' + changey + '）';
 			document.getElementById("result").innerHTML = text;
-			camera.rotation.set(Math.PI/2,Math.PI/2,Math.PI/1.8);
 			camera.position.z = -modelSize;
 			camera.lookAt( scene.position );
 			}
@@ -228,7 +226,7 @@
 	obj.scale.x =  obj.scale.y =  obj.scale.z = 0.2;
 	//obj.scale.set(1,1,1);
 	obj.position.x = obj.position.y = obj.position.z = 0;
-	obj.rotation.set(Math.PI/2,Math.PI/2,Math.PI/1.8) ;
+	obj.rotation.set(Math.PI/2,Math.PI/2,Math.PI/1.4) ;
 	//markerRoot.add(helper); 
 	markerRoot.add( obj );
 	} );
