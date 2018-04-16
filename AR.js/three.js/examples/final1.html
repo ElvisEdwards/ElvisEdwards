@@ -21,7 +21,7 @@
 		<script src="js/Detector.js"></script>
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-<div id="result" style="border:2px solid red; color:red;">007未触发事件！</div>
+<div id="result" style="border:2px solid red; color:red;">008未触发事件！</div>
 <div id="container"></div>
 <script>
 	//////////////////////////////////////////////////////////////////////////////////
@@ -206,7 +206,7 @@
 	
 	// model
 	var objectLoader = new THREE.ObjectLoader();
-	objectLoader.load("models/test8/test8.json", function ( obj ) {
+	objectLoader.load("models/test9/test9.json", function ( obj ) {
 	obj.scale.x =  obj.scale.y =  obj.scale.z = 0.2;
 	//obj.scale.set(1,1,1);
 	//obj.rotation.set(Math.PI/2,Math.PI/2,Math.PI/1.8) ;
@@ -226,10 +226,10 @@
 		// keep looping
 		requestAnimationFrame( animate );
 		//旋转
-		//var timer = Date.now() * 0.0005;
-		//camera.position.x = Math.cos( timer ) * 5;
-		//camera.position.y = Math.sin( timer ) * 5;
-		//camera.lookAt( scene.position );
+		var timer = Date.now() * 0.0005;
+		camera.position.x = Math.cos( timer ) * 5;
+		camera.position.y = Math.sin( timer ) * 5;
+		camera.lookAt( scene.position );
 		//measure time
 		lastTimeMsec	= lastTimeMsec || nowMsec-1000/60
 		var deltaMsec	= Math.min(200, nowMsec - lastTimeMsec)
