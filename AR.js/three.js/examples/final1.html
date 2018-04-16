@@ -6,7 +6,7 @@
 <!-- jsartookit -->
 <script src='../vendor/jsartoolkit5/build/artoolkit.min.js'></script>
 <script src='../vendor/jsartoolkit5/js/artoolkit.api.js'></script>
-<!-- include threex.artoolkit --> 
+<!-- include threex.artoolkit -->
 <script src='../src/threex/threex-artoolkitsource.js'></script>
 <script src='../src/threex/threex-artoolkitcontext.js'></script>
 <script src='../src/threex/threex-artoolkitprofile.js'></script>
@@ -210,7 +210,7 @@
 	obj.scale.x =  obj.scale.y =  obj.scale.z = 0.18;
 	//obj.scale.set(1,1,1);
 	//obj.position.x = obj.position.y = obj.position.z = 0;
-	obj.rotation.set(Math.PI,Math.PI,Math.PI/1.8) ;
+	obj.rotation.set(Math.PI/2,Math.PI/2,Math.PI/2) ;
 	markerRoot.add( obj );
 	} );
 	//////////////////////////////////////////////////////////////////////////////////
@@ -227,9 +227,9 @@
 		// keep looping
 		requestAnimationFrame( animate );
 		//旋转
-		//var timer = Date.now() * 0.0005;
-		camera.position.x = Math.cos( timer ) * 5;
-		camera.position.z = Math.sin( timer ) * 5;
+		var timer = Date.now() * 0.0005;
+		camera.position.x = Math.cos( timer ) * 15;
+		camera.position.z = Math.sin( timer ) * 15;
 		camera.lookAt( scene.position );
 		//measure time
 		lastTimeMsec	= lastTimeMsec || nowMsec-1000/60
