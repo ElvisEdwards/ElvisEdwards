@@ -21,7 +21,7 @@
 		<script src="js/Detector.js"></script>
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-<div id="result" style="border:2px solid red; color:red;">004未触发事件！</div>
+<div id="result" style="border:2px solid red; color:red;">005未触发事件！</div>
 <div id="container"></div>
 <script>
 	//////////////////////////////////////////////////////////////////////////////////
@@ -226,7 +226,7 @@
 	obj.scale.x =  obj.scale.y =  obj.scale.z = 0.2;
 	//obj.scale.set(1,1,1);
 	obj.position.x = obj.position.y = obj.position.z = 0;
-	obj.rotation.set(Math.PI/2,Math.PI/2,Math.PI/1.8) ;
+	obj.rotation.set(Math.PI/2,Math.PI/2,Math.PI/1.5) ;
 	//markerRoot.add(helper); 
 	markerRoot.add( obj );
 	} );
@@ -246,8 +246,8 @@
 		//camera.position.x = -2;
 		//旋转
 		var timer = Date.now() * 0.0005;
-		camera.position.x = Math.cos( timer ) * 200;
-		camera.position.z = Math.sin( timer ) * 50;
+		camera.position.x = Math.cos( timer ) * 5;
+		camera.position.z = Math.sin( timer ) * 5;
 		camera.lookAt( scene.position );
 		// measure time
 		lastTimeMsec	= lastTimeMsec || nowMsec-1000/60
