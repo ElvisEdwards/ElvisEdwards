@@ -192,7 +192,7 @@
 	onRenderFcts.push(function(){
 		renderer.render( scene, camera );
 	})
-		alert('006');
+		alert('007');
 	// run the rendering loop
 	var lastTimeMsec= null
 	requestAnimationFrame(function animate(nowMsec){
