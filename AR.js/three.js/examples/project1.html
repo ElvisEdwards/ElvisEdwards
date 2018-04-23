@@ -176,7 +176,7 @@
 	
 	// model
 	var objectLoader = new THREE.ObjectLoader();
-	objectLoader.load("models/test11/test11.json", function ( obj ) {
+	objectLoader.load("models/ARproject/project1.json", function ( obj ) {
 		
 		mesh = obj;
 		mesh.position.y=-0.15;
@@ -193,7 +193,6 @@
 	onRenderFcts.push(function(){
 		renderer.render( scene, camera );
 	})
-		alert('004');
 	// run the rendering loop
 	var lastTimeMsec= null
 	requestAnimationFrame(function animate(nowMsec){
