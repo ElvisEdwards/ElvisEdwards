@@ -191,13 +191,13 @@
 	onRenderFcts.push(function(){
 		renderer.render( scene, camera );
 	})
-		alert('003');
+		alert('004');
 	// run the rendering loop
 	var lastTimeMsec= null
 	requestAnimationFrame(function animate(nowMsec){
 		// keep looping
 		requestAnimationFrame( animate );
-		var axis = new THREE.Vector3(0,1,0);
+		var axis = new THREE.Vector3(0,-1,0);
 		mesh.rotateOnAxis(axis,Math.PI * (-0.002));
 		//measure time
 		lastTimeMsec	= lastTimeMsec || nowMsec-1000/60
