@@ -178,7 +178,7 @@
 	var objectLoader = new THREE.ObjectLoader();
 	objectLoader.load("models/test11/test11.json", function ( obj ) {
 		mesh = obj;
-		mesh.position.y=-10;
+		//mesh.position.y=-10;
 		mesh.scale.x =  mesh.scale.y =  mesh.scale.z = 0.05;
 		mesh.rotation.x = Math.PI*1.5;
 		mesh.rotation.y = Math.PI/2;
@@ -192,7 +192,7 @@
 	onRenderFcts.push(function(){
 		renderer.render( scene, camera );
 	})
-		alert('005-position');
+		alert('006');
 	// run the rendering loop
 	var lastTimeMsec= null
 	requestAnimationFrame(function animate(nowMsec){
@@ -200,6 +200,8 @@
 		requestAnimationFrame( animate );
 		var axis = new THREE.Vector3(0,1,0);
 		mesh.rotateOnAxis(axis,Math.PI * (-0.002));
+
+		camera.position.y=-0.5;
 		//measure time
 		lastTimeMsec	= lastTimeMsec || nowMsec-1000/60
 		var deltaMsec	= Math.min(200, nowMsec - lastTimeMsec)
