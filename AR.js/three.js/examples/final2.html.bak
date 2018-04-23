@@ -130,7 +130,7 @@
 	//全局变量，触摸开始位置
 	var a=0,b=0;
 	var distancestart=0,distanceend=0;
-	var modelSize=15;
+	var modelSize=20;
     //touchstart事件
 	document.addEventListener('touchstart',function (event) {
             event.preventDefault(); //阻止触摸时浏览器的缩放、滚动条滚动等
@@ -161,9 +161,9 @@
 	    b=y2-y3;
 	    distanceend=Math.sqrt((a*a)+(b*b));
 	    var changex = distancestart/distanceend;
-	    var changey = changex*changex;
+	    //var changey = changex*changex*changex;
 	    //var modelSize = distancestart/distanceend * 12;
-	    modelSize = changey * 4.5;
+	    modelSize = changex * 3;
 	    camera.position.z = -modelSize;
 	    camera.lookAt( scene.position );
 	    animate(modelSize);
@@ -191,7 +191,7 @@
 	onRenderFcts.push(function(){
 		renderer.render( scene, camera );
 	})
-		alert('001');
+		alert('002');
 	// run the rendering loop
 	var lastTimeMsec= null
 	requestAnimationFrame(function animate(nowMsec){
