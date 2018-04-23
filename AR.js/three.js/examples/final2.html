@@ -163,7 +163,7 @@
 	    var changex = distancestart/distanceend;
 	    //var changey = changex*changex*changex;
 	    //var modelSize = distancestart/distanceend * 12;
-	    modelSize = changex * 2;
+	    modelSize = changex * 5;
 	    camera.position.z = -modelSize;
 	    camera.lookAt( scene.position );
 	    animate(modelSize);
@@ -178,10 +178,9 @@
 	var objectLoader = new THREE.ObjectLoader();
 	objectLoader.load("models/test11/test11.json", function ( obj ) {
 		
-		camera.position.y=-3;
 		mesh = obj;
-		//mesh.position.y=-10;
-		mesh.scale.x =  mesh.scale.y =  mesh.scale.z = 0.05;
+		mesh.position.y=-3;
+		mesh.scale.x =  mesh.scale.y =  mesh.scale.z = 0.06;
 		mesh.rotation.x = Math.PI*1.5;
 		mesh.rotation.y = Math.PI/2;
 		mesh.rotation.z = (Math.PI/9)*7.32;	
@@ -194,7 +193,7 @@
 	onRenderFcts.push(function(){
 		renderer.render( scene, camera );
 	})
-		alert('001');
+		alert('002');
 	// run the rendering loop
 	var lastTimeMsec= null
 	requestAnimationFrame(function animate(nowMsec){
