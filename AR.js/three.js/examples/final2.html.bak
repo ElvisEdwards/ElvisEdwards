@@ -114,7 +114,7 @@
 		// barcodeValue: 5,
 		
 		type : 'pattern',
-		patternUrl : '../../data/multimarkers/multi-abcdef/patt.CyzxAr01', 
+		patternUrl : '../../data/multimarkers/multi-abcdef/patt.logo', 
 	})
 	// build a smoothedControls
 	var smoothedRoot = new THREE.Group()
@@ -176,7 +176,7 @@
 	
 	// model
 	var objectLoader = new THREE.ObjectLoader();
-	objectLoader.load("models/CyzxAr01/CyzxAr01.json", function ( obj ) {
+	objectLoader.load("models/test11/test11.json", function ( obj ) {
 		mesh = obj;
 		mesh.scale.x =  mesh.scale.y =  mesh.scale.z = 0.06;
 		mesh.rotation.x = Math.PI*1.5;
@@ -191,7 +191,7 @@
 	onRenderFcts.push(function(){
 		renderer.render( scene, camera );
 	})
-	
+		alert('001');
 	// run the rendering loop
 	var lastTimeMsec= null
 	requestAnimationFrame(function animate(nowMsec){
