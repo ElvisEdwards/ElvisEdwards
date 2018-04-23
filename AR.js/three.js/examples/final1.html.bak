@@ -21,12 +21,13 @@
 		<script src="js/Detector.js"></script>
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-<div id="result" style="border:2px solid red; color:red;">未触发事件！</div>
+<div id="result" style="border:2px solid red; color:red;">001未触发事件！</div>
 <div id="container"></div>
 <script>
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Init
 	//////////////////////////////////////////////////////////////////////////////////
+	var mesh = new THREE.Mesh();
 	// init renderer
 	var renderer	= new THREE.WebGLRenderer({
 		// antialias	: true,
@@ -209,11 +210,12 @@
 	// model
 	var objectLoader = new THREE.ObjectLoader();
 	objectLoader.load("models/test11/test11.json", function ( obj ) {
-	obj.scale.x =  obj.scale.y =  obj.scale.z = 0.66;
+	mesh = obj;
+	mesh.scale.x =  mesh.scale.y =  mesh.scale.z = 0.06;
 	//obj.scale.set(1,1,1);
 	//obj.position.x = 2;
-	obj.rotation.set(Math.PI/1.5,Math.PI/2,Math.PI/1.23) ;
-	markerRoot.add( obj );
+	mesh.rotation.set(Math.PI/1.5,Math.PI/2,Math.PI/1.23) ;
+	markerRoot.add( mesh );
 	} );
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
@@ -235,7 +237,7 @@
 		camera.lookAt( scene.position );*/
 
 		var axis = new THREE.Vector3(0,1,0);
-		obj.rotateOnAxis(axis,Math.PI * (-0.002));
+		mesh.rotateOnAxis(axis,Math.PI * (-0.002));
 		//measure time
 		lastTimeMsec	= lastTimeMsec || nowMsec-1000/60
 		var deltaMsec	= Math.min(200, nowMsec - lastTimeMsec)
