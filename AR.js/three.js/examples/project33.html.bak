@@ -24,7 +24,7 @@
 		 
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-<div id="result" style="border:2px solid red; color:red;">003未触发事件！</div>
+<div id="result" style="border:2px solid red; color:red;">005未触发事件！</div>
 <div id="container"></div>
 <script> 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -177,19 +177,19 @@
 	},false)
 	},false)
 	
-/*
+
 	// model
 	var loader = new THREE.FBXLoader();
-	loader.load( 'models/456.fbx', function ( object ) {				
+	loader.load( 'models/123.fbx', function ( object ) {				
 		mesh = object;
 		mesh.position.y=-0.15;
-		mesh.scale.x =  mesh.scale.y =  mesh.scale.z = 0.06;
+		mesh.scale.x =  mesh.scale.y =  mesh.scale.z = 6.66;
 		mesh.rotation.x = Math.PI*1.5;
 		mesh.rotation.y = Math.PI/2;
 		mesh.rotation.z = (Math.PI/9)*7.32;	
 		markerRoot.add( mesh );
-	} );*/
-
+	} );
+/*
 	// model
 	var objectLoader = new THREE.ObjectLoader();
 	objectLoader.load("models/ARproject/123.json", function ( obj ) {
@@ -201,7 +201,7 @@
 		mesh.rotation.y = Math.PI/2;
 		mesh.rotation.z = (Math.PI/9)*7.32;	
 		markerRoot.add( mesh );
-	} );
+	} );*/
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
 	//////////////////////////////////////////////////////////////////////////////////
