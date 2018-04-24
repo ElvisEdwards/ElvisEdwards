@@ -120,7 +120,7 @@
 	var smoothedRoot = new THREE.Group()
 	scene.add(smoothedRoot)
 	var smoothedControls = new THREEx.ArSmoothedControls(smoothedRoot, {
-		lerpPosition: 0.8,
+		lerpPosition: 0.1,
 		lerpQuaternion: 0.3,
 		lerpScale: 1,
 	})
@@ -193,7 +193,7 @@
 	onRenderFcts.push(function(){
 		renderer.render( scene, camera );
 	})
-			alert('007');
+			alert('008');
 	// run the rendering loop
 	var lastTimeMsec= null
 	requestAnimationFrame(function animate(nowMsec){
