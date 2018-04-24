@@ -120,9 +120,15 @@
 	var smoothedRoot = new THREE.Group()
 	scene.add(smoothedRoot)
 	var smoothedControls = new THREEx.ArSmoothedControls(smoothedRoot, {
-		lerpPosition: 0.4,
-		lerpQuaternion: 0.1,
-		lerpScale: 0.3,
+		//lerpPosition: 0.4,
+		//lerpQuaternion: 0.1,
+		//lerpScale: 0.3,
+		lerpPosition: 0.04,
+		lerpQuaternion: 0.01,
+		lerpScale: 0.03,
+		lerpStepDelay: 1/600,
+		minVisibleDelay: 0.0,
+		minUnvisibleDelay: 0.02,
 	})
 	onRenderFcts.push(function(delta){
 		smoothedControls.update(markerRoot)
