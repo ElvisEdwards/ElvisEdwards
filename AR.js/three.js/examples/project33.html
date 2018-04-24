@@ -22,6 +22,7 @@
 		 
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
+<div id="result" style="border:2px solid red; color:red;">001未触发事件！</div>
 <div id="container"></div>
 <script> 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -177,7 +178,7 @@
 
 					// model
 				var loader = new THREE.FBXLoader();
-				loader.load( 'models/123.fbx', function ( object ) {				
+				loader.load( 'models/456.fbx', function ( object ) {				
 		mesh = object;
 		mesh.position.y=-0.15;
 		mesh.scale.x =  mesh.scale.y =  mesh.scale.z = 0.06;
@@ -193,7 +194,6 @@
 	onRenderFcts.push(function(){
 		renderer.render( scene, camera );
 	})
-		alert('004');
 	// run the rendering loop
 	var lastTimeMsec= null
 	requestAnimationFrame(function animate(nowMsec){
