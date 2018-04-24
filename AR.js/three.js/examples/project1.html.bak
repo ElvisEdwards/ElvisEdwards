@@ -89,7 +89,7 @@
 		detectionMode: 'mono',
 		canvasWidth: 80*3,
 		canvasHeight: 60*3,
-		maxDetectionRate: 200,
+		maxDetectionRate: 30,
 	})
 	// initialize it
 	arToolkitContext.init(function onCompleted(){
@@ -120,7 +120,7 @@
 	var smoothedRoot = new THREE.Group()
 	scene.add(smoothedRoot)
 	var smoothedControls = new THREEx.ArSmoothedControls(smoothedRoot, {
-		lerpPosition: 0.4,
+		lerpPosition: 0.8,
 		lerpQuaternion: 0.3,
 		lerpScale: 1,
 	})
@@ -179,7 +179,7 @@
 	objectLoader.load("models/ARproject/project1.json", function ( obj ) {
 		
 		mesh = obj;
-		mesh.position.y=-0.25;
+		mesh.position.y=-0.3;
 		mesh.scale.x =  mesh.scale.y =  mesh.scale.z = 0.08;
 		mesh.rotation.x = Math.PI*1.5;
 		mesh.rotation.y = Math.PI/2;
@@ -193,14 +193,14 @@
 	onRenderFcts.push(function(){
 		renderer.render( scene, camera );
 	})
-			alert('006');
+			alert('007');
 	// run the rendering loop
 	var lastTimeMsec= null
 	requestAnimationFrame(function animate(nowMsec){
 		// keep looping
 		requestAnimationFrame( animate );
 		
-		camera.position.y=0.15;
+		//camera.position.y=0.15;
 
 		var axis = new THREE.Vector3(0,1,0);
 		mesh.rotateOnAxis(axis,Math.PI * (-0.002));

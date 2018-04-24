@@ -120,7 +120,7 @@
 	var smoothedRoot = new THREE.Group()
 	scene.add(smoothedRoot)
 	var smoothedControls = new THREEx.ArSmoothedControls(smoothedRoot, {
-		lerpPosition: 0.8,
+		lerpPosition: 0.1,
 		lerpQuaternion: 0.3,
 		lerpScale: 1,
 	})
@@ -179,7 +179,7 @@
 	objectLoader.load("models/ARproject/project1.json", function ( obj ) {
 		
 		mesh = obj;
-		mesh.position.y=-0.25;
+		mesh.position.y=-0.3;
 		mesh.scale.x =  mesh.scale.y =  mesh.scale.z = 0.08;
 		mesh.rotation.x = Math.PI*1.5;
 		mesh.rotation.y = Math.PI/2;
@@ -193,7 +193,7 @@
 	onRenderFcts.push(function(){
 		renderer.render( scene, camera );
 	})
-			alert('007');
+			alert('008');
 	// run the rendering loop
 	var lastTimeMsec= null
 	requestAnimationFrame(function animate(nowMsec){
