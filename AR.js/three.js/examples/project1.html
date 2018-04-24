@@ -89,7 +89,7 @@
 		detectionMode: 'mono',
 		canvasWidth: 80*3,
 		canvasHeight: 60*3,
-		maxDetectionRate: 5,
+		maxDetectionRate: 200,
 	})
 	// initialize it
 	arToolkitContext.init(function onCompleted(){
@@ -163,7 +163,7 @@
 	    var changex = distancestart/distanceend;
 	    //var changey = changex*changex*changex;
 	    //var modelSize = distancestart/distanceend * 12;
-	    modelSize = changex * 3.5;
+	    modelSize = changex * 3;
 	    camera.position.z = -modelSize;
 	    camera.lookAt( scene.position );
 	    animate(modelSize);
@@ -179,8 +179,8 @@
 	objectLoader.load("models/ARproject/project1.json", function ( obj ) {
 		
 		mesh = obj;
-		mesh.position.y=-0.2;
-		mesh.scale.x =  mesh.scale.y =  mesh.scale.z = 0.06;
+		mesh.position.y=-0.25;
+		mesh.scale.x =  mesh.scale.y =  mesh.scale.z = 0.08;
 		mesh.rotation.x = Math.PI*1.5;
 		mesh.rotation.y = Math.PI/2;
 		mesh.rotation.z = (Math.PI/9)*7.32;	
@@ -193,7 +193,7 @@
 	onRenderFcts.push(function(){
 		renderer.render( scene, camera );
 	})
-			alert('005');
+			alert('006');
 	// run the rendering loop
 	var lastTimeMsec= null
 	requestAnimationFrame(function animate(nowMsec){
