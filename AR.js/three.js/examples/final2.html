@@ -19,6 +19,7 @@
 <script src="js/Detector.js"></script>
 <script src="js/loaders/JSONLoader.js"></script>
 <script src="js/loaders/ObjectLoader.js"></script>
+<script src="js/OrbitControls.js"></script>
 		 
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
@@ -130,7 +131,7 @@
 	//全局变量，触摸开始位置
 	var a=0,b=0;
 	var distancestart=0,distanceend=0;
-	var modelSize=20;
+	var modelSize=15;
     //touchstart事件
 	document.addEventListener('touchstart',function (event) {
             event.preventDefault(); //阻止触摸时浏览器的缩放、滚动条滚动等
@@ -161,9 +162,9 @@
 	    b=y2-y3;
 	    distanceend=Math.sqrt((a*a)+(b*b));
 	    var changex = distancestart/distanceend;
-	    //var changey = changex*changex*changex;
+	    var changey = changex*changex*changex;
 	    //var modelSize = distancestart/distanceend * 12;
-	    modelSize = changex * 3.5;
+	    modelSize = changey * 4.5;
 	    camera.position.z = -modelSize;
 	    camera.lookAt( scene.position );
 	    animate(modelSize);
@@ -177,9 +178,7 @@
 	// model
 	var objectLoader = new THREE.ObjectLoader();
 	objectLoader.load("models/ARproject/project1.json", function ( obj ) {
-		
 		mesh = obj;
-		mesh.position.y=-0.15;
 		mesh.scale.x =  mesh.scale.y =  mesh.scale.z = 0.06;
 		mesh.rotation.x = Math.PI*1.5;
 		mesh.rotation.y = Math.PI/2;
@@ -193,17 +192,14 @@
 	onRenderFcts.push(function(){
 		renderer.render( scene, camera );
 	})
-		alert('004');
+	
 	// run the rendering loop
 	var lastTimeMsec= null
 	requestAnimationFrame(function animate(nowMsec){
 		// keep looping
 		requestAnimationFrame( animate );
-		
-		camera.position.y=0.05;
-
 		var axis = new THREE.Vector3(0,1,0);
-		mesh.rotateOnAxis(axis,Math.PI * (-0.002));
+    mesh.rotateOnAxis(axis,Math.PI * 0.002);
 		//measure time
 		lastTimeMsec	= lastTimeMsec || nowMsec-1000/60
 		var deltaMsec	= Math.min(200, nowMsec - lastTimeMsec)
