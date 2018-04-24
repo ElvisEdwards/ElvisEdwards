@@ -21,10 +21,14 @@
 <script src="js/loaders/FBXLoader.js"></script>
 <script src="js/loaders/JSONLoader.js"></script>
 <script src="js/loaders/ObjectLoader.js"></script>
+
+		<script src="js/loaders/DDSLoader.js"></script>
+		<script src="js/loaders/MTLLoader.js"></script>
+		<script src="js/loaders/OBJLoader.js"></script>
 		 
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-<div id="result" style="border:2px solid red; color:red;">005未触发事件！</div>
+<div id="result" style="border:2px solid red; color:red;">006未触发事件！</div>
 <div id="container"></div>
 <script> 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -176,8 +180,38 @@
 	    requestAnimationFrame( animate ); 
 	},false)
 	},false)
-	
 
+
+
+	// model
+	var onProgress = function ( xhr ) {
+		if ( xhr.lengthComputable ) {
+			var percentComplete = xhr.loaded / xhr.total * 100;
+			console.log( Math.round(percentComplete, 2) + '% downloaded' );
+		}
+	};
+	var onError = function ( xhr ) { };
+	THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
+	var mtlLoader = new THREE.MTLLoader();
+	mtlLoader.setPath( 'models/1/' );
+	mtlLoader.load( 'bear.mtl', function( materials ) {
+		materials.preload();
+		var objLoader = new THREE.OBJLoader();
+		objLoader.setMaterials( materials );
+		objLoader.setPath( 'models/' );
+		objLoader.load( 'tree.obj', function ( object ) {
+		mesh = object;
+		mesh.position.y=-0.15;
+		mesh.scale.x =  mesh.scale.y =  mesh.scale.z = 6.66;
+		mesh.rotation.x = Math.PI*1.5;
+		mesh.rotation.y = Math.PI/2;
+		mesh.rotation.z = (Math.PI/9)*7.32;	
+		markerRoot.add( mesh );
+
+		}, onProgress, onError );
+	});
+	
+/*
 	// model
 	var loader = new THREE.FBXLoader();
 	loader.load( 'models/2/bear.fbx', function ( object ) {				
@@ -189,7 +223,10 @@
 		mesh.rotation.z = (Math.PI/9)*7.32;	
 		markerRoot.add( mesh );
 	} );
-/*
+
+
+
+
 	// model
 	var objectLoader = new THREE.ObjectLoader();
 	objectLoader.load("models/ARproject/123.json", function ( obj ) {
