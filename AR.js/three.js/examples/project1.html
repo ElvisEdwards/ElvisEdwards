@@ -163,7 +163,7 @@
 	    var changex = distancestart/distanceend;
 	    //var changey = changex*changex*changex;
 	    //var modelSize = distancestart/distanceend * 12;
-	    modelSize = changex * 1.5;
+	    modelSize = changex * 3.5;
 	    camera.position.z = -modelSize;
 	    camera.lookAt( scene.position );
 	    animate(modelSize);
@@ -193,7 +193,7 @@
 	onRenderFcts.push(function(){
 		renderer.render( scene, camera );
 	})
-			alert('003');
+			alert('004');
 	// run the rendering loop
 	var lastTimeMsec= null
 	requestAnimationFrame(function animate(nowMsec){
