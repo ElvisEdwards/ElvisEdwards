@@ -180,10 +180,10 @@
 
 	// model
 	var loader = new THREE.FBXLoader();
-	loader.load( 'models/123.fbx', function ( object ) {				
+	loader.load( 'models/2/bear.fbx', function ( object ) {				
 		mesh = object;
 		mesh.position.y=-0.15;
-		mesh.scale.x =  mesh.scale.y =  mesh.scale.z = 6.66;
+		mesh.scale.x =  mesh.scale.y =  mesh.scale.z = 16.66;
 		mesh.rotation.x = Math.PI*1.5;
 		mesh.rotation.y = Math.PI/2;
 		mesh.rotation.z = (Math.PI/9)*7.32;	
