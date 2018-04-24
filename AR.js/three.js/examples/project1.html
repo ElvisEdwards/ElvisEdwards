@@ -120,9 +120,15 @@
 	var smoothedRoot = new THREE.Group()
 	scene.add(smoothedRoot)
 	var smoothedControls = new THREEx.ArSmoothedControls(smoothedRoot, {
-		lerpPosition: 0.4,
-		lerpQuaternion: 0.9,
-		lerpScale: 3,
+		//lerpPosition: 0.4,
+		//lerpQuaternion: 0.1,
+		//lerpScale: 0.3,
+		lerpPosition: 0.04,
+		lerpQuaternion: 0.01,
+		lerpScale: 0.03,
+		lerpStepDelay: 1/600,
+		minVisibleDelay: 0.0,
+		minUnvisibleDelay: 0.02,
 	})
 	onRenderFcts.push(function(delta){
 		smoothedControls.update(markerRoot)
@@ -193,14 +199,14 @@
 	onRenderFcts.push(function(){
 		renderer.render( scene, camera );
 	})
-			alert('009');
+			alert('010');
 	// run the rendering loop
 	var lastTimeMsec= null
 	requestAnimationFrame(function animate(nowMsec){
 		// keep looping
 		requestAnimationFrame( animate );
 		
-		//camera.position.y=0.15;
+		camera.position.y=0.3;
 
 		var axis = new THREE.Vector3(0,1,0);
 		mesh.rotateOnAxis(axis,Math.PI * (-0.002));
