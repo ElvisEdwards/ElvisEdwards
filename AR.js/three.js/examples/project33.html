@@ -28,7 +28,7 @@
 		 
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-<div id="result" style="border:2px solid red; color:red;">007未触发事件！</div>
+<div id="result" style="border:2px solid red; color:red;">008未触发事件！</div>
 <div id="container"></div>
 <script> 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -193,16 +193,16 @@
 	var onError = function ( xhr ) { };
 	THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
 	var mtlLoader = new THREE.MTLLoader();
-	mtlLoader.setPath( 'models/1/' );
-	mtlLoader.load( 'bear.mtl', function( materials ) {
+	mtlLoader.setPath( 'models/huayin_obj/' );
+	mtlLoader.load( 'huayin.mtl', function( materials ) {
 		materials.preload();
 		var objLoader = new THREE.OBJLoader();
 		objLoader.setMaterials( materials );
-		objLoader.setPath( 'models/' );
-		objLoader.load( 'tree.obj', function ( object ) {
+		objLoader.setPath( 'models/huayin_obj/' );
+		objLoader.load( 'huayin.obj', function ( object ) {
 		mesh = object;
 		mesh.position.y=-0.15;
-		mesh.scale.x =  mesh.scale.y =  mesh.scale.z = 6.66;
+		mesh.scale.x =  mesh.scale.y =  mesh.scale.z = 0.66;
 		mesh.rotation.x = Math.PI*1.5;
 		mesh.rotation.y = Math.PI/2;
 		mesh.rotation.z = (Math.PI/9)*7.32;	
