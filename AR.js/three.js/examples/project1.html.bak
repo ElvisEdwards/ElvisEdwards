@@ -163,7 +163,7 @@
 	    var changex = distancestart/distanceend;
 	    //var changey = changex*changex*changex;
 	    //var modelSize = distancestart/distanceend * 12;
-	    modelSize = changex * 3.5;
+	    modelSize = changex * 2.5;
 	    camera.position.z = -modelSize;
 	    camera.lookAt( scene.position );
 	    animate(modelSize);
@@ -193,13 +193,14 @@
 	onRenderFcts.push(function(){
 		renderer.render( scene, camera );
 	})
+			alert('001');
 	// run the rendering loop
 	var lastTimeMsec= null
 	requestAnimationFrame(function animate(nowMsec){
 		// keep looping
 		requestAnimationFrame( animate );
 		
-		camera.position.y=0.1;
+		camera.position.y=0.3;
 
 		var axis = new THREE.Vector3(0,1,0);
 		mesh.rotateOnAxis(axis,Math.PI * (-0.002));

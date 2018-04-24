@@ -46,7 +46,8 @@
 	var onRenderFcts= [];
 	// init scene and camera
 	var scene	= new THREE.Scene();
-	var ambient = new THREE.AmbientLight( 0x666666 );
+	//var ambient = new THREE.AmbientLight( 0x666666 );
+	var ambient = new THREE.AmbientLight( 0xFFFFFF );
 	scene.add( ambient );
 	var directionalLight = new THREE.DirectionalLight( 0x887766 );
 	directionalLight.position.set( -1, 1, 1 ).normalize();
@@ -176,7 +177,7 @@
 	
 	// model
 	var objectLoader = new THREE.ObjectLoader();
-	objectLoader.load("models/ARproject/project22.json", function ( obj ) {
+	objectLoader.load("models/ARproject/project2.json", function ( obj ) {
 		
 		mesh = obj;
 		mesh.position.y=-0.15;
