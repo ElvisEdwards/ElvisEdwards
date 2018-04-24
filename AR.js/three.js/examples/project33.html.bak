@@ -19,9 +19,12 @@
 <script src="js/Detector.js"></script>
 <script src="js/libs/inflate.min.js"></script>
 <script src="js/loaders/FBXLoader.js"></script>
+<script src="js/loaders/JSONLoader.js"></script>
+<script src="js/loaders/ObjectLoader.js"></script>
 		 
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
+<div id="result" style="border:2px solid red; color:red;">002未触发事件！</div>
 <div id="container"></div>
 <script> 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -174,13 +177,26 @@
 	},false)
 	},false)
 	
-
-					// model
-				var loader = new THREE.FBXLoader();
-				loader.load( 'models/456.fbx', function ( object ) {				
+/*
+	// model
+	var loader = new THREE.FBXLoader();
+	loader.load( 'models/456.fbx', function ( object ) {				
 		mesh = object;
 		mesh.position.y=-0.15;
 		mesh.scale.x =  mesh.scale.y =  mesh.scale.z = 0.06;
+		mesh.rotation.x = Math.PI*1.5;
+		mesh.rotation.y = Math.PI/2;
+		mesh.rotation.z = (Math.PI/9)*7.32;	
+		markerRoot.add( mesh );
+	} );*/
+
+	// model
+	var objectLoader = new THREE.ObjectLoader();
+	objectLoader.load("models/ARproject/123.json", function ( obj ) {
+		
+		mesh = obj;
+		mesh.position.y=-0.15;
+		mesh.scale.x =  mesh.scale.y =  mesh.scale.z = 0.09;
 		mesh.rotation.x = Math.PI*1.5;
 		mesh.rotation.y = Math.PI/2;
 		mesh.rotation.z = (Math.PI/9)*7.32;	
@@ -193,7 +209,6 @@
 	onRenderFcts.push(function(){
 		renderer.render( scene, camera );
 	})
-		alert('005');
 	// run the rendering loop
 	var lastTimeMsec= null
 	requestAnimationFrame(function animate(nowMsec){
