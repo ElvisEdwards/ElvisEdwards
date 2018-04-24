@@ -177,12 +177,15 @@
 
 					// model
 				var loader = new THREE.FBXLoader();
-				loader.load( 'models/test0.fbx', function ( object ) {
-					object.scale.x =  object.scale.y =  object.scale.z = 0.3;
-
-					markerRoot.add( object );
-
-				} );
+				loader.load( 'models/123.fbx', function ( object ) {				
+		mesh = object;
+		mesh.position.y=-0.15;
+		mesh.scale.x =  mesh.scale.y =  mesh.scale.z = 0.06;
+		mesh.rotation.x = Math.PI*1.5;
+		mesh.rotation.y = Math.PI/2;
+		mesh.rotation.z = (Math.PI/9)*7.32;	
+		markerRoot.add( mesh );
+	} );
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
 	//////////////////////////////////////////////////////////////////////////////////
@@ -190,7 +193,7 @@
 	onRenderFcts.push(function(){
 		renderer.render( scene, camera );
 	})
-		alert('003');
+		alert('004');
 	// run the rendering loop
 	var lastTimeMsec= null
 	requestAnimationFrame(function animate(nowMsec){

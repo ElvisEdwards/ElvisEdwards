@@ -177,8 +177,8 @@
 
 					// model
 				var loader = new THREE.FBXLoader();
-				loader.load( 'models/test0.fbx', function ( object ) {
-					object.scale.x =  object.scale.y =  object.scale.z = 0.3;
+				loader.load( 'models/123.fbx', function ( object ) {
+					object.scale.x =  object.scale.y =  object.scale.z = 2.3;
 
 					markerRoot.add( object );
 
@@ -190,7 +190,7 @@
 	onRenderFcts.push(function(){
 		renderer.render( scene, camera );
 	})
-		alert('002');
+		alert('003');
 	// run the rendering loop
 	var lastTimeMsec= null
 	requestAnimationFrame(function animate(nowMsec){
