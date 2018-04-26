@@ -31,6 +31,9 @@
 	<body>
 <div id="result" style="border:2px solid red; color:red;">007</div>
 		<script src="../build/three.js"></script>
+		<script src="js/loaders/DDSLoader.js"></script>
+		<script src="js/loaders/MTLLoader.js"></script>
+		<script src="js/loaders/OBJLoader.js"></script>
 
 		<script src="js/libs/inflate.min.js"></script>
 		<script src="js/loaders/FBXLoader.js"></script>
@@ -75,7 +78,7 @@
 				grid.material.opacity = 0.2;
 				grid.material.transparent = true;
 				scene.add( grid );
-				// model
+				/*// model
 				var loader = new THREE.FBXLoader();
 				loader.load( 'models/ARproject/fbx/7.fbx', function ( object ) {
 					//object.mixer = new THREE.AnimationMixer( object );
@@ -89,7 +92,31 @@
 						//}
 					//} );
 					scene.add( object );
-				} );
+				} );*/
+					// model
+	var onProgress = function ( xhr ) {
+		if ( xhr.lengthComputable ) {
+			var percentComplete = xhr.loaded / xhr.total * 100;
+			console.log( Math.round(percentComplete, 2) + '% downloaded' );
+		}
+	};
+	var onError = function ( xhr ) { };
+	THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
+	var mtlLoader = new THREE.MTLLoader();
+	mtlLoader.setPath( 'models/ARproject/CB_obj/' );
+	mtlLoader.load( 'CB_LN.mtl', function( materials ) {
+		materials.preload();
+		var objLoader = new THREE.OBJLoader();
+		objLoader.setMaterials( materials );
+		objLoader.setPath( 'models/ARproject/CB_obj/' );
+		objLoader.load( 'CB_LN.obj', function ( object ) {
+		object.scale.x =  object.scale.y =  object.scale.z = 0.001;
+		scene.add( object );
+		}, onProgress, onError );
+	});
+
+
+
 				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
