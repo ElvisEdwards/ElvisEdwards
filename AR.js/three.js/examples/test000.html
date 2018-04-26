@@ -9,6 +9,7 @@
 
 <body>
 		<div id="container"></div>
+		<div id="result" style="border:2px solid red; color:red;">001未触发事件！</div>
  <button type="submit" value="Submit" onclick="change();">Submit</button>
  <input type="button" id="signin_button" onclick="change();"/>
 
@@ -42,7 +43,7 @@
 
 		renderer = new THREE.WebGLRenderer( { antialias: true } );
         renderer.setPixelRatio(window.devicePixelRatio);
-        renderer.setSize(window.innerWidth/2, window.innerHeight/2);
+        renderer.setSize(window.innerWidth, window.innerHeight);
         container.appendChild(renderer.domElement);
 		renderer.setClearColor(0x888888);
 
@@ -126,7 +127,6 @@
         window.addEventListener('resize', onWindowResize, false);
 
     }
-alert('1');
     function onWindowResize() {
 
 

@@ -9,6 +9,7 @@
 
 <body>
 		<div id="container"></div>
+		<div id="result" style="border:2px solid red; color:red;">001未触发事件！</div>
  <button type="submit" value="Submit" onclick="change();">Submit</button>
  <input type="button" id="signin_button" onclick="change();"/>
 
@@ -111,7 +112,7 @@
 	loader.load( 'models/ARproject/fbx/1.FBX', function ( object ) {				
 		mesh = object;
 		mesh.position.y=-0.15;
-		mesh.scale.x =  mesh.scale.y =  mesh.scale.z = 0.66;
+		mesh.scale.x =  mesh.scale.y =  mesh.scale.z = 1.66;
 		mesh.rotation.x = Math.PI*1.5;
 		mesh.rotation.y = Math.PI/2;
 		mesh.rotation.z = (Math.PI/9)*7.32;	
@@ -126,7 +127,6 @@
         window.addEventListener('resize', onWindowResize, false);
 
     }
-alert('1');
     function onWindowResize() {
 
 
