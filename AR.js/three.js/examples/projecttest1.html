@@ -17,9 +17,8 @@
 <script>THREEx.ArToolkitContext.baseURL = '../'</script>
       
 <script src="js/Detector.js"></script>
-<!--<script src="js/libs/inflate.min.js"></script>
-<script src="js/loaders/FBXLoader.js"></script>
-<script src="js/controls/OrbitControls.js"></script>
+<script src="js/libs/inflate.min.js"></script>
+<!--<script src="js/loaders/FBXLoader.js"></script>
 <script src="js/loaders/JSONLoader.js"></script>
 <script src="js/loaders/ObjectLoader.js"></script>
 -->
@@ -37,7 +36,6 @@
 	//////////////////////////////////////////////////////////////////////////////////
 	// init renderer
 	var mesh = new THREE.Mesh();
-	var controls;
 	var renderer = new THREE.WebGLRenderer({
 		// antialias	: true,
 		alpha: true
@@ -225,7 +223,6 @@
 		mesh.rotation.y = Math.PI/2;
 		mesh.rotation.z = (Math.PI/9)*7.32;	
 		markerRoot.add( mesh );
-
 		}, onProgress, onError );
 	});
 

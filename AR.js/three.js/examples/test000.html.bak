@@ -29,7 +29,7 @@
 	</head>
 
 	<body>
-<div id="result" style="border:2px solid red; color:red;">002</div>
+<div id="result" style="border:2px solid red; color:red;">003</div>
 		<script src="../build/three.js"></script>
 		<script src="js/loaders/DDSLoader.js"></script>
 		<script src="js/loaders/MTLLoader.js"></script>
