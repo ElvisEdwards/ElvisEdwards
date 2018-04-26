@@ -209,14 +209,14 @@
 	var onError = function ( xhr ) { };
 	THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
 	var mtlLoader = new THREE.MTLLoader();
-	mtlLoader.setPath( 'models/ARproject/' );
-	mtlLoader.load( 'huayinA.mtl', function( materials ) {
+	mtlLoader.setPath( 'models/ARproject/CB_obj/' );
+	mtlLoader.load( 'CB_LN.mtl', function( materials ) {
 		materials.preload();
 		var objLoader = new THREE.OBJLoader();
 		objLoader.setMaterials( materials );
-		objLoader.setPath( 'models/ARproject/' );
-		objLoader.load( 'huayinA.obj', function ( object ) {
-		object.scale.x =  object.scale.y =  object.scale.z = 0.16;
+		objLoader.setPath( 'models/ARproject/CB_obj/' );
+		objLoader.load( 'CB_LN.obj', function ( object ) {
+		object.scale.x =  object.scale.y =  object.scale.z = 0.06;
 		markerRoot.add( object );
 		}, onProgress, onError );
 	});
