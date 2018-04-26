@@ -1,158 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<title>three.js webgl - OBJLoader + MTLLoader</title>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-		<style>
-			body {
-				font-family: Monospace;
-				background-color: #000;
-				color: #fff;
-				margin: 0px;
-				overflow: hidden;
-			}
-			#info {
-				color: #fff;
-				position: absolute;
-				top: 10px;
-				width: 100%;
-				text-align: center;
-				z-index: 100;
-				display:block;
-			}
-			#info a, .button { color: #f00; font-weight: bold; text-decoration: underline; cursor: pointer }
-		</style>
-	</head>
+<head>
+    <title>three.js webgl - OBJLoader + MTLLoader</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
-	<body>
-		<div id="info">
-		<a href="http://threejs.org" target="_blank" rel="noopener">three.js</a> - OBJLoader + MTLLoader
-		</div>
+</head>
+
+<body>
+		<div id="container"></div>
+ <button type="submit" value="Submit" onclick="change();">Submit</button>
+ <input type="button" id="signin_button" onclick="change();"/>
 
 <script src='vendor/three.js/build/three.js'></script>
+<script src="js/Detector.js"></script>
+<script src="js/controls/OrbitControls.js"></script>
+<script src="js/libs/jszip.min.js"></script>
+<script src="js/loaders/DDSLoader.js"></script>
+<script src="js/loaders/MTLLoader.js"></script>
+<script src="js/loaders/OBJLoader.js"></script>
+<script src="js/libs/inflate.min.js"></script>
+<script src="js/loaders/FBXLoader.js"></script>
+<script>
 
-		<script src="js/loaders/DDSLoader.js"></script>
-		<script src="js/loaders/MTLLoader.js"></script>
-		<script src="js/loaders/OBJLoader.js"></script>
+    var container, stats;
 
-		<script src="js/Detector.js"></script>
-		<script src="js/libs/stats.min.js"></script>
+    var camera, scene, renderer;
 
-		<script>
-
-			var container, stats;
-
-			var camera, scene, renderer;
-
-			var mouseX = 0, mouseY = 0;
-
-			var windowHalfX = window.innerWidth / 2;
-			var windowHalfY = window.innerHeight / 2;
+    var mouseX = 0, mouseY = 0;
 
 
-			init();
-			animate();
+    init();
+    animate();
+		var mesh = new THREE.Mesh();
 
 
-			function init() {
+    function init() {
+		container = document.getElementById( 'container' );
+        //container = document.createElement('div');
+        //document.body.appendChild(container);
 
-				container = document.createElement( 'div' );
-				document.body.appendChild( container );
+		renderer = new THREE.WebGLRenderer( { antialias: true } );
+        renderer.setPixelRatio(window.devicePixelRatio);
+        renderer.setSize(window.innerWidth/2, window.innerHeight/2);
+        container.appendChild(renderer.domElement);
+		renderer.setClearColor(0x888888);
 
-				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 2000 );
-				camera.position.z = 250;
-
-				// scene
-
-				scene = new THREE.Scene();
-
+		// scene
+		scene = new THREE.Scene();
 				var ambientLight = new THREE.AmbientLight( 0xcccccc, 0.4 );
 				scene.add( ambientLight );
 
 				var pointLight = new THREE.PointLight( 0xffffff, 0.8 );
-				camera.add( pointLight );
 				scene.add( camera );
 
-				// model
+				var ambientLight = new THREE.AmbientLight( 0xcccccc, 0.4 );
+				scene.add( ambientLight );
 
-				var onProgress = function ( xhr ) {
-					if ( xhr.lengthComputable ) {
-						var percentComplete = xhr.loaded / xhr.total * 100;
-						console.log( Math.round(percentComplete, 2) + '% downloaded' );
-					}
-				};
+        camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerHeight, 1, 2000);
+        camera.position.z = 500;
 
-				var onError = function ( xhr ) { };
 
-				THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
+        //<script src="js/controls/OrbitControls.js">
+		var controls = new THREE.OrbitControls( camera, renderer.domElement );
+				controls.addEventListener( 'change', render );
+				controls.minDistance = 50;
+				controls.maxDistance = 300;
+				controls.enablePan = false;
+				controls.target.set( 0, 0, 0 );
+				controls.update();
 
-				var mtlLoader = new THREE.MTLLoader();
-				mtlLoader.setPath( 'models/obj/huayin/' );
-				mtlLoader.load( 'huayin.mtl', function( materials ) {
+/*	// model
+	var onProgress = function ( xhr ) {
+		if ( xhr.lengthComputable ) {
+			var percentComplete = xhr.loaded / xhr.total * 100;
+			console.log( Math.round(percentComplete, 2) + '% downloaded' );
+		}
+	};
+	var onError = function ( xhr ) { };
+	THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
+	var mtlLoader = new THREE.MTLLoader();
+	mtlLoader.setPath( 'models/1/' );
+	mtlLoader.load( 'huayinA.mtl', function( materials ) {
+		materials.preload();
+		var objLoader = new THREE.OBJLoader();
+		objLoader.setMaterials( materials );
+		objLoader.setPath( 'models/1/' );
+		objLoader.load( 'huayinA.obj', function ( object ) {
+			//object.position.y = 0.2;
+  			// 缩放
+			object.scale.x =  object.scale.y =  object.scale.z = 0.25;
+			// 旋转
+			object.rotation.set(Math.PI/2,Math.PI/2,Math.PI/2) ;
+			scene.add( object );
+		}, onProgress, onError );
+	});
 
-					materials.preload();
+	// model
+	var loader = new THREE.FBXLoader();
+	loader.load( 'models/1/huayin.fbx', function ( object ) {				
 
-					var objLoader = new THREE.OBJLoader();
-					objLoader.setMaterials( materials );
-					objLoader.setPath( 'models/obj/huayin/' );
-					objLoader.load( 'huayin.obj', function ( object ) {
+		object.scale.x =  object.scale.y =  object.scale.z = 0.06;
 
-						object.position.y = - 95;
-						object.scale.x =  object.scale.y =  object.scale.z = 0.06;
-						scene.add( object );
+		scene.add( object );
+	} );
+*/
 
-					}, onProgress, onError );
+	// model
+	var loader = new THREE.FBXLoader();
+	loader.load( 'models/ARproject/1233.fbx', function ( object ) {				
+		mesh = object;
+		mesh.position.y=-0.15;
+		mesh.scale.x =  mesh.scale.y =  mesh.scale.z = 0.66;
+		mesh.rotation.x = Math.PI*1.5;
+		mesh.rotation.y = Math.PI/2;
+		mesh.rotation.z = (Math.PI/9)*7.32;	
+		scene.add( mesh );
+	} );
 
-				});
+		// Grid,网格四个参数分别表示网格宽度、等分数、中心线颜色，网格线颜色。默认分别是10,10,0x444444,0x888888
+		var grid = new THREE.GridHelper( 1000, 50,0x000000,0xffffff );
+		grid.position.y = -10;
+		scene.add( grid );
 
-				//
+        window.addEventListener('resize', onWindowResize, false);
 
-				renderer = new THREE.WebGLRenderer();
-				renderer.setPixelRatio( window.devicePixelRatio );
-				renderer.setSize( window.innerWidth, window.innerHeight );
-				container.appendChild( renderer.domElement );
+    }
 
-				document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+    function onWindowResize() {
 
-				//
 
-				window.addEventListener( 'resize', onWindowResize, false );
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
 
-			}
+        renderer.setSize(window.innerWidth, window.innerHeight);
 
-			function onWindowResize() {
 
-				windowHalfX = window.innerWidth / 2;
-				windowHalfY = window.innerHeight / 2;
+    }
 
-				camera.aspect = window.innerWidth / window.innerHeight;
-				camera.updateProjectionMatrix();
-
-				renderer.setSize( window.innerWidth, window.innerHeight );
-
-			}
-
-			function onDocumentMouseMove( event ) {
-
-				mouseX = ( event.clientX - windowHalfX ) / 2;
-				mouseY = ( event.clientY - windowHalfY ) / 2;
-
-			}
-
-			//
 
 			function animate() {
 
 				requestAnimationFrame( animate );
+				var axis = new THREE.Vector3(0,1,0);
+		mesh.rotateOnAxis(axis,Math.PI * (-0.002));
 				render();
 
 			}
 
 			function render() {
-
-				camera.position.x += ( mouseX - camera.position.x ) * .05;
-				camera.position.y += ( - mouseY - camera.position.y ) * .05;
 
 				camera.lookAt( scene.position );
 
@@ -160,7 +156,7 @@
 
 			}
 
-		</script>
+</script>
 
-	</body>
+</body>
 </html>
