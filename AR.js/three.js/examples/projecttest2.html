@@ -29,7 +29,7 @@
 		 
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-<div id="result" style="border:2px solid red; color:red;">002未触发事件！</div>
+<div id="result" style="border:2px solid red; color:red;">005未触发事件！</div>
 <div id="container"></div>
 <script> 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -193,12 +193,12 @@
 	THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
 	var mtlLoader = new THREE.MTLLoader();
 	mtlLoader.setPath( 'models/ARproject/' );
-	mtlLoader.load( 'huayin.mtl', function( materials ) {
+	mtlLoader.load( 'huayinA.mtl', function( materials ) {
 		materials.preload();
 		var objLoader = new THREE.OBJLoader();
 		objLoader.setMaterials( materials );
 		objLoader.setPath( 'models/ARproject/' );
-		objLoader.load( 'huayin.obj', function ( object ) {
+		objLoader.load( 'huayinA.obj', function ( object ) {
 		mesh = object;
 		mesh.position.y=-0.15;
 		mesh.scale.x =  mesh.scale.y =  mesh.scale.z = 0.06;
