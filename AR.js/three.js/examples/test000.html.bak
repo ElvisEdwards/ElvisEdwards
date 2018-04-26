@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>three.js webgl - FBX loader</title>
+		<title>three.js webgl - OBJLoader + MTLLoader</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 		<style>
@@ -21,126 +21,145 @@
 				z-index: 100;
 				display:block;
 			}
-			#info a {
-				color: #046;
-				font-weight: bold;
-			}
+			#info a, .button { color: #f00; font-weight: bold; text-decoration: underline; cursor: pointer }
 		</style>
 	</head>
 
 	<body>
-<div id="result" style="border:2px solid red; color:red;">003</div>
+		<div id="info">
+		<a href="http://threejs.org" target="_blank" rel="noopener">three.js</a> - OBJLoader + MTLLoader
+		</div>
+
 		<script src="../build/three.js"></script>
+
 		<script src="js/loaders/DDSLoader.js"></script>
 		<script src="js/loaders/MTLLoader.js"></script>
 		<script src="js/loaders/OBJLoader.js"></script>
 
-		<script src="js/libs/inflate.min.js"></script>
-		<script src="js/loaders/FBXLoader.js"></script>
-
-		<script src="js/controls/OrbitControls.js"></script>
-
 		<script src="js/Detector.js"></script>
-
+		<script src="js/libs/stats.min.js"></script>
 
 		<script>
-			if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
-			var container, stats, controls;
-			var camera, scene, renderer, light;
-			//var clock = new THREE.Clock();
-			//var mixers = [];
+
+			var container, stats;
+
+			var camera, scene, renderer;
+
+			var mouseX = 0, mouseY = 0;
+
+			var windowHalfX = window.innerWidth / 2;
+			var windowHalfY = window.innerHeight / 2;
+
+
 			init();
 			animate();
+
+
 			function init() {
+
 				container = document.createElement( 'div' );
 				document.body.appendChild( container );
+
 				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 2000 );
-				camera.position.set( 100, 200, 300 );
-				controls = new THREE.OrbitControls( camera );
-				controls.target.set( 0, 100, 0 );
-				controls.update();
+				camera.position.z = 250;
+
+				// scene
+
 				scene = new THREE.Scene();
-				scene.background = new THREE.Color( 0xa0a0a0 );
-				//scene.fog = new THREE.Fog( 0xa0a0a0, 200, 1000 );
-				light = new THREE.HemisphereLight( 0xffffff, 0x444444 );
-				light.position.set( 0, 200, 0 );
-				scene.add( light );
-				light = new THREE.DirectionalLight( 0xffffff );
-				light.position.set( 0, 200, 100 );
-				scene.add( light );
-				// scene.add( new THREE.CameraHelper( light.shadow.camera ) );
-				// ground
-				var mesh = new THREE.Mesh( new THREE.PlaneBufferGeometry( 2000, 2000 ), new THREE.MeshPhongMaterial( { color: 0x999999, depthWrite: false } ) );
-				mesh.rotation.x = - Math.PI / 2;
-				mesh.receiveShadow = true;
-				scene.add( mesh );
-				var grid = new THREE.GridHelper( 2000, 20, 0x000000, 0x000000 );
-				grid.material.opacity = 0.2;
-				grid.material.transparent = true;
-				scene.add( grid );
-				/*// model
-				var loader = new THREE.FBXLoader();
-				loader.load( 'models/ARproject/fbx/7.fbx', function ( object ) {
-					//object.mixer = new THREE.AnimationMixer( object );
-					//mixers.push( object.mixer );
-					//var action = object.mixer.clipAction( object.animations[ 0 ] );
-					//action.play();
-					//object.traverse( function ( child ) {
-						//if ( child.isMesh ) {
-							//child.castShadow = true;
-							//child.receiveShadow = true;
-						//}
-					//} );
-					scene.add( object );
-				} );*/
-	// model
-	var onProgress = function ( xhr ) {
-		if ( xhr.lengthComputable ) {
-			var percentComplete = xhr.loaded / xhr.total * 100;
-			console.log( Math.round(percentComplete, 2) + '% downloaded' );
-		}
-	};
-	var onError = function ( xhr ) { };
-	THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
-	var mtlLoader = new THREE.MTLLoader();
-	mtlLoader.setPath( 'models/ARproject/' );
-	mtlLoader.load( 'bear.mtl', function( materials ) {
-		materials.preload();
-		var objLoader = new THREE.OBJLoader();
-		objLoader.setMaterials( materials );
-		objLoader.setPath( 'models/ARproject/' );
-		objLoader.load( 'bear.obj', function ( object ) {
-		object.scale.x =  object.scale.y =  object.scale.z = 0.001;
-		scene.add( object );
-		}, onProgress, onError );
-	});
 
+				var ambientLight = new THREE.AmbientLight( 0xcccccc, 0.4 );
+				scene.add( ambientLight );
 
+				var pointLight = new THREE.PointLight( 0xffffff, 0.8 );
+				camera.add( pointLight );
+				scene.add( camera );
 
-				renderer = new THREE.WebGLRenderer( { antialias: true } );
+				// model
+
+				var onProgress = function ( xhr ) {
+					if ( xhr.lengthComputable ) {
+						var percentComplete = xhr.loaded / xhr.total * 100;
+						console.log( Math.round(percentComplete, 2) + '% downloaded' );
+					}
+				};
+
+				var onError = function ( xhr ) { };
+
+				THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
+
+				var mtlLoader = new THREE.MTLLoader();
+				mtlLoader.setPath( 'models/ARproject/' );
+				mtlLoader.load( 'huayinA.mtl', function( materials ) {
+
+					materials.preload();
+
+					var objLoader = new THREE.OBJLoader();
+					objLoader.setMaterials( materials );
+					objLoader.setPath( 'models/ARproject/' );
+					objLoader.load( 'huayinA.obj', function ( object ) {
+						object.scale.x =  object.scale.y =  object.scale.z = 0.36;
+
+						object.position.y = - 95;
+						scene.add( object );
+
+					}, onProgress, onError );
+
+				});
+
+				//
+
+				renderer = new THREE.WebGLRenderer();
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
-				renderer.shadowMap.enabled = true;
 				container.appendChild( renderer.domElement );
+
+				document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+
+				//
+
 				window.addEventListener( 'resize', onWindowResize, false );
 
 			}
+
 			function onWindowResize() {
+
+				windowHalfX = window.innerWidth / 2;
+				windowHalfY = window.innerHeight / 2;
+
 				camera.aspect = window.innerWidth / window.innerHeight;
 				camera.updateProjectionMatrix();
+
 				renderer.setSize( window.innerWidth, window.innerHeight );
+
 			}
+
+			function onDocumentMouseMove( event ) {
+
+				mouseX = ( event.clientX - windowHalfX ) / 2;
+				mouseY = ( event.clientY - windowHalfY ) / 2;
+
+			}
+
 			//
+
 			function animate() {
+
 				requestAnimationFrame( animate );
-				//if ( mixers.length > 0 ) {
-					//for ( var i = 0; i < mixers.length; i ++ ) {
-						//mixers[ i ].update( clock.getDelta() );
-					//}
-				//}
+				render();
+
+			}
+
+			function render() {
+
+				camera.position.x += ( mouseX - camera.position.x ) * .05;
+				camera.position.y += ( - mouseY - camera.position.y ) * .05;
+
+				camera.lookAt( scene.position );
+
 				renderer.render( scene, camera );
 
 			}
+
 		</script>
 
 	</body>
