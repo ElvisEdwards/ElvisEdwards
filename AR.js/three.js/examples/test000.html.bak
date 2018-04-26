@@ -29,7 +29,7 @@
 	</head>
 
 	<body>
-<div id="result" style="border:2px solid red; color:red;">001</div>
+<div id="result" style="border:2px solid red; color:red;">002</div>
 		<script src="../build/three.js"></script>
 		<script src="js/loaders/DDSLoader.js"></script>
 		<script src="js/loaders/MTLLoader.js"></script>
@@ -93,7 +93,7 @@
 					//} );
 					scene.add( object );
 				} );*/
-					// model
+	// model
 	var onProgress = function ( xhr ) {
 		if ( xhr.lengthComputable ) {
 			var percentComplete = xhr.loaded / xhr.total * 100;
@@ -103,13 +103,13 @@
 	var onError = function ( xhr ) { };
 	THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
 	var mtlLoader = new THREE.MTLLoader();
-	mtlLoader.setPath( 'models/ARproject/CB_obj/' );
-	mtlLoader.load( 'CB_LN.mtl', function( materials ) {
+	mtlLoader.setPath( 'models/ARproject/' );
+	mtlLoader.load( 'bear.mtl', function( materials ) {
 		materials.preload();
 		var objLoader = new THREE.OBJLoader();
 		objLoader.setMaterials( materials );
-		objLoader.setPath( 'models/ARproject/CB_obj/' );
-		objLoader.load( 'CB_LN.obj', function ( object ) {
+		objLoader.setPath( 'models/ARproject/' );
+		objLoader.load( 'bear.obj', function ( object ) {
 		object.scale.x =  object.scale.y =  object.scale.z = 0.001;
 		scene.add( object );
 		}, onProgress, onError );
