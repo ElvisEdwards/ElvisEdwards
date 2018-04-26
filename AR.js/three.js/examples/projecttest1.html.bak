@@ -29,7 +29,7 @@
 		 
 -->
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-<div id="result" style="border:2px solid red; color:red;">001未触发事件！</div>
+<div id="result" style="border:2px solid red; color:red;">005未触发事件！</div>
 <div id="container"></div>
 <script> 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -37,6 +37,7 @@
 	//////////////////////////////////////////////////////////////////////////////////
 	// init renderer
 	//var mesh = new THREE.Mesh();
+	var controls;
 	var renderer = new THREE.WebGLRenderer({
 		// antialias	: true,
 		alpha: true
@@ -50,9 +51,23 @@
 	renderer.domElement.style.left = '0px'
 	container.appendChild(renderer.domElement);
 
-	var controls = new THREE.OrbitControls( camera );
-	controls.target.set( 0, 10, 0 );
-	controls.update();
+	//controls = new THREE.OrbitControls( camera );
+	//controls.target.set( 0, 10, 0 );
+	//controls.update();
+
+controls = new THREE.OrbitControls( camera, renderer.domElement );
+  //动态阻尼系数 就是鼠标拖拽旋转灵敏度
+  //controls.dampingFactor = 0.25;
+  //是否可以缩放
+  controls.enableZoom = true;
+  //是否自动旋转
+  controls.autoRotate = true;
+  //设置相机距离原点的最远距离
+  controls.minDistance = 200;
+  //设置相机距离原点的最远距离
+  controls.maxDistance = 600;
+  //是否开启右键拖拽
+  controls.enablePan = true; 
 	//document.body.appendChild( renderer.domElement );
 	// array of functions for the rendering loop
 	var onRenderFcts= [];
