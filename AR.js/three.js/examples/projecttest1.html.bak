@@ -22,14 +22,14 @@
 <script src="js/controls/OrbitControls.js"></script>
 <!--<script src="js/loaders/JSONLoader.js"></script>
 <script src="js/loaders/ObjectLoader.js"></script>
-
+-->
 		<script src="js/loaders/DDSLoader.js"></script>
 		<script src="js/loaders/MTLLoader.js"></script>
 		<script src="js/loaders/OBJLoader.js"></script>
 		 
--->
+
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-<div id="result" style="border:2px solid red; color:red;">005未触发事件！</div>
+<div id="result" style="border:2px solid red; color:red;">007未触发事件！</div>
 <div id="container"></div>
 <script> 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -51,23 +51,6 @@
 	renderer.domElement.style.left = '0px'
 	container.appendChild(renderer.domElement);
 
-	//controls = new THREE.OrbitControls( camera );
-	//controls.target.set( 0, 10, 0 );
-	//controls.update();
-
-controls = new THREE.OrbitControls( camera );
-  //动态阻尼系数 就是鼠标拖拽旋转灵敏度
-  //controls.dampingFactor = 0.25;
-  //是否可以缩放
-  controls.enableZoom = true;
-  //是否自动旋转
-  controls.autoRotate = true;
-  //设置相机距离原点的最远距离
-  controls.minDistance = 200;
-  //设置相机距离原点的最远距离
-  controls.maxDistance = 600;
-  //是否开启右键拖拽
-  controls.enablePan = true; 
 	//document.body.appendChild( renderer.domElement );
 	// array of functions for the rendering loop
 	var onRenderFcts= [];
@@ -247,18 +230,28 @@ controls = new THREE.OrbitControls( camera );
 	} );*/
 		
 
+
 	// model
-	var loader = new THREE.FBXLoader();
-	loader.load( 'models/ARproject/fbx/7.fbx', function ( object ) {				
-		//mesh = object;
-		//mesh.position.y=-0.15;
-		//mesh.scale.x =  mesh.scale.y =  mesh.scale.z = 0.01;
-		//mesh.rotation.x = Math.PI*1.5;
-		//mesh.rotation.y = Math.PI/2;
-		//mesh.rotation.z = (Math.PI/9)*7.32;
+	var onProgress = function ( xhr ) {
+		if ( xhr.lengthComputable ) {
+			var percentComplete = xhr.loaded / xhr.total * 100;
+			console.log( Math.round(percentComplete, 2) + '% downloaded' );
+		}
+	};
+	var onError = function ( xhr ) { };
+	THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
+	var mtlLoader = new THREE.MTLLoader();
+	mtlLoader.setPath( 'models/ARproject/CB_obj/' );
+	mtlLoader.load( 'CB_LN.mtl', function( materials ) {
+		materials.preload();
+		var objLoader = new THREE.OBJLoader();
+		objLoader.setMaterials( materials );
+		objLoader.setPath( 'models/ARproject/CB_obj/' );
+		objLoader.load( 'CB_LN.obj', function ( object ) {
 		object.scale.x =  object.scale.y =  object.scale.z = 0.001;
 		markerRoot.add( object );
-	} );
+		}, onProgress, onError );
+	});
 
 
 
