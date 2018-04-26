@@ -29,7 +29,7 @@
 	</head>
 
 	<body>
-<div id="result" style="border:2px solid red; color:red;">003</div>
+<div id="result" style="border:2px solid red; color:red;">004</div>
 		<script src="../build/three.js"></script>
 
 		<script src="js/libs/inflate.min.js"></script>
@@ -38,7 +38,7 @@
 		<script src="js/controls/OrbitControls.js"></script>
 
 		<script src="js/Detector.js"></script>
-		<script src="js/libs/stats.min.js"></script>
+
 
 		<script>
 			if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
@@ -96,9 +96,7 @@
 				renderer.shadowMap.enabled = true;
 				container.appendChild( renderer.domElement );
 				window.addEventListener( 'resize', onWindowResize, false );
-				// stats
-				stats = new Stats();
-				container.appendChild( stats.dom );
+
 			}
 			function onWindowResize() {
 				camera.aspect = window.innerWidth / window.innerHeight;
@@ -114,7 +112,7 @@
 					//}
 				//}
 				renderer.render( scene, camera );
-				stats.update();
+
 			}
 		</script>
 
