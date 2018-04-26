@@ -210,21 +210,6 @@
 
 		}, onProgress, onError );
 	});
-	
-
-	// model
-	var loader = new THREE.FBXLoader();
-	loader.load( 'models/2/bear.fbx', function ( object ) {				
-		mesh = object;
-		mesh.position.y=-0.15;
-		mesh.scale.x =  mesh.scale.y =  mesh.scale.z = 16.66;
-		mesh.rotation.x = Math.PI*1.5;
-		mesh.rotation.y = Math.PI/2;
-		mesh.rotation.z = (Math.PI/9)*7.32;	
-		markerRoot.add( mesh );
-	} );
-
-*/
 
 
 	// model
@@ -238,7 +223,22 @@
 		mesh.rotation.y = Math.PI/2;
 		mesh.rotation.z = (Math.PI/9)*7.32;	
 		markerRoot.add( mesh );
+	} );*/
+		
+
+	// model
+	var loader = new THREE.FBXLoader();
+	loader.load( 'models/ARproject/huayin.fbx', function ( object ) {				
+		mesh = object;
+		mesh.position.y=-0.15;
+		mesh.scale.x =  mesh.scale.y =  mesh.scale.z = 0.66;
+		mesh.rotation.x = Math.PI*1.5;
+		mesh.rotation.y = Math.PI/2;
+		mesh.rotation.z = (Math.PI/9)*7.32;	
+		markerRoot.add( mesh );
 	} );
+
+
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
 	//////////////////////////////////////////////////////////////////////////////////
