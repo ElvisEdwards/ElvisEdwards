@@ -109,7 +109,7 @@
 
 	// model
 	var loader = new THREE.FBXLoader();
-	loader.load( 'models/ARproject/fbx/1.FBX', function ( object ) {				
+	loader.load( 'models/ARproject/fbx/2.FBX', function ( object ) {				
 		mesh = object;
 		mesh.position.y=-0.15;
 		mesh.scale.x =  mesh.scale.y =  mesh.scale.z = 1.66;
