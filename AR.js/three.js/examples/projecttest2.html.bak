@@ -29,7 +29,7 @@
 		 
 -->
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-<div id="result" style="border:2px solid red; color:red;">001未触发事件！</div>
+<div id="result" style="border:2px solid red; color:red;">003未触发事件！</div>
 <div id="container"></div>
 <script> 
 	//////////////////////////////////////////////////////////////////////////////////

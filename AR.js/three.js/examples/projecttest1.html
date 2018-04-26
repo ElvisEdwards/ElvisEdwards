@@ -19,6 +19,7 @@
 <script src="js/Detector.js"></script>
 <script src="js/libs/inflate.min.js"></script>
 <script src="js/loaders/FBXLoader.js"></script>
+<script src="js/controls/OrbitControls.js"></script>
 <!--<script src="js/loaders/JSONLoader.js"></script>
 <script src="js/loaders/ObjectLoader.js"></script>
 
@@ -28,7 +29,7 @@
 		 
 -->
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-<div id="result" style="border:2px solid red; color:red;">008未触发事件！</div>
+<div id="result" style="border:2px solid red; color:red;">000未触发事件！</div>
 <div id="container"></div>
 <script> 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -134,7 +135,7 @@
 	onRenderFcts.push(function(delta){
 		smoothedControls.update(markerRoot)
 	})	
-	//全局变量，触摸开始位置
+/*	//全局变量，触摸开始位置
 	var a=0,b=0;
 	var distancestart=0,distanceend=0;
 	var modelSize=20;
@@ -181,7 +182,7 @@
 	},false)
 	},false)
 
-/*
+
 
 	// model
 	var onProgress = function ( xhr ) {
