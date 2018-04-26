@@ -29,7 +29,7 @@
 	</head>
 
 	<body>
-<div id="result" style="border:2px solid red; color:red;">004</div>
+<div id="result" style="border:2px solid red; color:red;">005</div>
 		<script src="../build/three.js"></script>
 
 		<script src="js/libs/inflate.min.js"></script>
@@ -77,7 +77,7 @@
 				scene.add( grid );
 				// model
 				var loader = new THREE.FBXLoader();
-				loader.load( 'models/ARproject/fbx/3.FBX', function ( object ) {
+				loader.load( 'models/ARproject/fbx/7.fbx', function ( object ) {
 					//object.mixer = new THREE.AnimationMixer( object );
 					//mixers.push( object.mixer );
 					//var action = object.mixer.clipAction( object.animations[ 0 ] );
