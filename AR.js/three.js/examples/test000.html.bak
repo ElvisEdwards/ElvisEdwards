@@ -29,9 +29,8 @@
 	</head>
 
 	<body>
-<div id="result" style="border:2px solid red; color:red;">002</div>
-		<!--<script src="../build/three.js"></script>-->
-		<script src='vendor/three.js/build/three.js'></script>
+<div id="result" style="border:2px solid red; color:red;">003</div>
+		<script src="../build/three.js"></script>
 
 		<script src="js/libs/inflate.min.js"></script>
 		<script src="js/loaders/FBXLoader.js"></script>
