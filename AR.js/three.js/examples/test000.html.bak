@@ -29,7 +29,7 @@
 		<div id="info">
 		<a href="http://threejs.org" target="_blank" rel="noopener">three.js</a> - OBJLoader + MTLLoader
 		</div>
-
+<div id="result" style="border:2px solid red; color:red;">001！</div>
 		<script src="../build/three.js"></script>
 
 		<script src="js/loaders/DDSLoader.js"></script>
