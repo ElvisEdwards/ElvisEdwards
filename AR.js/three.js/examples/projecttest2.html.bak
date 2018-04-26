@@ -18,17 +18,18 @@
 <script src="js/loaders/DDSLoader.js"></script>
 <script src="js/Detector.js"></script>
 <script src="js/libs/inflate.min.js"></script>
+<!-- 
 <script src="js/loaders/FBXLoader.js"></script>
 <script src="js/loaders/JSONLoader.js"></script>
 <script src="js/loaders/ObjectLoader.js"></script>
-
+-->
 		<script src="js/loaders/DDSLoader.js"></script>
 		<script src="js/loaders/MTLLoader.js"></script>
 		<script src="js/loaders/OBJLoader.js"></script>
 		 
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-<div id="result" style="border:2px solid red; color:red;">001未触发事件！</div>
+<div id="result" style="border:2px solid red; color:red;">002未触发事件！</div>
 <div id="container"></div>
 <script> 
 	//////////////////////////////////////////////////////////////////////////////////
