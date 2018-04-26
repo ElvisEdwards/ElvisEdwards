@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <!-- 防止屏幕进行伸缩 <meta name='viewport' content='width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0'> -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
-<!-- three.js library 
-<script src='vendor/three.js/build/three.js'></script>--> 
+<!-- three.js library  
+<script src='vendor/three.js/build/three.js'></script>-->
 <script src="../build/three.js"></script>
 <!-- jsartookit -->
 <script src='../vendor/jsartoolkit5/build/artoolkit.min.js'></script>
@@ -16,21 +16,19 @@
 <script src='../src/threex/threex-arsmoothedcontrols.js'></script>
 <script>THREEx.ArToolkitContext.baseURL = '../'</script>
       
-<script src="js/loaders/DDSLoader.js"></script>
 <script src="js/Detector.js"></script>
-<!-- 
 <script src="js/libs/inflate.min.js"></script>
 <script src="js/loaders/FBXLoader.js"></script>
-<script src="js/loaders/JSONLoader.js"></script>
+<!--<script src="js/loaders/JSONLoader.js"></script>
 <script src="js/loaders/ObjectLoader.js"></script>
--->
+
 		<script src="js/loaders/DDSLoader.js"></script>
 		<script src="js/loaders/MTLLoader.js"></script>
 		<script src="js/loaders/OBJLoader.js"></script>
 		 
-
+-->
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-<div id="result" style="border:2px solid red; color:red;">007未触发事件！</div>
+<div id="result" style="border:2px solid red; color:red;">001未触发事件！</div>
 <div id="container"></div>
 <script> 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -183,6 +181,8 @@
 	},false)
 	},false)
 
+/*
+
 	// model
 	var onProgress = function ( xhr ) {
 		if ( xhr.lengthComputable ) {
@@ -193,37 +193,24 @@
 	var onError = function ( xhr ) { };
 	THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
 	var mtlLoader = new THREE.MTLLoader();
-	mtlLoader.setPath( 'models/ARproject/' );
-	mtlLoader.load( 'huayinA.mtl', function( materials ) {
+	mtlLoader.setPath( 'models/huayin_obj/' );
+	mtlLoader.load( 'huayin.mtl', function( materials ) {
 		materials.preload();
 		var objLoader = new THREE.OBJLoader();
 		objLoader.setMaterials( materials );
-		objLoader.setPath( 'models/ARproject/' );
-		objLoader.load( 'huayinA.obj', function ( object ) {
+		objLoader.setPath( 'models/huayin_obj/' );
+		objLoader.load( 'huayin.obj', function ( object ) {
 		mesh = object;
 		mesh.position.y=-0.15;
-		mesh.scale.x =  mesh.scale.y =  mesh.scale.z = 0.06;
+		mesh.scale.x =  mesh.scale.y =  mesh.scale.z = 0.66;
 		mesh.rotation.x = Math.PI*1.5;
 		mesh.rotation.y = Math.PI/2;
 		mesh.rotation.z = (Math.PI/9)*7.32;	
 		markerRoot.add( mesh );
+
 		}, onProgress, onError );
 	});
-	
 
-/*
-
-	// model
-	var loader = new THREE.FBXLoader();
-	loader.load( 'models/2/bear.fbx', function ( object ) {				
-		mesh = object;
-		mesh.position.y=-0.15;
-		mesh.scale.x =  mesh.scale.y =  mesh.scale.z = 16.66;
-		mesh.rotation.x = Math.PI*1.5;
-		mesh.rotation.y = Math.PI/2;
-		mesh.rotation.z = (Math.PI/9)*7.32;	
-		markerRoot.add( mesh );
-	} );
 
 
 	// model
@@ -238,6 +225,22 @@
 		mesh.rotation.z = (Math.PI/9)*7.32;	
 		markerRoot.add( mesh );
 	} );*/
+		
+
+	// model
+	var loader = new THREE.FBXLoader();
+	loader.load( 'models/ARproject/fbx/5.fbx', function ( object ) {				
+		mesh = object;
+		mesh.position.y=-0.15;
+		mesh.scale.x =  mesh.scale.y =  mesh.scale.z = 1.66;
+		mesh.rotation.x = Math.PI*1.5;
+		mesh.rotation.y = Math.PI/2;
+		mesh.rotation.z = (Math.PI/9)*7.32;	
+		markerRoot.add( mesh );
+	} );
+
+
+
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
 	//////////////////////////////////////////////////////////////////////////////////
