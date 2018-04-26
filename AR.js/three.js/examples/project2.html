@@ -194,7 +194,6 @@
 	onRenderFcts.push(function(){
 		renderer.render( scene, camera );
 	})
-		alert('003');
 	// run the rendering loop
 	var lastTimeMsec= null
 	requestAnimationFrame(function animate(nowMsec){
@@ -202,8 +201,9 @@
 		requestAnimationFrame( animate );
 		
 		camera.position.y=0.15;
-
+		//定义旋转中心
 		var axis = new THREE.Vector3(0,1,0);
+		//定义旋转参数：旋转中心和转动速率，正负表示方向
 		mesh.rotateOnAxis(axis,Math.PI * (-0.002));
 		//measure time
 		lastTimeMsec	= lastTimeMsec || nowMsec-1000/60
