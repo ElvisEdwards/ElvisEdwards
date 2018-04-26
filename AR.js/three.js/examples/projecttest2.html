@@ -30,7 +30,7 @@
 		 
 -->
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-<div id="result" style="border:2px solid red; color:red;">024未触发事件！</div>
+<div id="result" style="border:2px solid red; color:red;">025未触发事件！</div>
 <div id="container"></div>
 <script> 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -233,14 +233,14 @@
 
 	// model
 	var loader = new THREE.FBXLoader();
-	loader.load( 'models/ARproject/fbx/10.FBX', function ( object ) {				
+	loader.load( 'models/ARproject/fbx/11.FBX', function ( object ) {				
 		//mesh = object;
 		//mesh.position.y=-0.15;
 		//mesh.scale.x =  mesh.scale.y =  mesh.scale.z = 0.01;
 		//mesh.rotation.x = Math.PI*1.5;
 		//mesh.rotation.y = Math.PI/2;
 		//mesh.rotation.z = (Math.PI/9)*7.32;
-		object.scale.x =  object.scale.y =  object.scale.z = 0.001;
+		object.scale.x =  object.scale.y =  object.scale.z = 0.01;
 		markerRoot.add( object );
 	} );
 
