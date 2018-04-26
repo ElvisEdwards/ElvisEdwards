@@ -200,12 +200,11 @@
 		objLoader.load( 'huayin.obj', function ( object ) {
 		mesh = object;
 		mesh.position.y=-0.15;
-		mesh.scale.x =  mesh.scale.y =  mesh.scale.z = 0.66;
+		mesh.scale.x =  mesh.scale.y =  mesh.scale.z = 0.16;
 		mesh.rotation.x = Math.PI*1.5;
 		mesh.rotation.y = Math.PI/2;
 		mesh.rotation.z = (Math.PI/9)*7.32;	
 		markerRoot.add( mesh );
-
 		}, onProgress, onError );
 	});
 	
@@ -223,8 +222,6 @@
 		mesh.rotation.z = (Math.PI/9)*7.32;	
 		markerRoot.add( mesh );
 	} );
-
-
 
 
 	// model
