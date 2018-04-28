@@ -17,8 +17,8 @@
 <script>THREEx.ArToolkitContext.baseURL = '../'</script>
       
 <script src="js/Detector.js"></script>
-<script src="js/libs/inflate.min.js"></script>
-<!--<script src="js/loaders/FBXLoader.js"></script>
+<!--<script src="js/libs/inflate.min.js"></script>
+<script src="js/loaders/FBXLoader.js"></script>
 <script src="js/loaders/JSONLoader.js"></script>
 <script src="js/loaders/ObjectLoader.js"></script>
 -->
@@ -28,7 +28,7 @@
 		 
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-<div id="result" style="border:2px solid red; color:red;">0biaozhun！0</div>
+<div id="result" style="border:2px solid red; color:red;">2biaozhun！2</div>
 <div id="container"></div>
 <script> 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -216,7 +216,7 @@
 		objLoader.setMaterials( materials );
 		objLoader.setPath( 'models/ARproject/test/biaozhun/' );
 		objLoader.load( 'huayin.obj', function ( object ) {
-		object.scale.x =  object.scale.y =  object.scale.z = 0.06;
+		object.scale.x =  object.scale.y =  object.scale.z = 0.01;
 		markerRoot.add( object );
 		}, onProgress, onError );
 	});
