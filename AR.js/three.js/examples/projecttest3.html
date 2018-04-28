@@ -20,6 +20,7 @@
 <script src="js/libs/inflate.min.js"></script>
 <script src="js/loaders/FBXLoader.js"></script>
 <script src="js/loaders/BinaryLoader.js"></script>
+<script src="js/controls/OrbitControls.js"></script>
 <script src="js/controls/TrackballControls.js"></script>
 <!--<script src="js/loaders/JSONLoader.js"></script>
 <script src="js/loaders/ObjectLoader.js"></script>
@@ -30,7 +31,7 @@
 		 
 -->
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-<div id="result" style="border:2px solid red; color:red;">035 wen ben！</div>
+<div id="result" style="border:2px solid red; color:red;">orbitcontrol！</div>
 <div id="container"></div>
 <script> 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -83,7 +84,7 @@
 	arToolkitSource.init(function onReady(){
 		onResize()
 	})
-	/*
+
 	var controls = new THREE.OrbitControls( camera);
 			controls.enableDamping = true; // an animation loop is required when either damping or auto-rotation are enabled
 			controls.dampingFactor = 0.25;
@@ -91,8 +92,8 @@
 			controls.minDistance = 0.5;
 			controls.maxDistance = 20;
 			controls.maxPolarAngle = Math.PI / 2;
-	*/
-	var controls = new THREE.TrackballControls( camera );
+	
+	/*	var controls = new THREE.TrackballControls( camera );
                 //旋转速度
                 controls.rotateSpeed = 1.0;
                 //变焦速度
@@ -109,7 +110,7 @@
                 controls.dynamicDampingFactor = 0.3;
 				controls.minDistance = 20;   //设置滚轮能滚到的最近距离  
                 controls.maxDistance = 1000;   //设置滚轮能滚到的最远距离  
-				//controls.addEventListener( 'change', render );  
+				//controls.addEventListener( 'change', render );  */
 	// handle resize
 	window.addEventListener('resize', function(){
 		onResize()
