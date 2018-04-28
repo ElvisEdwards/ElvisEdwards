@@ -137,7 +137,7 @@
 	onRenderFcts.push(function(delta){
 		smoothedControls.update(markerRoot)
 	})	
-	//全局变量，触摸开始位置
+/*	//全局变量，触摸开始位置
 	var a=0,b=0;
 	var distancestart=0,distanceend=0;
 	var modelSize=20;
@@ -184,7 +184,7 @@
 	},false)
 	},false)
 
-/*
+
 	// model
 	var objectLoader = new THREE.ObjectLoader();
 	objectLoader.load("models/ARproject/huayin.json", function ( obj ) {
@@ -233,7 +233,6 @@
 	// run the rendering loop
 	var lastTimeMsec= null
 	requestAnimationFrame(function animate(nowMsec){
-		controls.update(); 
 		// keep looping
 		requestAnimationFrame( animate );
 
