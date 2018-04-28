@@ -84,7 +84,7 @@
 		onResize()
 	})
 	/*
-	var controls = new THREE.OrbitControls( camera, renderer.domElement );
+	var controls = new THREE.OrbitControls( camera);
 			controls.enableDamping = true; // an animation loop is required when either damping or auto-rotation are enabled
 			controls.dampingFactor = 0.25;
 			controls.screenSpacePanning = false;
@@ -107,6 +107,9 @@
                 controls.staticMoving = false;
                 //动态阻尼系数 就是灵敏度
                 controls.dynamicDampingFactor = 0.3;
+				controls.minDistance = 20;   //设置滚轮能滚到的最近距离  
+                controls.maxDistance = 1000;   //设置滚轮能滚到的最远距离  
+				//controls.addEventListener( 'change', render );  
 	// handle resize
 	window.addEventListener('resize', function(){
 		onResize()
@@ -166,7 +169,7 @@
 		smoothedControls.update(markerRoot)
 	})	
 
-
+	/*
 	//全局变量，触摸开始位置
 	var a=0,b=0;
 	var distancestart=0,distanceend=0;
@@ -214,7 +217,7 @@
 	},false);
 	},false);
 	
-	/*
+
 	var onProgress = function ( xhr ) {
 		if ( xhr.lengthComputable ) {
 			var percentComplete = xhr.loaded / xhr.total * 100;
@@ -280,13 +283,13 @@
 			var action = object.mixer.clipAction( object.animations[ 0 ] );
 				action.play();
 		
-		object.scale.x =  object.scale.y =  object.scale.z = 0.0005;
+		object.scale.x =  object.scale.y =  object.scale.z = 0.001;
 		/*
 		object.rotation.x = Math.PI * 1.5 ;
 		object.rotation.y = Math.PI * 1.5;
 		object.rotation.z = Math.PI ;
 		*/
-		object.rotation.set(Math.PI*1.5,Math.PI*1.5,Math.PI) ;
+		//object.rotation.set(Math.PI*1.5,Math.PI*1.5,Math.PI) ;
 		markerRoot.add( object );
 	} ) ;
 
