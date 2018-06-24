@@ -31,7 +31,7 @@
 		 
 -->
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-<div id="result" style="border:2px solid red; color:red;">test3！</div>
+<div id="result" style="border:2px solid red; color:red;">test4！</div>
 <div id="container"></div>
 <script> 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -85,7 +85,7 @@
 		onResize()
 	})
 
-	var controls = new THREE.OrbitControls( camera);
+	/*var controls = new THREE.OrbitControls( camera);
 			controls.enableDamping = true; // an animation loop is required when either damping or auto-rotation are enabled
 			controls.dampingFactor = 0.25;
 			controls.screenSpacePanning = false;
@@ -93,7 +93,7 @@
 			controls.maxDistance = 20;
 			controls.maxPolarAngle = Math.PI / 2;
 	
-	/*	var controls = new THREE.TrackballControls( camera );
+		var controls = new THREE.TrackballControls( camera );
                 //旋转速度
                 controls.rotateSpeed = 1.0;
                 //变焦速度
@@ -325,10 +325,10 @@
 		//var axis = new THREE.Vector3(0,1,0);
 		//mesh.rotateOnAxis(axis,Math.PI * (-0.002));
 		//旋转
-		//var timer = Date.now() * 0.0005;
-		//camera.position.x = Math.cos( timer ) * modelSize;
-		//camera.position.z = Math.sin( timer ) * modelSize;
-		//camera.lookAt( scene.position );
+		var timer = Date.now() * 0.0005;
+		camera.position.x = Math.cos( timer ) * modelSize;
+		camera.position.z = Math.sin( timer ) * modelSize;
+		camera.lookAt( scene.position );
 		//measure time
 		lastTimeMsec	= lastTimeMsec || nowMsec-1000/60
 		var deltaMsec	= Math.min(200, nowMsec - lastTimeMsec)
