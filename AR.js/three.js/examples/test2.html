@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <meta name='viewport' content='width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0'>
 <!-- three.js library -->
-<script src='vendor/three.js/build/three.js'></script>
-<script src='vendor/three.js/examples/js/libs/stats.min.js'></script>
+<script src="../build/three.js"></script>
 <!-- jsartookit -->
 <script src='../vendor/jsartoolkit5/build/artoolkit.min.js'></script>
 <script src='../vendor/jsartoolkit5/js/artoolkit.api.js'></script>
@@ -21,7 +20,7 @@
 		<script src="js/Detector.js"></script>
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'><div style='position: absolute; top: 10px; width:100%; text-align: center;z-index:1';>
-	<a href='https://github.com/jeromeetienne/AR.js/' target='_blank'>1</a> - developement playground
+	<a href='https://github.com/jeromeetienne/AR.js/' target='_blank'>2</a> - developement playground
 	<br/>
 	
 </div><script>
@@ -224,12 +223,9 @@
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
 	//////////////////////////////////////////////////////////////////////////////////
-	var stats = new Stats();
-	document.body.appendChild( stats.dom );
 	// render the scene
 	onRenderFcts.push(function(){
 		renderer.render( scene, camera );
-		stats.update();
 	})
 	
 	document.addEventListener('touchmove',function(event){
