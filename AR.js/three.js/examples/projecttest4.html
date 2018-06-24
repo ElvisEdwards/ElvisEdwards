@@ -210,9 +210,9 @@
 	    modelSize = changex * 3.5;
 	    camera.position.z = -modelSize;
 	    camera.lookAt( scene.position );
-	    animate(modelSize);
+	    //animate(modelSize);
 	    }
-	    //animate(nowMsec);
+	    animate(nowMsec);
 	    renderer.render(scene, camera);
 	    requestAnimationFrame( animate ); 
 	},false);
@@ -327,7 +327,7 @@
 		//旋转
 		var timer = Date.now() * 0.0005;
 		camera.position.x = Math.cos( timer ) * 200;
-		camera.position.z = Math.sin( timer ) * 200;
+		camera.position.y = Math.sin( timer ) * 200;
 		camera.lookAt( scene.position );
 		//measure time
 		lastTimeMsec	= lastTimeMsec || nowMsec-1000/60
