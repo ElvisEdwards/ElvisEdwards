@@ -31,7 +31,7 @@
 		 
 -->
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-<div id="result" style="border:2px solid red; color:red;">test4！</div>
+<div id="result" style="border:2px solid red; color:red;">test12！</div>
 <div id="container"></div>
 <script> 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -60,7 +60,7 @@
 	var onRenderFcts= [];
 	// init scene and camera
 	var scene	= new THREE.Scene();
-	var ambient = new THREE.AmbientLight( 0xaaaaaa );
+	var ambient = new THREE.AmbientLight( 0x666666 );
 	scene.add( ambient );
 	var directionalLight = new THREE.DirectionalLight( 0x887766 );
 	directionalLight.position.set( -1, 1, 1 ).normalize();
@@ -72,7 +72,7 @@
 	// Create a camera
 	var camera = new THREE.Camera();
 	//var camera =  new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 1000 );
-	//camera.position.z = 1;
+	camera.position.z = 1;
 	scene.add(camera);
 	////////////////////////////////////////////////////////////////////////////////
 	//          handle arToolkitSource
@@ -85,7 +85,7 @@
 		onResize()
 	})
 
-	/*	var controls = new THREE.OrbitControls( camera);
+	var controls = new THREE.OrbitControls( camera);
 			controls.enableDamping = true; // an animation loop is required when either damping or auto-rotation are enabled
 			controls.dampingFactor = 0.25;
 			controls.screenSpacePanning = false;
@@ -93,7 +93,7 @@
 			controls.maxDistance = 20;
 			controls.maxPolarAngle = Math.PI / 2;
 	
-	var controls = new THREE.TrackballControls( camera );
+	/*	var controls = new THREE.TrackballControls( camera );
                 //旋转速度
                 controls.rotateSpeed = 1.0;
                 //变焦速度
@@ -170,7 +170,7 @@
 		smoothedControls.update(markerRoot)
 	})	
 
-	
+	/*
 	//全局变量，触摸开始位置
 	var a=0,b=0;
 	var distancestart=0,distanceend=0;
@@ -210,14 +210,14 @@
 	    modelSize = changex * 3.5;
 	    camera.position.z = -modelSize;
 	    camera.lookAt( scene.position );
-	    //animate(modelSize);
+	    animate(modelSize);
 	    }
-	    animate(nowMsec);
+	    //animate(nowMsec);
 	    renderer.render(scene, camera);
 	    requestAnimationFrame( animate ); 
 	},false);
 	},false);
-	/*
+	
 
 	var onProgress = function ( xhr ) {
 		if ( xhr.lengthComputable ) {
@@ -284,7 +284,7 @@
 			//var action = object.mixer.clipAction( object.animations[ 0 ] );
 				//action.play();
 		
-		object.scale.x =  object.scale.y =  object.scale.z = 0.1;
+		object.scale.x =  object.scale.y =  object.scale.z = 0.001;
 		/*
 		object.rotation.x = Math.PI * 1.5 ;
 		object.rotation.y = Math.PI * 1.5;
@@ -309,7 +309,7 @@
 		// keep looping
 		requestAnimationFrame( animate );
 		
-		//controls.update();
+		controls.update();
 		
 		//if ( mixers.length > 0 ) {
 
@@ -324,11 +324,6 @@
 		//camera.position.y=0.05;
 		//var axis = new THREE.Vector3(0,1,0);
 		//mesh.rotateOnAxis(axis,Math.PI * (-0.002));
-		//旋转
-		var timer = Date.now() * 0.0005;
-		camera.position.x = Math.cos( timer ) * 200;
-		camera.position.y = Math.sin( timer ) * 200;
-		camera.lookAt( scene.position );
 		//measure time
 		lastTimeMsec	= lastTimeMsec || nowMsec-1000/60
 		var deltaMsec	= Math.min(200, nowMsec - lastTimeMsec)
