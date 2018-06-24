@@ -31,7 +31,7 @@
 		 
 -->
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-<div id="result" style="border:2px solid red; color:red;">test3！</div>
+<div id="result" style="border:2px solid red; color:red;">test1！</div>
 <div id="container"></div>
 <script> 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -170,7 +170,7 @@
 		smoothedControls.update(markerRoot)
 	})	
 
-	
+	/*
 	//全局变量，触摸开始位置
 	var a=0,b=0;
 	var distancestart=0,distanceend=0;
@@ -228,7 +228,7 @@
 	
 	var onError = function ( xhr ) { };
 	THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
-	
+	*/
 /*
 	// model
 	var onProgress = function ( xhr ) {
@@ -325,10 +325,10 @@
 		//var axis = new THREE.Vector3(0,1,0);
 		//mesh.rotateOnAxis(axis,Math.PI * (-0.002));
 		//旋转
-		var timer = Date.now() * 0.0005;
-		camera.position.x = Math.cos( timer ) * 2;
-		camera.position.z = Math.sin( timer ) * 2;
-		camera.lookAt( scene.position );
+		//var timer = Date.now() * 0.0005;
+		//camera.position.x = Math.cos( timer ) * modelSize;
+		//camera.position.z = Math.sin( timer ) * modelSize;
+		//camera.lookAt( scene.position );
 		//measure time
 		lastTimeMsec	= lastTimeMsec || nowMsec-1000/60
 		var deltaMsec	= Math.min(200, nowMsec - lastTimeMsec)
