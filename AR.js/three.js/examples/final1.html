@@ -2,7 +2,7 @@
 <!-- 防止屏幕进行伸缩 <meta name='viewport' content='width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0'> -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
 <!-- three.js library -->
-<script src='vendor/three.js/build/three.js'></script>
+<script src="../build/three.js"></script>
 <!-- jsartookit -->
 <script src='../vendor/jsartoolkit5/build/artoolkit.min.js'></script>
 <script src='../vendor/jsartoolkit5/js/artoolkit.api.js'></script>
@@ -16,12 +16,14 @@
 
 <script>THREEx.ArToolkitContext.baseURL = '../'</script>
 
-		<script src="js/loaders/DDSLoader.js"></script>
-		<script src='../src/loaders/ObjectLoader.js'></script>
-		<script src="js/Detector.js"></script>
+<script src="js/Detector.js"></script>
+<script src="js/libs/inflate.min.js"></script>
+<script src="js/loaders/FBXLoader.js"></script>
+<script src="js/loaders/BinaryLoader.js"></script>
+
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-<div id="result" style="border:2px solid red; color:red;">未触发事件！</div>
+<div id="result" style="border:2px solid red; color:red;">1未触发事件！</div>
 <div id="container"></div>
 <script>
 	//////////////////////////////////////////////////////////////////////////////////
@@ -207,14 +209,24 @@
 	
 	
 	// model
-	var objectLoader = new THREE.ObjectLoader();
-	objectLoader.load("models/test11/test11.json", function ( obj ) {
-	obj.scale.x =  obj.scale.y =  obj.scale.z = 0.66;
-	//obj.scale.set(1,1,1);
-	//obj.position.x = 2;
-	obj.rotation.set(Math.PI/0.833,Math.PI,Math.PI) ;
-	markerRoot.add( obj );
-	} );
+	var loader = new THREE.FBXLoader();
+	loader.load( 'models/0617/1/1.fbx', function ( object ) {				
+	//object.mixer = new THREE.AnimationMixer( object );
+		
+			//mixers.push( object.mixer );
+
+			//var action = object.mixer.clipAction( object.animations[ 0 ] );
+				//action.play();
+		
+		object.scale.x =  object.scale.y =  object.scale.z = 0.1;
+		/*
+		object.rotation.x = Math.PI * 1.5 ;
+		object.rotation.y = Math.PI * 1.5;
+		object.rotation.z = Math.PI ;
+		*/
+		//object.rotation.set(Math.PI*1.5,Math.PI*1.5,Math.PI) ;
+		markerRoot.add( object );
+	} ) ;
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
 	//////////////////////////////////////////////////////////////////////////////////
